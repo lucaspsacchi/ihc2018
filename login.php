@@ -1,4 +1,6 @@
+<?php
 
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -19,34 +21,39 @@
         <!-- Importando estilo css -->
         <link type="text/css" rel="stylesheet" href="css/cadastro.css">
     </head>
-    <body>
-        <!-- Navbar -->
+    <body class="site">
+        <!-- Logo -->
+
 
         <!-- Main -->
-        <main class="site-row">
-            <div class="site-column">
-                <form class="border"> <!-- Redirecionamento depende de cada usuário, vai ter um header depois da verificação das credenciais -->
-                    <div class="">                        
-                        <label for="usuario">Usuário</label>
-                        <input type="text" name="inputUsuario" pattern=".{5,30}" required> <!-- Autofocus? -->
+        <main  class="wrap">
+            <div class="site-row">
+                <div class="site-column">
+                    <form class="border border-dark rounded"> <!-- Redirecionamento depende de cada usuário, vai ter um header depois da verificação das credenciais -->
+                        <div class="">                        
+                            <label for="email" style="font-weight: bold;">Email</label><br><!-- Pattern -->
+                            <input type="text" name="inputEmail" pattern=".{5,30}" required> <!-- Autofocus? -->
+                        </div>
+                        <div class="">
+                            <div class="divrow">
+                                <label class="divsenha" style="font-weight: bold;">Senha</label>
+                                <div class="divesq">
+                                    <a href="#">Esqueceu a sua senha?</a>
+                                </div>
+                            </div>
+                            <input type="password" name="inputSenha" pattern=".{5,30}" required>
+                        </div>
+                        <br>
+                        <div class="">
+                            <button type="submit" class="btn btn-secondary">Entrar</button>
+                        </div>
+                    </form>
+
+                    <div class="cardCad rounded">
+                        <a href="./cadastro.php">Crie uma nova conta</a>
                     </div>
-                    <br>
-                    <div class="">
-                        <label for="senha">Senha</label>
-                        <input type="password" name="inputSenha" pattern=".{5,30}" required>
-                    </div>
-                    <br>
-                    <div class="">
-                        <button type="submit" class="btn btn-secondary">Entrar</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </main>
-
-
-        <!-- Footer -->
-        <footer>
-
-        </footer>
     </body>
 </html>

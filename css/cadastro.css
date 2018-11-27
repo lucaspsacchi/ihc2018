@@ -10,12 +10,57 @@ body {
     display: flex;
     min-height: 100vh;
     justify-content: center;
-    background-color: violet;
+    background-color: rgb(228, 228, 228);
 }
 
 .site-column {
     display: flex !important;
     flex-direction: column;
     height:100vh;
-    background-color: greenyellow;
+    justify-content: center;
+}
+
+form {
+    display: block;
+    padding: 25px;
+    background-color: white;
+}
+
+.border {
+    border-width: 10px;
+}
+
+.site {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.divrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 5px;
+}
+
+.divesq {
+    font-size: 12px;
+}
+
+button {
+    width: 100%;
+}
+
+.wrap {
+    flex-grow:1;
+}
+
+.cardCad {
+    padding: 5px;
+    border-style: solid;
+    border-width: 1px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
 }
