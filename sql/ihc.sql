@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
--- https://www.phpmyadmin.net/
+-- version 4.4.15.9
+-- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 26, 2018 at 07:47 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.2.12
+-- Generation Time: 28-Nov-2018 às 04:20
+-- Versão do servidor: 5.6.37
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -25,21 +23,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `org`
+-- Estrutura da tabela `org`
 --
 
-CREATE TABLE `org` (
+CREATE TABLE IF NOT EXISTS `org` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `org`
+--
+
+INSERT INTO `org` (`id`, `nome`) VALUES
+(1, 'ADMIN');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `prod`
+-- Estrutura da tabela `prod`
 --
 
-CREATE TABLE `prod` (
+CREATE TABLE IF NOT EXISTS `prod` (
   `id` int(11) NOT NULL,
   `nome` varchar(50) NOT NULL,
   `descr` varchar(500) NOT NULL,
@@ -52,25 +57,32 @@ CREATE TABLE `prod` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario`
+-- Estrutura da tabela `usuario`
 --
 
-CREATE TABLE `usuario` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `id` int(11) NOT NULL,
   `nome` varchar(60) NOT NULL,
   `email` varchar(40) NOT NULL,
   `senha` varchar(32) NOT NULL,
   `id_org` int(11) NOT NULL,
   `tel` varchar(12) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `id_org`, `tel`) VALUES
+(3, 'Jorge', 'jorge@hotmail.com', 'd67326a22642a324aa1b0745f2f17abb', 1, '1234-5678');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usu_prod`
+-- Estrutura da tabela `usu_prod`
 --
 
-CREATE TABLE `usu_prod` (
+CREATE TABLE IF NOT EXISTS `usu_prod` (
   `id_usu` int(11) NOT NULL,
   `id_prod` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -95,13 +107,15 @@ ALTER TABLE `prod`
 -- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_org` (`id_org`);
 
 --
 -- Indexes for table `usu_prod`
 --
 ALTER TABLE `usu_prod`
-  ADD PRIMARY KEY (`id_usu`);
+  ADD KEY `id_prod` (`id_prod`),
+  ADD KEY `id_usu` (`id_usu`) USING BTREE;
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -111,20 +125,33 @@ ALTER TABLE `usu_prod`
 -- AUTO_INCREMENT for table `org`
 --
 ALTER TABLE `org`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `prod`
 --
 ALTER TABLE `prod`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Limitadores para a tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `id_org_fk` FOREIGN KEY (`id_org`) REFERENCES `org` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `usu_prod`
+--
+ALTER TABLE `usu_prod`
+  ADD CONSTRAINT `id_prod_fk` FOREIGN KEY (`id_prod`) REFERENCES `prod` (`id`),
+  ADD CONSTRAINT `id_usu_fk` FOREIGN KEY (`id_usu`) REFERENCES `usuario` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

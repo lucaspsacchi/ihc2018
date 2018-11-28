@@ -1,5 +1,40 @@
 <?php
+$erro_login = 0;
 
+if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
+
+    include('connection/connection.php');
+
+    $email = addslashes($_POST['inputEmail']);
+    $senha = addslashes($_POST['inputSenha']);
+    
+
+    // Verifica se existe aquele email e a senha é a mesma do bd
+    $script =   "SELECT *
+                FROM usuario
+                WHERE email='".$email."'  and senha=MD5('".$senha."');";
+    // Se encontrou algum resultado com os valores informados
+    if ($result = $conn->query($script)) {
+        if ($result->num_rows > 0) {
+            // Permissão concedida
+
+            $obj = $result->fetch_object();
+
+            // Configurações de session
+            ini_set('session.gc_maxlifetime', 3600);
+            session_set_cookie_params(3600);
+
+            session_start();            
+
+            $result->close();
+
+            header("Location: ./home.php");
+        } else {
+            $erro_login = 1;
+        }
+    }
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -25,12 +60,12 @@
 
         <!-- Main -->
         <main  class="wrap">
+            <div class="logo">
+                <img src="img/UFSell.png" alt="logo">
+            </div>
             <div class="site-row">
                 <div class="site-column">
-                    <div class="logo">
-                        <img src="img/UFSell.png" alt="logo">
-                    </div>
-                    <form class="border border-dark rounded" method="post"> <!-- Redirecionamento depende de cada usuário, vai ter um header depois da verificação das credenciais -->
+                    <form class="border border-dark rounded" action="#" method="post"> <!-- Redirecionamento depende de cada usuário, vai ter um header depois da verificação das credenciais -->
                         <div class="">
                             <label for="email" style="font-weight: bold;">Email</label><br>
                             <input type="email" name="inputEmail" pattern=".{5,30}" autofocus required>
@@ -39,7 +74,7 @@
                             <div class="divrow">
                                 <label class="divsenha" style="font-weight: bold;">Senha</label>
                                 <div class="divesq">
-                                    <a href="#">Esqueceu a sua senha?</a>
+                                    <a href="./esqueceu.php">Esqueceu a sua senha?</a>
                                 </div>
                             </div>
                             <input type="password" name="inputSenha" pattern=".{5,30}" required>
