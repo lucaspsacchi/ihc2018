@@ -10,7 +10,7 @@
 
         <!-- Título e ícone da aba -->
         <title>IHC - MUDAR NOME E ICONE</title>
-        <link rel="shortcut icon" type="image/png" href="img/pngtree-gray-man---machine-interaction-png-clipart_2906340.jpg">
+        <link rel="shortcut icon" type="image/png" href="img/UFSell.png">
 
         <!-- Importando bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -22,16 +22,17 @@
         <link type="text/css" rel="stylesheet" href="css/cadastro.css">
     </head>
     <body class="site">
-        <!-- Logo -->
-
 
         <!-- Main -->
         <main  class="wrap">
             <div class="site-row">
                 <div class="site-column">
+                    <div class="logo">
+                        <img src="img/UFSell.png" alt="logo">
+                    </div>
                     <form class="border border-dark rounded" method="post"> <!-- Redirecionamento depende de cada usuário, vai ter um header depois da verificação das credenciais -->
-                        <div class="">                        
-                            <label for="email" style="font-weight: bold;">Email</label><br><!-- Pattern -->
+                        <div class="">
+                            <label for="email" style="font-weight: bold;">Email</label><br>
                             <input type="email" name="inputEmail" pattern=".{5,30}" autofocus required>
                         </div>
                         <div class="">
