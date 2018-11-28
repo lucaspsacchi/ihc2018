@@ -69,7 +69,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
             </div>            
             <div class="site-row">
                 <div class="site-column">
-                    <form class="border border-dark rounded" method="post"> <!-- Redirecionamento depende de cada usuário, vai ter um header depois da verificação das credenciais -->
+                    <form id="formLog" class="border border-dark rounded" method="post"> <!-- Redirecionamento depende de cada usuário, vai ter um header depois da verificação das credenciais -->
                         <div class="">
                             <label for="email" style="font-weight: bold;">Email</label><br>
                             <input type="email" name="inputEmail" pattern=".{5,30}" autofocus required>

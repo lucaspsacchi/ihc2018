@@ -18,11 +18,17 @@ body {
     flex-direction: column;
 }
 
-form {
+#formLog {
     display: block;
     padding: 25px;
     padding-right: 35px;
     padding-left: 35px;    
+    background-color: white;
+}
+
+#formCad {
+    display: block;
+    padding: 25px;
     background-color: white;
 }
 
@@ -81,4 +87,18 @@ button {
 
 .border {
     border-color: rgb(151, 151, 151) !important;
+}
+
+#barravertical {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-right: 1px solid rgb(151, 151, 151)
+}
+
+.botaocad {
+    width: 80px;
+}
+
+#vouc {
+    width: 60%
 }

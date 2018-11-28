@@ -5,38 +5,8 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
 
     include('connection/connection.php');
 
-    $email = addslashes($_POST['inputEmail']);
-    $senha = addslashes($_POST['inputSenha']);
-    $confsenha = addslashes($_POST['inputConfSenha']);
-
-    // Caso as senhas sejam iguais
-    if ($senha == $confsenha) {
-        // Verifica se existe aquele email
-        $script =   "SELECT *
-                    FROM usuario
-                    WHERE email='".$email."';";
-        // Salva a nova senha no bd
-        if ($result = $conn->query($script)) {
-            if ($result->num_rows > 0) {
-
-                // Criptografa com MD5
-                $senhaMD5 = MD5($senha);
-
-                $obj = $result->fetch_object();
-                $upd = "UPDATE `ihc`.`usuario`
-                SET	`senha` = '".$senhaMD5."'
-                WHERE email='".$email."';";               
-
-                $result->close();
-    
-                header("Location: ./login.php");
-            } else { // Não encontrou aquele email
-                $erro_login = 1;
-            }
-        }
-    }
-    else { // Senhas informadas não são equivalentes
-        $erro_login = 1;
+    if ($_POST['op2']) {
+        echo 'OIE';
     }
 }
 ?>
@@ -67,35 +37,96 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
             <div class="logo">
                 <img src="img/UFSell.png" alt="logo">
             </div>            
-            <div class="site-row">
-                <div class="site-column">
-                    <form class="border border-dark rounded" method="post"> <!-- Redirecionamento depende de cada usuário, vai ter um header depois da verificação das credenciais -->
-                        <div class="">
-                            <label for="email" style="font-weight: bold;">Email</label><br>
-                            <input type="email" name="inputEmail" pattern=".{5,30}" autofocus required>
-                        </div>
-                        <div class="">
-                            <div class="divrow">
-                                <label class="divsenha" style="font-weight: bold;">Senha</label>
+            <div class="container">
+                <div class="col-8 col-md-8 col-sm-4 mx-auto">
+                    <form id="formCad" class="border border-dark rounded" method="post">
+                        <div class="row">
+                            <div id="barravertical" class="col-6 col-md-6 col-sm-12">
+                                <center>
+                                    <div class="">
+                                        <label class="divusuario" style="font-weight: bold;">Usuário</label>
+                                    </div>
+                                    <input type="text" name="inputUsuario" pattern=".{5,30}" required autofocus>
+                                </center>                                   
                             </div>
-                            <input type="password" name="inputSenha" pattern=".{5,30}" required>
+                            <div class="col-6 col-md-6 col-sm-12">
+                                <center>
+                                    <div class="">
+                                        <label for="email" style="font-weight: bold;">Email</label>
+                                    </div>
+                                    <input type="email" name="inputEmail" pattern=".{5,30}" autofocus required>
+                                </center>
+                            </div>                            
                         </div>
-                        <div class="">
-                            <div class="divrow">
-                                <label class="divconfsenha" style="font-weight: bold;">Confirme a senha</label>
+                        <div class="row">
+                            <div id="barravertical" class="col-6 col-md-6 col-sm-12">
+                                <center>
+                                    <div class="">
+                                        <label class="divsenha" style="font-weight: bold;">Senha</label>
+                                    </div>
+                                    <input type="password" name="inputSenha" pattern=".{5,30}" required>
+                                </center>
                             </div>
-                            <input type="password" name="inputConfSenha" pattern=".{5,30}" required>
-                        </div>                        
-                        <br>
-                        <div class="erro">
-<!-- FALTOU ALGUM BOTÃO DE VOLTAR -->
+                            <div class="col-6 col-md-6 col-sm-12">
+                                <center>
+                                    <div class="">
+                                        <label class="divconfsenha" style="font-weight: bold;">Confirme a senha</label>
+                                    </div>
+                                    <input type="password" name="inputConfSenha" pattern=".{5,30}" required>
+                                </center>   
+                            </div>                            
                         </div>
-                        <div class="">
-                            <button type="submit" class="btn btn-secondary">Salvar</button>
+                        <div class="row">
+                            <div id="barravertical" class="col-6 col-md-6 col-sm-12">
+                                <center>
+                                    <div class="">
+                                        <label class="divradio" style="font-weight: bold;">Quem é você?</label>
+                                    </div>
+                                    <input type="radio" name="op" id="op1" value="op1"> Comprador
+                                    <input type="radio" name="op" id="op2" value="op2"> Vendedor
+                                </center>
+                            </div>
+                            <div class="col-6 col-md-6 col-sm-12 align-self-center">
+                                <center>
+                                    <div class="botaocad">
+                                        <button type="submit" class="btn btn-secondary">Salvar</button>
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                        <!-- Telefone e select aparecem depois que escolher comprador no radio-->
+                        <div class="row">
+                            <div id="barravertical" class="col-6 col-md-6 col-sm-12">
+                                <center>
+                                    <div class="">
+                                        <label class="divtel" style="font-weight: bold;">Telefone</label>
+                                    </div>
+                                    <input type="text" name="inputTed" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" placeholder="(01) 2345-6789">
+                                </center>
+                            </div>
+                            <div class="col-6 col-md-6 col-sm-12">
+                                <center>
+                                    <div class="">
+                                        <label class="divcomp" style="font-weight: bold;">Escolha um opção abaixo</label>                                     
+                                    </div>
+                                    <select id="vouc">
+                                        <option value="CABCC">Centro Acadêmico Ciência da Computação</option>
+                                        <option value="ATBCC">Atlética Ciência da Computação</option>
+                                    </select>
+                                </center>   
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
         </main>
     </body>
-</html>    
+</html>
+<script>
+    $(document).ready(function(){
+        if ($("#op2").prop("checked",true)) {
+
+        }
+    })    
+
+</script>
