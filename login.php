@@ -29,10 +29,10 @@
         <main  class="wrap">
             <div class="site-row">
                 <div class="site-column">
-                    <form class="border border-dark rounded"> <!-- Redirecionamento depende de cada usuário, vai ter um header depois da verificação das credenciais -->
+                    <form class="border border-dark rounded" method="post"> <!-- Redirecionamento depende de cada usuário, vai ter um header depois da verificação das credenciais -->
                         <div class="">                        
                             <label for="email" style="font-weight: bold;">Email</label><br><!-- Pattern -->
-                            <input type="text" name="inputEmail" pattern=".{5,30}" required> <!-- Autofocus? -->
+                            <input type="email" name="inputEmail" pattern=".{5,30}" autofocus required>
                         </div>
                         <div class="">
                             <div class="divrow">
