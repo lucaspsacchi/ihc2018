@@ -91,7 +91,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
 <!-- FALTOU ALGUM BOTÃO DE VOLTAR -->
                         </div>
                         <div class="">
-                            <button type="submit" class="btn btn-secondary">Salvar</button>
+                            <button type="submit" class="btn btn-success">Salvar</button>
                         </div>
                     </form>
                 </div>

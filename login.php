@@ -81,13 +81,14 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
                         </div>
                         <br>
                         <div class="">
-                            <button type="submit" class="btn btn-secondary">Entrar</button>
+                            <button type="submit" class="btn btn-success">Entrar</button>
                         </div>
+                        <hr>
+                        <div class="">
+                            <label>Novo no UFSell?&nbsp</label>
+                            <a href="./cadastro.php">Cadastre-se</a>                        
+                        </div>   
                     </form>
-
-                    <div class="cardCad rounded">
-                        <a href="./cadastro.php">Crie uma nova conta</a>
-                    </div>
                 </div>
             </div>
         </main>

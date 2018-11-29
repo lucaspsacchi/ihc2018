@@ -89,7 +89,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                             <div class="col-6 col-md-6 col-sm-12 align-self-center">
                                 <center>
                                     <div class="botaocad">
-                                        <button type="submit" class="btn btn-secondary">Salvar</button>
+                                        <button type="submit" class="btn btn-success">Salvar</button>
                                     </div>
                                 </center>
                             </div>
