@@ -39,6 +39,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
         $erro_login = 1;
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -64,11 +65,14 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
 
         <!-- Main -->
         <main  class="wrap">
+            <!-- Logo -->
             <div class="logo">
-                <img src="img/UFSell.png" alt="logo">
+                <a href="./login.php">
+                    <img src="img/UFSell.png" alt="logo">
+                </a>
             </div>
             <center>
-                <div class="">
+                <div class="textoLogin">
                     <h4>Esqueceu a senha</h4>
                 </div>
             </center>
@@ -96,12 +100,13 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                 </div>                        
                                 <br>
                                 <div class="erro">
-        <!-- FALTOU ALGUM BOTÃO DE VOLTAR -->
                                 </div>
                                 <div class="">
                                     <button type="submit" class="btn btn-success">Salvar</button>
                                 </div>
                             </form>
+                            <hr>
+                            <center><label>Voltar para <a href="./login.php">login</a></label></center>
                         </div>
                     </div>
                 </div>
@@ -109,9 +114,11 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
         </main>
         <!-- Footer -->
         <footer class="card-footer">
-            <div class="text-center">
-                <span id="foot" class="text-muted">© 2018 UFSell. All rights reserved.</span>
+            <div class="text-right">
+                <span  id="foot" class="text-muted">©2018 UFSell&nbsp&nbsp</span>
+                <a href="#">Termos de uso&nbsp&nbsp</a>
+                <a href="#">Privacidade</a>
             </div>
         </footer>            
     </body>
-</html>    
+</html>

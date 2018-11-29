@@ -6,7 +6,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
     include('connection/connection.php');
 
     // Recebe os dados submetidos
-    $usuario = $_POST['inputUsuario'];
+    $nome = $_POST['inputNome'];
     $email = $_POST['inputEmail'];
     $senha = addslashes($_POST['inputSenha']);
     $confsenha = addslashes($_POST['inputConfSenha']);
@@ -46,92 +46,111 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
 
         <!-- Main -->
         <main  class="wrap">
+            <!-- Logo -->
             <div class="logo">
-                <img src="img/UFSell.png" alt="logo">
-            </div>            
+                <a href="./login.php">
+                    <img src="img/UFSell.png" alt="logo">
+                </a>
+            </div>
+            <center>
+                <div class="textoLogin">
+                    <h4>Crie nova conta</h4>
+                </div>
+            </center>
+            <br>                     
             <div class="container">
                 <div class="col-8 col-md-8 col-sm-4 mx-auto">
-                    <form id="formCad" class="border border-dark rounded" method="post">
-                        <div class="row">
-                            <div id="barravertical" class="col-6 col-md-6 col-sm-12">
-                                <center>
-                                    <div class="">
-                                        <label class="divusuario" style="font-weight: bold;">Usuário</label>
+                    <div class="card">
+                        <div class="card-body shadow">                    
+                            <form id="formCad" class="" method="post">
+                                <div class="row">
+                                    <div id="" class="col-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="divnome" style="font-weight: bold;">Nome</label>
+                                            <input type="text" class="form-control shadow-sm bg-white" name="inputNome" pattern=".{5,30}" required autofocus>
+                                        </div>                                
                                     </div>
-                                    <input type="text" name="inputUsuario" pattern=".{5,30}" required autofocus>
-                                </center>                                   
-                            </div>
-                            <div class="col-6 col-md-6 col-sm-12">
-                                <center>
-                                    <div class="">
-                                        <label for="email" style="font-weight: bold;">Email</label>
+                                    <div id="" class="col-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="divsobrenome" style="font-weight: bold;">Sobrenome</label>
+                                            <input type="text" class="form-control shadow-sm bg-white" name="inputSobrenome" pattern=".{5,30}" required autofocus>
+                                        </div>                                
+                                    </div>                        
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="divemail" style="font-weight: bold;">Email</label>
+                                            <input type="email" class="form-control shadow-sm bg-white" name="inputEmail" pattern=".{5,30}" required>
+                                        </div>
                                     </div>
-                                    <input type="email" name="inputEmail" pattern=".{5,30}" autofocus required>
-                                </center>
-                            </div>                            
+                                </div>                                
+                                <div class="row">
+                                    <div id="" class="col-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="divsenha" style="font-weight: bold;">Senha</label>
+                                            <input type="password" class="form-control shadow-sm bg-white" name="inputSenha" pattern=".{5,30}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="divconfsenha" style="font-weight: bold;">Confirme a senha</label>
+                                            <input type="password" class="form-control shadow-sm bg-white" name="inputConfSenha" pattern=".{5,30}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div id="" class="col-12 col-md-12 col-sm-12">
+                                        <div class="row">
+                                            <label class="divradio" style="font-weight: bold;">Quem é você?</label>
+                                        </div>
+                                        <div class="row">
+                                            <input type="radio" class="form-control shadow-sm bg-white" name="op" id="op1" value="op1" checked>Comprador
+                                        </div>
+                                        <div class="row">
+                                            <input type="radio" class="form-control shadow-sm bg-white" name="op" id="op2" value="op2"> Vendedor
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Telefone e select aparecem depois que escolher comprador no radio-->
+                                <div id="box" class="row">
+                                    <div id="" class="col-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="divtel" style="font-weight: bold;">Telefone</label>
+                                            <input type="text" class="form-control shadow-sm bg-white" name="inputTel" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" placeholder="(01) 2345-6789">
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="divcomp" style="font-weight: bold;">Escolha um opção abaixo</label>                                     
+                                            <select id="vouc">
+                                                <option value="CABCC">Centro Acadêmico Ciência da Computação</option>
+                                                <option value="ATBCC">Atlética Ciência da Computação</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-12 col-sm-12 align-self-center">
+                                        <div class="botaocad float-right">
+                                            <button type="submit" class="btn btn-success">Salvar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>                        
                         </div>
-                        <div class="row">
-                            <div id="barravertical" class="col-6 col-md-6 col-sm-12">
-                                <center>
-                                    <div class="">
-                                        <label class="divsenha" style="font-weight: bold;">Senha</label>
-                                    </div>
-                                    <input type="password" name="inputSenha" pattern=".{5,30}" required>
-                                </center>
-                            </div>
-                            <div class="col-6 col-md-6 col-sm-12">
-                                <center>
-                                    <div class="">
-                                        <label class="divconfsenha" style="font-weight: bold;">Confirme a senha</label>
-                                    </div>
-                                    <input type="password" name="inputConfSenha" pattern=".{5,30}" required>
-                                </center>   
-                            </div>                            
-                        </div>
-                        <div class="row">
-                            <div id="barravertical" class="col-6 col-md-6 col-sm-12">
-                                <center>
-                                    <div class="">
-                                        <label class="divradio" style="font-weight: bold;">Quem é você?</label>
-                                    </div>
-                                    <input type="radio" name="op" id="op1" value="op1" checked> Comprador
-                                    <input type="radio" name="op" id="op2" value="op2"> Vendedor
-                                </center>
-                            </div>
-                            <div class="col-6 col-md-6 col-sm-12 align-self-center">
-                                <center>
-                                    <div class="botaocad">
-                                        <button type="submit" class="btn btn-success">Salvar</button>
-                                    </div>
-                                </center>
-                            </div>
-                        </div>
-                        <!-- Telefone e select aparecem depois que escolher comprador no radio-->
-                        <div id="box" class="row">
-                            <div id="barravertical" class="col-6 col-md-6 col-sm-12">
-                                <center>
-                                    <div class="">
-                                        <label class="divtel" style="font-weight: bold;">Telefone</label>
-                                    </div>
-                                    <input type="text" name="inputTel" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" placeholder="(01) 2345-6789">
-                                </center>
-                            </div>
-                            <div class="col-6 col-md-6 col-sm-12">
-                                <center>
-                                    <div class="">
-                                        <label class="divcomp" style="font-weight: bold;">Escolha um opção abaixo</label>                                     
-                                    </div>
-                                    <select id="vouc">
-                                        <option value="CABCC">Centro Acadêmico Ciência da Computação</option>
-                                        <option value="ATBCC">Atlética Ciência da Computação</option>
-                                    </select>
-                                </center>   
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </main>
+        <!-- Footer -->
+        <footer class="card-footer">
+            <div class="text-right">
+                <span  id="foot" class="text-muted">©2018 UFSell&nbsp&nbsp</span>
+                <a href="#">Termos de uso&nbsp&nbsp</a>
+                <a href="#">Privacidade</a>
+            </div>
+        </footer>            
     </body>
 </html>
 <script>

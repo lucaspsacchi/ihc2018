@@ -75,7 +75,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
                 </a>
             </div>
             <center>
-                <div class="">
+                <div class="textoLogin">
                     <h4>Acesse a sua conta</h4>
                 </div>
             </center>
@@ -115,8 +115,10 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
         </main>
         <!-- Footer -->
         <footer class="card-footer">
-            <div class="text-center">
-                <span  id="foot" class="text-muted">© 2018 UFSell. All rights reserved.</span>
+            <div class="text-right">
+                <span  id="foot" class="text-muted">©2018 UFSell&nbsp&nbsp</span>
+                <a href="#">Termos de uso&nbsp&nbsp</a>
+                <a href="#">Privacidade</a>
             </div>
         </footer>        
     </body>
