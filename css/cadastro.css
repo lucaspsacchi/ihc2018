@@ -4,7 +4,7 @@ html {
 
 body {
     min-height: 100%;
-    background-color: rgb(226, 229, 255);
+    background-color: rgb(238, 238, 238);
 }
 
 .site-row {
@@ -20,9 +20,9 @@ body {
 
 #formLog {
     display: block;
-    padding: 25px;
-    padding-right: 35px;
-    padding-left: 35px;    
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 0px;
     background-color: white;
 }
 
@@ -33,7 +33,8 @@ body {
 }
 
 .border {
-    border-width: 10px;
+    border-color: rgb(221, 221, 221) !important;
+    border-radius: 2px;
 }
 
 .site {
@@ -62,31 +63,16 @@ button {
     flex-grow:1;
 }
 
-.cardCad {
-    padding: 5px;
-    margin-top: 15px !important;
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgb(151, 151, 151) !important;
-    margin-top: 5px;
-    display: flex;
-    justify-content: center;
-}
-
 .logo {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
 }
 
-.logo > img {
+.logo > a > img {
     margin-top: 60px;
     width: 70px;
     height: 73px;
-}
-
-.border {
-    border-color: rgb(151, 151, 151) !important;
 }
 
 #barravertical {
@@ -101,4 +87,8 @@ button {
 
 #vouc {
     width: 60%
+}
+
+#foot {
+    font-size: 14px;
 }
