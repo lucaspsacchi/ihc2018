@@ -82,7 +82,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                     <div class="">
                                         <label class="divradio" style="font-weight: bold;">Quem é você?</label>
                                     </div>
-                                    <input type="radio" name="op" id="op1" value="op1"> Comprador
+                                    <input type="radio" name="op" id="op1" value="op1" checked> Comprador
                                     <input type="radio" name="op" id="op2" value="op2"> Vendedor
                                 </center>
                             </div>
@@ -95,7 +95,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                             </div>
                         </div>
                         <!-- Telefone e select aparecem depois que escolher comprador no radio-->
-                        <div class="row">
+                        <div id="box" class="row">
                             <div id="barravertical" class="col-6 col-md-6 col-sm-12">
                                 <center>
                                     <div class="">
@@ -123,10 +123,9 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
     </body>
 </html>
 <script>
-    $(document).ready(function(){
-        if ($("#op2").prop("checked",true)) {
-
-        }
-    })    
-
+$(function() {
+    $('input[name=op]').on('click init-post-format', function() {
+        $('#box').toggle($('#op2').prop('checked'));
+    }).trigger('init-post-format');
+});
 </script>
