@@ -18,7 +18,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- Título e ícone da aba -->
-        <title>IHC - MUDAR NOME E ICONE</title>
+        <title>UFSell</title>
         <link rel="shortcut icon" type="image/png" href="img/UFSell.png">
 
         <!-- Importando bootstrap -->
