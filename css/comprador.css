@@ -1,0 +1,29 @@
+html, body {
+    height: 100%;
+}
+
+.site {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.wrap {
+    flex-grow:1;
+    margin-top: 20px;
+}
+
+#foot, .card-footer {
+    font-size: 12px;
+}
+
+.card-footer {
+    margin-top: 20px;
+    background-color: rgb(218, 218, 218);
+}
+
+#menuButton {
+    width: 30vh; /* ARRUMAR AQUI */
+    border-radius: 0px;
+    text-align: right;
+}

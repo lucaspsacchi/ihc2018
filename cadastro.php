@@ -67,7 +67,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                     <div id="" class="col-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="divnome" style="font-weight: bold;">Nome</label>
-                                            <input type="text" class="form-control shadow-sm bg-white" name="inputNome" pattern=".{5,30}" required autofocus>
+                                            <input type="text" class="form-control shadow-sm" name="inputNome" pattern=".{5,30}" required autofocus>
                                         </div>                                
                                     </div>
                                     <div id="" class="col-6 col-md-6 col-sm-12">
@@ -101,17 +101,25 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                 </div>
                                 <div class="row">
                                     <div id="" class="col-12 col-md-12 col-sm-12">
-                                        <div class="row">
+                                        <div class="">
                                             <label class="divradio" style="font-weight: bold;">Quem é você?</label>
-                                        </div>
-                                        <div class="row">
-                                            <input type="radio" class="form-control shadow-sm bg-white" name="op" id="op1" value="op1" checked>Comprador
-                                        </div>
-                                        <div class="row">
-                                            <input type="radio" class="form-control shadow-sm bg-white" name="op" id="op2" value="op2"> Vendedor
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div id="" class="col-12 col-md-12 col-sm-12">                                
+                                        <div class="float-left">
+                                            <input type="radio" class="" name="op" id="op1" value="op1" checked><label>&nbspComprador</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div id="" class="col-12 col-md-12 col-sm-12">
+                                        <div class="float-left">
+                                            <input type="radio" class="" name="op" id="op2" value="op2"><label>&nbspVendedor</label>
+                                        </div>
+                                    </div>
+                                </div>                                    
                                 <!-- Telefone e select aparecem depois que escolher comprador no radio-->
                                 <div id="box" class="row">
                                     <div id="" class="col-6 col-md-6 col-sm-12">
@@ -123,7 +131,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                     <div class="col-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="divcomp" style="font-weight: bold;">Escolha um opção abaixo</label>                                     
-                                            <select id="vouc">
+                                            <select id="organizacao" class="custom-select">
                                                 <option value="CABCC">Centro Acadêmico Ciência da Computação</option>
                                                 <option value="ATBCC">Atlética Ciência da Computação</option>
                                             </select>
@@ -132,7 +140,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                 </div>
                                 <div class="row">
                                     <div class="col-12 col-md-12 col-sm-12 align-self-center">
-                                        <div class="botaocad float-right">
+                                        <div id="cadSalvar" class="botaocad float-right">
                                             <button type="submit" class="btn btn-success">Salvar</button>
                                         </div>
                                     </div>

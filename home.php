@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- Título e ícone da aba -->
-        <title>IHC - MUDAR NOME E ICONE</title>
-        <link rel="shortcut icon" type="image/png" href="img/pngtree-gray-man---machine-interaction-png-clipart_2906340.jpg">
+        <title>UFSell</title>
+        <link rel="shortcut icon" type="image/png" href="img/UFSell.png">
 
         <!-- Importando bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -16,7 +16,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
         <!-- Importando estilo css -->
-        <link type="text/css"  rel="stylesheet" href="./css/home.css">
+        <link type="text/css"  rel="stylesheet" href="./css/comprador.css">
     </head>
 
     <body class="site">
@@ -59,15 +59,44 @@
         <!-- Conteúdo da página -->
         <main class="wrap">
             <div class="container">
-                <p>AAAAAAAAAAAAAAAA</p>
+                <div class="row">
+                    <div class="col-md-3 col-sm-4 col-xm-6">
+                        <!-- Barra lateral para categorias -->
+                        <div class="btn-group dropright">
+                            <button type="button" id="menuButton" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Centro Acadêmico
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Centro Acadêmico de Ciência da Computação</a>
+                                <a class="dropdown-item" href="#">Centro Acadêmico de Ciências Biológicas</a>
+                            </div>
+                        </div>
+                        <div class="btn-group dropright">
+                            <button type="button" id="menuButton" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Atlética
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Atlética de Ciência da Computação</a>
+                                <a class="dropdown-item" href="#">Atlética de Ciências Biológicas</a>
+                            </div>
+                        </div>                        
+                    </div>
+                    <!-- OU -->
+                    <div class="col-md-9">
+                        <!-- Cards com os produtos mais recentes -->
+                        <div class=""></div>
+                    </div>
+                </div>
             </div>
         </main>
 
         <!-- Footer -->
         <footer class="card-footer">
-            <div class="text-center">
-                <span class="text-muted">© 2018 NOME DO SITE. All rights reserved.</span>
+            <div class="text-right">
+                <span  id="foot" class="text-muted">©2018 UFSell&nbsp&nbsp</span>
+                <a href="#">Termos de uso&nbsp&nbsp</a>
+                <a href="#">Privacidade</a>
             </div>
-        </footer>
+        </footer> 
     </body>
 </html>

@@ -87,7 +87,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
                             <form id="formLog" action="#" method="post"> <!-- Redirecionamento depende de cada usuário, vai ter um header depois da verificação das credenciais -->
                                 <div class="form-group">
                                     <label for="email" style="font-weight: bold;">Email</label><br>
-                                    <input type="email" class="form-control shadow-sm bg-white" name="inputEmail" pattern=".{5,30}" autofocus required>
+                                    <input id="email" type="email" class="form-control shadow-sm bg-white" name="inputEmail" pattern=".{5,30}" autofocus required>
                                 </div>
                                 <div class="form-group">
                                     <div class="divrow">
@@ -96,7 +96,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
                                             <a href="./esqueceu.php">Esqueceu a sua senha?</a>
                                         </div>
                                     </div>
-                                    <input type="password" class="form-control shadow-sm bg-white" name="inputSenha" pattern=".{5,30}" required>
+                                    <input id="senha" type="password" class="form-control shadow-sm bg-white" name="inputSenha" pattern=".{5,30}" required>
                                 </div>
                                 <br>
                                 <div class="">
@@ -123,3 +123,19 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
         </footer>        
     </body>
 </html>
+
+<script>
+    // Trigger para alterar o tab de "Esqueceu a sua senha?" para Senha
+			//Campo nome
+			var x = document.getElementById('email');
+			
+			x.addEventListener("keydown",
+			function(e) {
+				//Verifica se o evento foi um enter
+				if (e.keyCode == 9) {
+					e.preventDefault();
+					document.getElementById('senha').focus();
+				}
+			}
+			);	    
+</script>

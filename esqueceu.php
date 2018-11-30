@@ -22,13 +22,17 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                 // Criptografa com MD5
                 $senhaMD5 = MD5($senha);
 
-                $obj = $result->fetch_object();
+                //$obj = $result->fetch_object();
+                // Script para fazer update
                 $upd = "UPDATE `ihc`.`usuario`
                 SET	`senha` = '".$senhaMD5."'
-                WHERE email='".$email."';";               
+                WHERE email='".$email."';";
+
+                // Faz o update no bd
+                mysqli_query($conn, $upd);
 
                 $result->close();
-    
+                //Redireciona para a tela de login
                 header("Location: ./login.php");
             } else { // Não encontrou aquele email
                 $erro_login = 1;
@@ -88,7 +92,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                 </div>
                                 <div class="form-group">
                                     <div class="divrow">
-                                        <label class="divsenha" style="font-weight: bold;">Senha</label>
+                                        <label class="divsenha" style="font-weight: bold;">Nova senha</label>
                                     </div>
                                     <input type="password" class="form-control shadow-sm bg-white" name="inputSenha" pattern=".{5,30}" required>
                                 </div>
