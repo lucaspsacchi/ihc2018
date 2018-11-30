@@ -32,7 +32,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                 mysqli_query($conn, $upd);
 
                 $result->close();
-                //Redireciona para a tela de login
+                // Redireciona para a tela de login
                 header("Location: ./login.php");
             } else { // Não encontrou aquele email
                 $erro_login = 1;
@@ -100,14 +100,34 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                     <div class="divrow">
                                         <label class="divconfsenha" style="font-weight: bold;">Confirme a senha</label>
                                     </div>
-                                    <input type="password" class="form-control shadow-sm bg-white" name="inputConfSenha" pattern=".{5,30}" required>
+                                    <input type="password" id="pass" class="form-control shadow-sm bg-white" name="inputConfSenha" pattern=".{5,30}" required>
                                 </div>                        
                                 <br>
                                 <div class="erro">
                                 </div>
                                 <div class="">
-                                    <button type="submit" class="btn btn-success">Salvar</button>
+                                    <!-- Confirmação da nova senha -->
+                                    <button id="salvar" type="submit" class="btn btn-success">
+                                    Salvar
+                                    </button>
+                                    <!-- <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                                    Salvar
+                                    </button>                                     -->
                                 </div>
+
+                                <!-- Modal -->
+                                <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-body text-center">
+                                                Nova senha cadastrada com sucesso!
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">OK</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                 -->
                             </form>
                             <hr>
                             <center><label>Voltar para <a href="./login.php">login</a></label></center>
@@ -116,6 +136,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                 </div>
             </div>
         </main>
+
         <!-- Footer -->
         <footer class="card-footer">
             <div class="text-right">
@@ -126,3 +147,18 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
         </footer>            
     </body>
 </html>
+<script>
+    // Trigger para alterar o tab para Salvar
+			//Campo nome
+			var x = document.getElementById('pass');
+			
+			x.addEventListener("keydown",
+			function(e) {
+				//Verifica se o evento foi um enter
+				if (e.keyCode == 9) {
+					e.preventDefault();
+					document.getElementById('salvar').focus();
+				}
+			}
+			);	    
+</script>

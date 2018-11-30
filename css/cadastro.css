@@ -108,3 +108,14 @@ button {
 #cadSalvar {
     margin-top: 15px;
 }
+
+#erroLogin {
+    background-color: rgb(255, 0, 0) !important;
+    opacity: 0.6;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.erro_login {
+    opacity: 1.0;
+}

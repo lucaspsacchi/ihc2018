@@ -124,8 +124,8 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                 <div id="box" class="row">
                                     <div id="" class="col-6 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label class="divtel" style="font-weight: bold;">Telefone</label>
-                                            <input type="text" class="form-control shadow-sm bg-white" name="inputTel" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" placeholder="(01) 2345-6789">
+                                            <label class="divtel" style="font-weight: bold;">Celular</label>
+                                            <input type="text" class="form-control shadow-sm bg-white" name="inputTel" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" placeholder="(XX) XXXXX-XXXX">
                                         </div>
                                     </div>
                                     <div class="col-6 col-md-6 col-sm-12">
@@ -141,11 +141,28 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                 <div class="row">
                                     <div class="col-12 col-md-12 col-sm-12 align-self-center">
                                         <div id="cadSalvar" class="botaocad float-right">
-                                            <button type="submit" class="btn btn-success">Salvar</button>
+                                            <!-- Botão para salvar -->
+                                            <button type="submit" class="btn btn-success">
+                                                Salvar
+                                            </button>
                                         </div>
                                     </div>
-                                </div>
-                            </form>                        
+                                </div>                              
+                            </form>
+                            
+                                <!-- Modal -->
+                                <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-body text-center">
+                                                Nova senha cadastrada com sucesso!
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary">OK</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                                 -->
                         </div>
                     </div>
                 </div>

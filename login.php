@@ -1,7 +1,6 @@
 <?php
-if (isset($_SESSION['erro'])) {
-    echo 'ENTROUU';
-}
+$erro_login = 0;
+
 
 if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
 
@@ -33,15 +32,13 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
                 header("Location: ./home.php");
             }
             else {
-                $_SESSION['erro'] = 'Senha incorreta';
+                $erro_login = 1;
             }
         }
         else {
-            $_SESSION['erro'] = 'Email incorreto';
+            $erro_login = 2;
         }
-
     }
-
 }
 ?>
 <!DOCTYPE html>
@@ -79,9 +76,19 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
                     <h4>Acesse a sua conta</h4>
                 </div>
             </center>
-            <br>
+            <br>              
             <div class="site-row">
                 <div class="site-column">
+                    <center>
+                    <?php
+                        if ($erro_login == 1) {
+                            echo '<div id="erroLogin" class="card bg-danger text-white"><div class="card-body"><div class="erro_login">Senha incorreta. Digite novamente.</div></div></div>';
+                        }
+                        else if ($erro_login == 2) {
+                            echo '<div id="erroLogin" class="card bg-danger text-white"><div class="card-body"><div class="erro_login">Email incorreto. Digite novamente.</div></div></div>';
+                        }
+                    ?>      
+                    </center>                       
                     <div class="card">
                         <div class="card-body shadow">
                             <form id="formLog" action="#" method="post"> <!-- Redirecionamento depende de cada usuário, vai ter um header depois da verificação das credenciais -->
