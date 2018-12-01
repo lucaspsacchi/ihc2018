@@ -31,9 +31,18 @@
             <a href="./home.php"><img id="navLogo" src="img/UFSell.png" alt="logo"></a>
             <input id="inputNav" class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
             <ul class="navbar-nav px-3">
-                <li class="nav-item text-nowrap">
+                <!-- <li class="nav-item text-nowrap">
                     <a class="nav-link" href="#">Minha Conta</a>
-                </li>
+                </li> -->
+                <div class="dropdown show nav-item text-nowrap">
+                    <a class="nav-link dropdown-toggle " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Minha Conta
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">Minha Conta</a>
+                        <a class="dropdown-item" href="#">Sair</a>
+                    </div>
+                </div>              
             </ul>
         </nav>        
     
@@ -44,23 +53,55 @@
                     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                            Home
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="collapse" href="#multiCollapse1" role="button" aria-expanded="false" aria-controls="multiCollapse1">Atléticas</a>
-                            <div class="collapse multi-collapse" id="multiCollapse1">
-                                <a class="" href="#">Teste</a><br>
-                                <a class="" href="#">Teste</a>
-                            </div>                          
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                                Home
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="collapse" href="#multiCollapse1" role="button" aria-expanded="false" aria-controls="multiCollapse1">Atléticas</a>
+                                <div class="collapse multi-collapse" id="multiCollapse1">
+                                    <a class="" href="#">Teste</a><br>
+                                    <a class="" href="#">Teste</a>
+                                </div>                          
+                            </li>
                         </ul>
-                      
                     </div>
                 </nav>
+                <!-- <div role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"><div style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;" class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div> -->
+                <div role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                    <center><h2>Título?</h2></center>
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3"> <!-- BORDER-BOTTOM COLOCA A BARRA VERTICAL -->
+                        <div class="card">
+                            <div class="card-body">
+                                AAAAAAAAAAAA
+                            </div>
+                        </div>                    
+                    </div>
+                </div>
+                <div role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                        <div id="cardItem" class="card">
+                            <div class="card-body">
+                                <h1>AAAAAAAAAAAA</h1>
+                                <center><h1>AAAAAAAAAAAA</h1></center>
+                                <div class="d-flex justify-content-end">
+                                    <h1>AAAAAAAAAAAA</h1>
+                                </div>
+                            </div>
+                        </div>                    
+                    </div>
+                </div>
+                <div role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                        <div class="card">
+                            <div class="card-body">
+                                AAAAAAAAAAAA
+                            </div>
+                        </div>                    
+                    </div>
+                </div>                
             </div>
         </main>
 

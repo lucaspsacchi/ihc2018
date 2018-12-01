@@ -14,7 +14,7 @@ html, body {
 
 .wrap {
     flex-grow:1;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 #foot, .card-footer {
@@ -28,7 +28,7 @@ html, body {
 }
 
 /*
-* 
+* Custom
 */
 
 #navLogo {
@@ -37,7 +37,14 @@ html, body {
   width: 50px;
 }
 
+#cardItem {
+  background-color: red;
+  width: 100%;
+}
 
+.dropdown-menu {
+  z-index: 1000;
+}
   /*
  * Navbar
  */
