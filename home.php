@@ -19,99 +19,145 @@
         -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-
         <!-- Importando estilo css -->
         <link type="text/css"  rel="stylesheet" href="./css/comprador.css">
     </head>
 
-    <body class="site">
+    <body>
         <!-- Navbar -->
-        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">  
-            <a href="./home.php"><img id="navLogo" src="img/UFSell.png" alt="logo"></a>
-            <input id="inputNav" class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-            <ul class="navbar-nav px-3">
-                <!-- <li class="nav-item text-nowrap">
-                    <a class="nav-link" href="#">Minha Conta</a>
-                </li> -->
-                <div class="dropdown show nav-item text-nowrap">
-                    <a class="nav-link dropdown-toggle " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Minha Conta
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Minha Conta</a>
-                        <a class="dropdown-item" href="#">Sair</a>
-                    </div>
-                </div>              
-            </ul>
-        </nav>        
-    
-        <!-- Conteúdo da página -->
-        <main class="wrap">
-            <div class="container-fluid">
-                <div class="row">
-                    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-                    <div class="sidebar-sticky">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                Home
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="collapse" href="#multiCollapse1" role="button" aria-expanded="false" aria-controls="multiCollapse1">Atléticas</a>
-                                <div class="collapse multi-collapse" id="multiCollapse1">
-                                    <a class="" href="#">Teste</a><br>
-                                    <a class="" href="#">Teste</a>
-                                </div>                          
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-                <!-- <div role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"><div style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;" class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div> -->
-                <div role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-                    <center><h2>Título?</h2></center>
-                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3"> <!-- BORDER-BOTTOM COLOCA A BARRA VERTICAL -->
-                        <div class="card">
-                            <div class="card-body">
-                                AAAAAAAAAAAA
-                            </div>
-                        </div>                    
+        <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0">
+            <div class="flexCustom d-flex justify-content-start">
+                <div class="col-2 col-xl-2 col-lg-2 col-md-2">
+                    <div class="d-flex flex-row">
+                        <a href="./home.php"><img id="navLogo" src="img/UFSell.png" alt="logo"></a>
+                        <span class="spanUfs align-self-center">UFSell</span>
                     </div>
                 </div>
-                <div role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                        <div id="cardItem" class="card">
-                            <div class="card-body">
-                                <h1>AAAAAAAAAAAA</h1>
-                                <center><h1>AAAAAAAAAAAA</h1></center>
-                                <div class="d-flex justify-content-end">
-                                    <h1>AAAAAAAAAAAA</h1>
-                                </div>
+                <div class="col-10 col-xl-10 col-lg-10 col-md-10">
+                    <div class="d-flex flex-row justify-content-between">
+                        <div class="d-flex justify-content-start">
+                            <input id="inputNav" class="form-control form-control-dark" placeholder="Pesquisar no UFSell" type="text" aria-label="Search">
+                            <button class="btn btn-outline-light" type="submit">Buscar</button>
+                        </div>
+                        <div class="d-flex justify-content-end align-items-center">
+                            <div id="nav-itemP" class="nav-item">
+                                <a href="./home.php">Minha conta</a>
                             </div>
-                        </div>                    
+                            <div class="nav-item">
+                                <a class="align-self-center" href="./login.php">Sair</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                        <div class="card">
-                            <div class="card-body">
-                                AAAAAAAAAAAA
-                            </div>
-                        </div>                    
+            </div>
+        </nav>    
+
+        <!-- Estruturação da página -->
+        <main>
+            <div class="col-12 col-xl-12 col-lg-12 col-md-12">
+                <div class="row justify-content-start">
+                    <!-- Barra lateral -->
+                    <div id="menu" class="col-2 col-xl-2 col-lg-2 col-md-2">
+                        <div class="menuT">
+							<!-- Título do collapse --><!-- Concatenar o at com id -->
+							<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse1" aria-expanded="true" aria-controls="at1 at2">Atléticas</button>
+							<!-- Elementos do collapse -->
+							<div class="">
+								<div class="collapse multi-collapse1" id="at1">
+									<button class="btn btn-light">Atlética Geral</button>
+								</div>
+							</div>
+							<div class="">
+								<div class="collapse multi-collapse1" id="at2">
+									<button class="btn btn-light">Atlética Geral</button>
+								</div>
+							</div>
+						</div>
+                        <div class="menuT">
+							<!-- Título do collapse --><!-- Concatenar o at com id -->
+							<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse2" aria-expanded="true" aria-controls="ca1 ca2">Centros Acadêmicos</button>
+							<!-- Elementos do collapse -->
+							<div class="">
+								<div class="collapse multi-collapse2" id="ca1">
+									<button id="subitem" class="btn btn-light">CA Toca da Onça</button>
+								</div>
+							</div>
+							<div class="">
+								<div class="collapse multi-collapse2" id="ca2">
+									<button id="subitem" class="btn btn-light">CACCS</button>
+								</div>
+							</div>
+							<div class="">
+								<div class="collapse multi-collapse2" id="ca3">
+									<button id="subitem" class="btn btn-light">Cageos</button>
+								</div>
+							</div>
+							<div class="">
+								<div class="collapse multi-collapse2" id="ca4">
+									<button id="subitem" class="btn btn-light">Caped</button>
+								</div>
+							</div>
+							<div class="">
+								<div class="collapse multi-collapse2" id="ca5">
+									<button id="subitem" class="btn btn-light">Caeps</button>
+								</div>
+							</div>
+							<div class="">
+								<div class="collapse multi-collapse2" id="ca6">
+									<button id="subitem" class="btn btn-light">CAEF</button>
+								</div>
+							</div>
+							<div class="">
+								<div class="collapse multi-collapse2" id="ca7">
+									<button id="subitem" class="btn btn-light">CACTUS</button>
+								</div>
+							</div>																																			
+						</div>
+                        <div class="menuT">
+							<!-- Título do collapse --><!-- Concatenar o at com id -->
+							<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse3" aria-expanded="true" aria-controls="et1 et2">Entidades</button>
+							<!-- Elementos do collapse -->
+							<div class="">
+								<div class="collapse multi-collapse3" id="et1">
+									<button class="btn btn-light">Atlética Geral</button>
+								</div>
+							</div>
+							<div class="">
+								<div class="collapse multi-collapse3" id="et2">
+									<button class="btn btn-light">Atlética Geral</button>
+								</div>
+							</div>
+						</div>
+                        <div class="menuT">
+							<!-- Título do collapse --><!-- Concatenar o at com id -->
+							<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse4" aria-expanded="true" aria-controls="c1 c2">Atléticas</button>
+							<!-- Elementos do collapse -->
+							<div class="">
+								<div class="collapse multi-collapse4" id="c1">
+									<button class="btn btn-light">Atlética Geral</button>
+								</div>
+							</div>
+							<div class="">
+								<div class="collapse multi-collapse4" id="c2">
+									<button class="btn btn-light">Atlética Geral</button>
+								</div>
+							</div>
+						</div>						
+						<br>
+						<hr>
+						<br>
+						<center><h2>Copyright</h2></center><br>
                     </div>
-                </div>                
+
+                    <!-- Main -->
+                    <div id="conteudo" class="col-10 col-xl-10 col-lg-10 col-md-10">
+                        <div class="testeB">
+                            B
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
 
-        <!-- Footer -->
-        <footer class="card-footer">
-            <div class="row float-right">
-                <span  id="foot" class="text-muted">©2018 UFSell&nbsp&nbsp</span>
-                <a href="#">Termos de uso&nbsp&nbsp</a>
-                <a href="#">Privacidade</a>
-            </div>
-        </footer> 
     </body>
 </html>

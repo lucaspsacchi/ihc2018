@@ -122,10 +122,16 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
         </main>
         <!-- Footer -->
         <footer class="card-footer">
-            <div class="text-right">
-                <span  id="foot" class="text-muted">©2018 UFSell&nbsp&nbsp</span>
-                <a href="#">Termos de uso&nbsp&nbsp</a>
-                <a href="#">Privacidade</a>
+            <div class="row float-right">
+                <div class="footerCustom">
+                    <span  id="foot" class="text-muted">©2018 UFSell</span>
+                </div>
+                <div class="footerCustom">
+                    <a href="#">Termos de uso</a>
+                </div>
+                <div class="footerCustom">
+                    <a href="#">Privacidade</a>
+                </div>
             </div>
         </footer>        
     </body>
