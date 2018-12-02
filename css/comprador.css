@@ -108,6 +108,14 @@ body {
 	color: #4dc5da;
 }
 
+/* Retirar a shadow do botão depois de clicar */
+.btn:focus {
+    outline: none !important;
+	outline-offset: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;	
+}
+
 #subitem {
 	background-color: #4dc5da;
 	color: #494e53;
