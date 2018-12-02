@@ -9,17 +9,32 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
     $nome = $_POST['inputNome'];
     $email = $_POST['inputEmail'];
     $senha = addslashes($_POST['inputSenha']);
-    $confsenha = addslashes($_POST['inputConfSenha']);
+    $senhaMD5 = MD5($senha);
     $radio = $_POST['op'];
+    $org = $_POST['organizacao'];
     // Campos que são do comprador
     $tel = $_POST['inputTel'];
 
-    if ($tel == NULL) {
-        echo 'ae';
+    if ($radio == 'op1')
+    {
+        // Insere um usuário comprador com as colunas id_org e tel inicializadas como n/a (not available)
+        $ins = "INSERT INTO usuario (nome, email, senha, id_org, tel) VALUES('".$nome."', 
+        '".$email."', '".$senhaMD5."', 0, 'n/a')";
+
+        mysqli_query($conn, $ins);
     }
-    else {
-        echo 'ea';
+    elseif ($radio == 'op2')
+    {
+        $result = mysqli_query($conn, "SELECT id FROM org WHERE nome='".$org."'");
+        $row = $result->fetch_assoc();
+        $id_org = $row['id'];
+        // Insere um usuário vendedor com todos os campos preenchidos (obrigatoriamente)
+        $ins  = $ins = "INSERT INTO usuario (nome, email, senha, id_org, tel) VALUES('".$nome."', 
+        '".$email."', '".$senhaMD5."', $id_org, '".$tel."')";
+
+        mysqli_query($conn, $ins);
     }
+
 }
 ?>
 <!DOCTYPE html>
@@ -125,13 +140,13 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                     <div id="" class="col-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="divtel" style="font-weight: bold;">Celular</label>
-                                            <input type="text" class="form-control shadow-sm bg-white" name="inputTel" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" placeholder="(XX) XXXXX-XXXX">
+                                            <input type="text" class="form-control shadow-sm bg-white" name="inputTel" pattern="\([0-9]{2}\) ?[0-9]{4,6}-[0-9]{3,4}$" placeholder="(XX) XXXXX-XXXX">
                                         </div>
                                     </div>
                                     <div class="col-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="divcomp" style="font-weight: bold;">Escolha um opção abaixo</label>                                     
-                                            <select id="organizacao" class="custom-select">
+                                            <select name="organizacao" id="organizacao" class="custom-select">
                                                 <option value="CABCC">Centro Acadêmico Ciência da Computação</option>
                                                 <option value="ATBCC">Atlética Ciência da Computação</option>
                                             </select>
@@ -170,18 +185,12 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
         </main>
         <!-- Footer -->
         <footer class="card-footer">
-            <div class="row float-right">
-                <div class="footerCustom">
-                    <span  id="foot" class="text-muted">©2018 UFSell</span>
-                </div>
-                <div class="footerCustom">
-                    <a href="#">Termos de uso</a>
-                </div>
-                <div class="footerCustom">
-                    <a href="#">Privacidade</a>
-                </div>
+            <div class="text-right">
+                <span  id="foot" class="text-muted">©2018 UFSell&nbsp&nbsp</span>
+                <a href="#">Termos de uso&nbsp&nbsp</a>
+                <a href="#">Privacidade</a>
             </div>
-        </footer>         
+        </footer>            
     </body>
 </html>
 <script>
