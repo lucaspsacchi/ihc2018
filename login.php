@@ -1,7 +1,6 @@
 <?php
 $erro_login = 0;
 
-
 if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
 
     include('connection/connection.php');
@@ -25,11 +24,18 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
                 ini_set('session.gc_maxlifetime', 3600);
                 session_set_cookie_params(3600);
 
-                session_start();            
+                session_start();
+
+                $_SESSION['id_usuario'] = $obj->id;
+                $_SESSION['nome_usuario'] = $obj->nome;
 
                 $result->close();
-
-                header("Location: ./home.php");
+                if ($obj->id_org == 1) {
+                    header("Location: ./home.php");
+                }
+                else {
+                    header("Location: connection/home.php");
+                }
             }
             else {
                 $erro_login = 1;
@@ -39,6 +45,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
             $erro_login = 2;
         }
     }
+    $conn->close();
 }
 ?>
 <!DOCTYPE html>

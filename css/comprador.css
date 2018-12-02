@@ -1,14 +1,20 @@
 html, body {
+	position: relative;
 	height: 100%;
 }
 
 body {
+	height: 100%;
 	width: 100%;
 }
 
 /* Fim do css padrão */
 
 /* Navbar */
+
+nav {
+	height: 60px;
+}
 
 #navLogo {
   margin-top: 5px;
@@ -89,11 +95,20 @@ body {
 
 /* Menu */
 
+#defCol {
+	height: calc(100% - 60px);
+}
+
+#defRow {
+	height: 100%;
+}
+
 #menu {
-	position: relative;
+	min-height: 100%;
 	padding:0px;
 	background-color: #494e53;
 }
+
 
 .btn-light {
 	background-color: #494e53;
@@ -109,7 +124,7 @@ body {
 }
 
 #btn-itemP {
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
 /* Retirar a shadow do botão depois de clicar */
@@ -130,8 +145,8 @@ body {
 }
 
 hr {
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 30px;
+	margin-bottom: 30px;
 	width: 90%;
 	background-color: #6c706e;
 }
