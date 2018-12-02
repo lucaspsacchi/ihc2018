@@ -108,6 +108,10 @@ body {
 	color: #4dc5da;
 }
 
+#btn-itemP {
+	margin-top: 10px;
+}
+
 /* Retirar a shadow do botão depois de clicar */
 .btn:focus {
     outline: none !important;
@@ -124,6 +128,28 @@ body {
 #subitem:hover {
 	background-color: #53dff8;
 }
+
+hr {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 90%;
+	background-color: #6c706e;
+}
+
+/* Footer */
+
+.footer {
+	width: 100%;
+}
+
+.footer > .row {
+	margin: 0px;
+	font-size: 14px;
+	display: flex;
+	justify-content: center;
+}
+
+/* Fim do footer */
 
 /* Fim do menu */
 

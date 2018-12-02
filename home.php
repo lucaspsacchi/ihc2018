@@ -58,24 +58,39 @@
                 <div class="row justify-content-start">
                     <!-- Barra lateral -->
                     <div id="menu" class="col-2 col-xl-2 col-lg-2 col-md-2">
-                        <div class="menuT">
+                        <div id="btn-itemP" class="menuT">
 							<!-- Título do collapse --><!-- Concatenar o at com id -->
-							<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse1" aria-expanded="true" aria-controls="at1 at2">Atléticas</button>
+							<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse1" aria-expanded="true" aria-controls="at1 at2 at3 at4 at5 at6">Atléticas</button>
 							<!-- Elementos do collapse -->
 							<div class="">
 								<div class="collapse multi-collapse1" id="at1">
-									<button class="btn btn-light">Atlética Geral</button>
+									<button id="subitem" class="btn btn-light">Atlética ECAD</button>
 								</div>
 							</div>
 							<div class="">
 								<div class="collapse multi-collapse1" id="at2">
-									<button class="btn btn-light">Atlética Geral</button>
+									<button id="subitem" class="btn btn-light">Atlética UFSCar Sorocaba</button>
 								</div>
 							</div>
+							<div class="">
+								<div class="collapse multi-collapse1" id="at3">
+									<button id="subitem" class="btn btn-light">Atlética XXV de Maio</button>
+								</div>
+							</div>
+							<div class="">
+								<div class="collapse multi-collapse1" id="at4">
+									<button id="subitem" class="btn btn-light">Atlética Raça Brisão</button>
+								</div>
+							</div>
+							<div class="">
+								<div class="collapse multi-collapse1" id="at5">
+									<button id="subitem" class="btn btn-light">Atlética DFQM</button>
+								</div>
+							</div>	
 						</div>
                         <div class="menuT">
 							<!-- Título do collapse --><!-- Concatenar o at com id -->
-							<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse2" aria-expanded="true" aria-controls="ca1 ca2">Centros Acadêmicos</button>
+							<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse2" aria-expanded="true" aria-controls="ca1 ca2 ca3 ca4 ca5 ca6 ca7">Centros Acadêmicos</button>
 							<!-- Elementos do collapse -->
 							<div class="">
 								<div class="collapse multi-collapse2" id="ca1">
@@ -115,38 +130,93 @@
 						</div>
                         <div class="menuT">
 							<!-- Título do collapse --><!-- Concatenar o at com id -->
-							<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse3" aria-expanded="true" aria-controls="et1 et2">Entidades</button>
+							<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse3" aria-expanded="true" aria-controls="en1">Entidades</button>
 							<!-- Elementos do collapse -->
 							<div class="">
-								<div class="collapse multi-collapse3" id="et1">
-									<button class="btn btn-light">Atlética Geral</button>
+								<div class="collapse multi-collapse3" id="en1">
+									<button id="subitem" class="btn btn-light">Atlética ECAD</button>
 								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse3" id="et2">
-									<button class="btn btn-light">Atlética Geral</button>
-								</div>
-							</div>
+							</div>												
 						</div>
                         <div class="menuT">
 							<!-- Título do collapse --><!-- Concatenar o at com id -->
-							<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse4" aria-expanded="true" aria-controls="c1 c2">Atléticas</button>
+							<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse4" aria-expanded="true" aria-controls="c1 c2 c3 c4 c5 c6 c7 c8 c9 c10 c11 c12">Cursos</button>
 							<!-- Elementos do collapse -->
 							<div class="">
 								<div class="collapse multi-collapse4" id="c1">
-									<button class="btn btn-light">Atlética Geral</button>
+									<button id="subitem" class="btn btn-light">Administração</button>
 								</div>
 							</div>
 							<div class="">
 								<div class="collapse multi-collapse4" id="c2">
-									<button class="btn btn-light">Atlética Geral</button>
+									<button id="subitem" class="btn btn-light">Ciências Biológicas</button>
 								</div>
 							</div>
-						</div>						
-						<br>
+							<div class="">
+								<div class="collapse multi-collapse4" id="c3">
+									<button id="subitem" class="btn btn-light">Ciência da Computação</button>
+								</div>
+							</div>
+							<div class="">
+								<div class="collapse multi-collapse4" id="c4">
+									<button id="subitem" class="btn btn-light">Ciências Econômicas</button>
+								</div>
+							</div>
+							<div class="">
+								<div class="collapse multi-collapse4" id="c5">
+									<button id="subitem" class="btn btn-light">Engenharia de Produção</button>
+								</div>
+							</div>
+							<div class="">
+								<div class="collapse multi-collapse4" id="c6">
+									<button id="subitem" class="btn btn-light">Engenharia Florestal</button>
+								</div>
+							</div>
+							<div class="">
+								<div class="collapse multi-collapse4" id="c7">
+									<button id="subitem" class="btn btn-light">Física</button>
+								</div>
+							</div>
+							<div class="">
+								<div class="collapse multi-collapse4" id="c8">
+									<button id="subitem" class="btn btn-light">Geografia</button>
+								</div>
+							</div>
+							<div class="">
+								<div class="collapse multi-collapse4" id="c9">
+									<button id="subitem" class="btn btn-light">Matemática</button>
+								</div>
+							</div>
+							<div class="">
+								<div class="collapse multi-collapse4" id="c10">
+									<button id="subitem" class="btn btn-light">Pedagogia</button>
+								</div>
+							</div>
+							<div class="">
+								<div class="collapse multi-collapse4" id="c11">
+									<button id="subitem" class="btn btn-light">Química</button>
+								</div>
+							</div>
+							<div class="">
+								<div class="collapse multi-collapse4" id="c12">
+									<button id="subitem" class="btn btn-light">Turismo</button>
+								</div>
+							</div>
+						</div>
+
 						<hr>
-						<br>
-						<center><h2>Copyright</h2></center><br>
+
+
+						<div class="footer">
+							<div class="row">
+								<a href="#">Termos de uso</a>
+								<label>&nbsp&middot&nbsp</label>
+								<a href="#">Privacidade</a>
+							</div>
+							<div class="row" style="margin-bottom: 15px;">
+								<span id="foot" class="text-muted">©2018 UFSell</span>
+							</div>							
+						</div>
                     </div>
 
                     <!-- Main -->
