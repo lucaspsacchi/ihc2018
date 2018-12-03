@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 28-Nov-2018 às 04:20
+-- Generation Time: 03-Dez-2018 às 22:31
 -- Versão do servidor: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -29,14 +29,15 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `org` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `org`
 --
 
 INSERT INTO `org` (`id`, `nome`) VALUES
-(1, 'ADMIN');
+(1, 'ADMIN'),
+(2, 'CACCS');
 
 -- --------------------------------------------------------
 
@@ -63,6 +64,7 @@ CREATE TABLE IF NOT EXISTS `prod` (
 CREATE TABLE IF NOT EXISTS `usuario` (
   `id` int(11) NOT NULL,
   `nome` varchar(60) NOT NULL,
+  `sobrenome` varchar(100) DEFAULT NULL,
   `email` varchar(40) NOT NULL,
   `senha` varchar(32) NOT NULL,
   `id_org` int(11) NOT NULL,
@@ -73,8 +75,8 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `id_org`, `tel`) VALUES
-(3, 'Jorge', 'jorge@hotmail.com', 'd67326a22642a324aa1b0745f2f17abb', 1, '1234-5678');
+INSERT INTO `usuario` (`id`, `nome`, `sobrenome`, `email`, `senha`, `id_org`, `tel`) VALUES
+(3, 'Jorge', 'da Silva', 'jorge@hotmail.com', 'd67326a22642a324aa1b0745f2f17abb', 1, '1234-5678');
 
 -- --------------------------------------------------------
 
@@ -125,7 +127,7 @@ ALTER TABLE `usu_prod`
 -- AUTO_INCREMENT for table `org`
 --
 ALTER TABLE `org`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `prod`
 --
