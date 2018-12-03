@@ -8,6 +8,18 @@ session_start();
 if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
     header("Location: ./login.php?erro_login=1"); // Se não está logado, retorna para a página de login com uma mensagem de erro
 }
+
+// Busca as informações do usuário
+$script =   "SELECT *
+FROM usuario
+WHERE id='".$_SESSION['id_usuario']."';";
+
+$result = $conn->query($script);
+$pessoa = $result->fetch_object();
+
+// No alterar, verifica a senha retornada do bd com a senha informada do usuário, está como padrão no html que é 12345678
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -244,9 +256,61 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 
                     <!-- Main -->
                     <div id="conteudo" class="col-10 col-xl-10 col-lg-10 col-md-10">
-                        <div class="">
-
-                        </div>
+						<!-- Bread Crumb -->
+						<nav aria-label="breadcrumb" style="margin-top:5px; margin-left:-15px;">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="./home.php">Home</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Minha conta</li>
+							</ol>
+						</nav>
+						
+						<!-- Formulário -->
+						<div class="colD  d-flex justify-content-start">
+							<div class="col-8 col-xl-8 col-lg-8 col-md-8">
+								<div id="cardAlterar" class="">
+									<form id="formCad" class="" method="post">
+										<div class="row">
+											<div id="" class="col-6 col-md-6 col-sm-12">
+												<div class="form-group">
+													<label class="divnome" style="font-weight: bold;">Nome</label>
+													<input type="text" class="form-control shadow-sm" value="<?php echo $pessoa->nome; ?>" name="inputNome" pattern=".{5,30}" required autofocus>
+												</div>                                
+											</div>
+											<div id="" class="col-6 col-md-6 col-sm-12">
+												<div class="form-group">
+													<label class="divsobrenome" style="font-weight: bold;">Sobrenome</label>
+													<input type="text" class="form-control shadow-sm" value="<?php echo $pessoa->sobrenome; ?>" name="inputSobrenome" pattern=".{5,30}" required>
+												</div>                                
+											</div>                        
+										</div>
+										<div class="row">
+											<div class="col-12 col-md-12 col-sm-12">
+												<div class="form-group">
+													<label class="divemail" style="font-weight: bold;">Email</label>
+													<input type="email" class="form-control shadow-sm" value="<?php echo $pessoa->email; ?>" name="inputEmail" pattern=".{5,30}" required>
+												</div>
+											</div>
+										</div>                                
+										<div class="row">
+											<div id="" class="col-6 col-md-6 col-sm-12">
+												<div class="form-group">
+													<label class="divsenha" style="font-weight: bold;">Senha</label>
+													<input type="password" class="form-control shadow-sm" value="12345678" name="inputSenha" pattern=".{5,30}" required>
+												</div>
+											</div>
+											<div class="col-6 col-md-6 col-sm-12 align-self-center">
+												<div id="cadSalvar" class="botaocad float-right">
+													<!-- Botão para salvar -->
+													<button type="submit" class="btn btn-success">
+														Salvar
+													</button>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>							
+						</div>
                     </div>
                 </div>
             </div>

@@ -88,7 +88,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                     <div id="" class="col-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="divsobrenome" style="font-weight: bold;">Sobrenome</label>
-                                            <input type="text" class="form-control shadow-sm bg-white" name="inputSobrenome" pattern=".{5,30}" required autofocus>
+                                            <input type="text" class="form-control shadow-sm bg-white" name="inputSobrenome" pattern=".{5,30}" required>
                                         </div>                                
                                     </div>                        
                                 </div>

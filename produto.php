@@ -244,9 +244,13 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 
                     <!-- Main -->
                     <div id="conteudo" class="col-10 col-xl-10 col-lg-10 col-md-10">
-                        <div class="">
-
-                        </div>
+						<!-- Bread Crumb -->
+						<nav aria-label="breadcrumb" style="margin-top:5px; margin-left:-15px;">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="./home.php">Home</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Detalhes do produto</li>
+							</ol>
+						</nav>
                     </div>
                 </div>
             </div>

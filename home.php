@@ -244,8 +244,31 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 
                     <!-- Main -->
                     <div id="conteudo" class="col-10 col-xl-10 col-lg-10 col-md-10">
-                        <div class="">
+                        <div class="container" style="margin-left: -15px;">
+							<!-- Bread Crumb -->
+							<nav aria-label="breadcrumb" style="margin-top:5px; margin-left: -10px;">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item active" aria-current="page">Home</li>
+								</ol>
+							</nav>
 
+
+							<div class="colD">
+								<div class="card">
+									<div class="row">
+										<div class="col-3">
+											<div class="card-body">
+												AAAAAAAAAAAAAAAAAAAAAA
+											</div>
+										</div>
+										<div class="col-7">
+											<div class="card-body">
+												AAAAAAAAAAAAAAAAAAAAAA
+											</div>									
+										</div>
+									</div>
+								</div>								
+							</div>
                         </div>
                     </div>
                 </div>

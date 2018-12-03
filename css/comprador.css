@@ -141,7 +141,8 @@ nav {
 }
 
 #subitem:hover {
-	background-color: #53dff8;
+	background-color: #6c706e;
+	color: #4dc5da;
 }
 
 hr {
@@ -172,7 +173,12 @@ hr {
 
 #conteudo {
 	padding-right:0px;
-} 
+	background-color:#e9ecef;
+}
+
+#cardAlterar {
+	padding: 10px;
+}
 
 /* Fim do conteúdo */
 
