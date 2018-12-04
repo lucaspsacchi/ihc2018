@@ -1,13 +1,23 @@
 <?php
 include('connection/connection.php');
 
-ini_set('session.gc_maxlifetime', 3600);
-session_set_cookie_params(3600);
+// ini_set('session.gc_maxlifetime', 3600);
+// session_set_cookie_params(3600);
 //Cria a sessão e verifica se o usuário está logado
 session_start();
 if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
     header("Location: ./login.php?erro_login=1"); // Se não está logado, retorna para a página de login com uma mensagem de erro
 }
+
+
+// Busca as informações do produto
+$script =   "SELECT *
+FROM prod
+WHERE id='".$_GET['id_prod']."';"; // Pega o id por GET
+
+$result = $conn->query($script);
+$prod = $result->fetch_object();
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -68,168 +78,171 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
                 <div id="defRow" class="row">
 					<!-- Barra lateral -->
                     <div id="menu" class="col-2 col-xl-2 col-lg-2 col-md-2">
-						<div id="btn-itemP" class="menuT">
-							<!-- Título do collapse --><!-- Concatenar o at com id -->
-							<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse1" aria-expanded="true" aria-controls="at1 at2 at3 at4 at5 at6">Atléticas</button>
-							<!-- Elementos do collapse -->
-							<div class="">
-								<div class="collapse multi-collapse1" id="at1">
-									<button id="subitem" class="btn btn-light">Atlética ECAD</button>
+						<div class="divWrap">
+							<div id="btn-itemP" class="menuT">
+								<!-- Título do collapse --><!-- Concatenar o at com id -->
+								<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse1" aria-expanded="true" aria-controls="at1 at2 at3 at4 at5 at6">Atléticas</button>
+								<!-- Elementos do collapse -->
+								<div class="">
+									<div class="collapse multi-collapse1" id="at1">
+										<button id="subitem" class="btn btn-light">Atlética ECAD</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse1" id="at2">
+										<button id="subitem" class="btn btn-light">Atlética UFSCar Sorocaba</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse1" id="at3">
+										<button id="subitem" class="btn btn-light">Atlética XXV de Maio</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse1" id="at4">
+										<button id="subitem" class="btn btn-light">Atlética Raça Brisão</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse1" id="at5">
+										<button id="subitem" class="btn btn-light">Atlética DFQM</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse1" id="at6">
+										<button id="subitem" class="btn btn-light">Atlética Lumberjack</button>
+									</div>
+								</div>							
+							</div>
+							<div class="menuT">
+								<!-- Título do collapse --><!-- Concatenar o at com id -->
+								<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse2" aria-expanded="true" aria-controls="ca1 ca2 ca3 ca4 ca5 ca6 ca7">Centros Acadêmicos</button>
+								<!-- Elementos do collapse -->
+								<div class="">
+									<div class="collapse multi-collapse2" id="ca1">
+										<button id="subitem" class="btn btn-light">CA Toca da Onça</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse2" id="ca2">
+										<button id="subitem" class="btn btn-light">CACCS</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse2" id="ca3">
+										<button id="subitem" class="btn btn-light">Cageos</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse2" id="ca4">
+										<button id="subitem" class="btn btn-light">Caped</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse2" id="ca5">
+										<button id="subitem" class="btn btn-light">Caeps</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse2" id="ca6">
+										<button id="subitem" class="btn btn-light">CAEF</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse2" id="ca7">
+										<button id="subitem" class="btn btn-light">CACTUS</button>
+									</div>
+								</div>																																			
+							</div>
+							<div class="menuT">
+								<!-- Título do collapse --><!-- Concatenar o at com id -->
+								<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse3" aria-expanded="true" aria-controls="en1 en2 en3">Entidades</button>
+								<!-- Elementos do collapse -->
+								<div class="">
+									<div class="collapse multi-collapse3" id="en1">
+										<button id="subitem" class="btn btn-light">Share</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse3" id="en2">
+										<button id="subitem" class="btn btn-light">Enactus</button>
+									</div>
+								</div>							
+								<div class="">
+									<div class="collapse multi-collapse3" id="en3">
+										<button id="subitem" class="btn btn-light">ABU</button>
+									</div>
+								</div>										
+							</div>
+							<div class="menuT">
+								<!-- Título do collapse --><!-- Concatenar o at com id -->
+								<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse4" aria-expanded="true" aria-controls="c1 c2 c3 c4 c5 c6 c7 c8 c9 c10 c11 c12">Cursos</button>
+								<!-- Elementos do collapse -->
+								<div class="">
+									<div class="collapse multi-collapse4" id="c1">
+										<button id="subitem" class="btn btn-light">Administração</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse4" id="c2">
+										<button id="subitem" class="btn btn-light">Ciências Biológicas</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse4" id="c3">
+										<button id="subitem" class="btn btn-light">Ciência da Computação</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse4" id="c4">
+										<button id="subitem" class="btn btn-light">Ciências Econômicas</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse4" id="c5">
+										<button id="subitem" class="btn btn-light">Engenharia de Produção</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse4" id="c6">
+										<button id="subitem" class="btn btn-light">Engenharia Florestal</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse4" id="c7">
+										<button id="subitem" class="btn btn-light">Física</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse4" id="c8">
+										<button id="subitem" class="btn btn-light">Geografia</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse4" id="c9">
+										<button id="subitem" class="btn btn-light">Matemática</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse4" id="c10">
+										<button id="subitem" class="btn btn-light">Pedagogia</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse4" id="c11">
+										<button id="subitem" class="btn btn-light">Química</button>
+									</div>
+								</div>
+								<div class="">
+									<div class="collapse multi-collapse4" id="c12">
+										<button id="subitem" class="btn btn-light">Turismo</button>
+									</div>
 								</div>
 							</div>
-							<div class="">
-								<div class="collapse multi-collapse1" id="at2">
-									<button id="subitem" class="btn btn-light">Atlética UFSCar Sorocaba</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse1" id="at3">
-									<button id="subitem" class="btn btn-light">Atlética XXV de Maio</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse1" id="at4">
-									<button id="subitem" class="btn btn-light">Atlética Raça Brisão</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse1" id="at5">
-									<button id="subitem" class="btn btn-light">Atlética DFQM</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse1" id="at6">
-									<button id="subitem" class="btn btn-light">Atlética Lumberjack</button>
-								</div>
-							</div>							
 						</div>
-						<div class="menuT">
-							<!-- Título do collapse --><!-- Concatenar o at com id -->
-							<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse2" aria-expanded="true" aria-controls="ca1 ca2 ca3 ca4 ca5 ca6 ca7">Centros Acadêmicos</button>
-							<!-- Elementos do collapse -->
-							<div class="">
-								<div class="collapse multi-collapse2" id="ca1">
-									<button id="subitem" class="btn btn-light">CA Toca da Onça</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse2" id="ca2">
-									<button id="subitem" class="btn btn-light">CACCS</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse2" id="ca3">
-									<button id="subitem" class="btn btn-light">Cageos</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse2" id="ca4">
-									<button id="subitem" class="btn btn-light">Caped</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse2" id="ca5">
-									<button id="subitem" class="btn btn-light">Caeps</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse2" id="ca6">
-									<button id="subitem" class="btn btn-light">CAEF</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse2" id="ca7">
-									<button id="subitem" class="btn btn-light">CACTUS</button>
-								</div>
-							</div>																																			
+						<div class="hrFooter">
+							<hr>
 						</div>
-						<div class="menuT">
-							<!-- Título do collapse --><!-- Concatenar o at com id -->
-							<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse3" aria-expanded="true" aria-controls="en1 en2 en3">Entidades</button>
-							<!-- Elementos do collapse -->
-							<div class="">
-								<div class="collapse multi-collapse3" id="en1">
-									<button id="subitem" class="btn btn-light">Share</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse3" id="en2">
-									<button id="subitem" class="btn btn-light">Enactus</button>
-								</div>
-							</div>							
-							<div class="">
-								<div class="collapse multi-collapse3" id="en3">
-									<button id="subitem" class="btn btn-light">ABU</button>
-								</div>
-							</div>										
-						</div>
-						<div class="menuT">
-							<!-- Título do collapse --><!-- Concatenar o at com id -->
-							<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse4" aria-expanded="true" aria-controls="c1 c2 c3 c4 c5 c6 c7 c8 c9 c10 c11 c12">Cursos</button>
-							<!-- Elementos do collapse -->
-							<div class="">
-								<div class="collapse multi-collapse4" id="c1">
-									<button id="subitem" class="btn btn-light">Administração</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse4" id="c2">
-									<button id="subitem" class="btn btn-light">Ciências Biológicas</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse4" id="c3">
-									<button id="subitem" class="btn btn-light">Ciência da Computação</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse4" id="c4">
-									<button id="subitem" class="btn btn-light">Ciências Econômicas</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse4" id="c5">
-									<button id="subitem" class="btn btn-light">Engenharia de Produção</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse4" id="c6">
-									<button id="subitem" class="btn btn-light">Engenharia Florestal</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse4" id="c7">
-									<button id="subitem" class="btn btn-light">Física</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse4" id="c8">
-									<button id="subitem" class="btn btn-light">Geografia</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse4" id="c9">
-									<button id="subitem" class="btn btn-light">Matemática</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse4" id="c10">
-									<button id="subitem" class="btn btn-light">Pedagogia</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse4" id="c11">
-									<button id="subitem" class="btn btn-light">Química</button>
-								</div>
-							</div>
-							<div class="">
-								<div class="collapse multi-collapse4" id="c12">
-									<button id="subitem" class="btn btn-light">Turismo</button>
-								</div>
-							</div>
-						</div>
-
-						<hr>
 						<div class="footer">
 							<div class="row">
 								<a href="#">Termos de uso</a>
@@ -251,6 +264,10 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 								<li class="breadcrumb-item active" aria-current="page">Detalhes do produto</li>
 							</ol>
 						</nav>
+
+						<div class="colD d-flex justify-content-start">
+
+						</div>
                     </div>
                 </div>
             </div>

@@ -21,8 +21,8 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
                 // Permissão concedida
 
                 // Configurações de session
-                ini_set('session.gc_maxlifetime', 3600);
-                session_set_cookie_params(3600);
+                // ini_set('session.gc_maxlifetime', 3600);
+                // session_set_cookie_params(3600);
 
                 session_start();
 
@@ -31,7 +31,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
 
                 $result->close();
                 if ($obj->id_org == 1) {
-                    header("Location: ./home.php");
+                    header("Location: ./home.php?sel=1");
                 }
                 else {
                     header("Location: connection/home.php");
