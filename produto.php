@@ -266,7 +266,7 @@ $prod = $result->fetch_object();
 						</nav>
 
 						<div class="colD d-flex justify-content-start">
-
+								
 						</div>
                     </div>
                 </div>

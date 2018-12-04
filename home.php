@@ -262,7 +262,7 @@ $valSelect = $_GET['sel'];
 						<br>
 							<!-- Select para ordenar -->
 							<div class="row d-flex justify-content-end">
-								<select class="form-control" id="selectHome" style="width: 200px;">
+								<select class="form-control" id="selectHome" style="width: 200px; margin-right: 15px;">
 									<option value="1" <?php if($valSelect == 1) {echo selected;} ?>>Mais recentes</option>
 									<option value="2" <?php if($valSelect == 2) {echo selected;} ?>>Maior classificação</option>
 								</select>
@@ -273,7 +273,9 @@ $valSelect = $_GET['sel'];
 								<div class="col-lg-4 col-md-6 col-sm-12">
 									<div class="card">
 											<div class="product-image">
-												<img class="imgHome" src="img/example.jpg" style="width: 100%; height: 300px;">
+												<center>
+													<img class="imgHome" src="img/example.jpg">
+												</center>
 											</div>
 											<div class="card-body">
 												<div class="row">
@@ -297,52 +299,52 @@ $valSelect = $_GET['sel'];
 								</div>
 								<div class="col-lg-4 col-md-6 col-sm-12">
 									<div class="card">
-											<div class="product-image">
-												<img class="imgHome" src="img/example.jpg" style="width: 100%; height: 300px;">
+										<center>
+											<img class="imgHome" src="img/example.jpg">
+										</center>
+										<div class="card-body">
+											<div class="row">
+												<ul class="rating">
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star"></span>
+												</ul>
+												<h6 class="avalCard">&nbsp(4 Avaliações)</h6>
 											</div>
-											<div class="card-body">
-												<div class="row">
-													<ul class="rating">
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star"></span>
-													</ul>
-													<h6 class="avalCard">&nbsp(4 Avaliações)</h6>
-												</div>
-												<hr class="hrCard">
-												<h4 class="titleCard" style="font-weight: bold;">Título</h4>
-												<div class="row d-flex justify-content-between" style="padding-left: 15px; padding-right:15px;">
-													<h5 class="d-flex align-self-end">R$ 20.00</h5>
-													<a class="btn btn-outline-light btn-custom" href="produto.php?id_prod=1">Detalhes</a>
-												</div>
+											<hr class="hrCard">
+											<h4 class="titleCard" style="font-weight: bold;">Título</h4>
+											<div class="row d-flex justify-content-between" style="padding-left: 15px; padding-right:15px;">
+												<h5 class="d-flex align-self-end">R$ 20.00</h5>
+												<a class="btn btn-outline-light btn-custom" href="produto.php?id_prod=1">Detalhes</a>
 											</div>
+										</div>
 									</div>
 								</div>
 								<div class="col-lg-4 col-md-6 col-sm-12">
 									<div class="card">
-											<div class="product-image">
-												<img class="imgHome" src="img/example.jpg" style="width: 300px; height: 300px;"> <!-- Alterar esse campo para adaptar melhor a imagem -->
+										<center>
+											<img class="imgHome" src="img/example.jpg">
+										</center>
+										<div class="card-body">
+											<div class="row">
+												<ul class="rating">
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star"></span>
+												</ul>
+												<h6 class="avalCard">&nbsp(4 Avaliações)</h6>
 											</div>
-											<div class="card-body">
-												<div class="row">
-													<ul class="rating">
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star"></span>
-													</ul>
-													<h6 class="avalCard">&nbsp(4 Avaliações)</h6>
-												</div>
-												<hr class="hrCard">
-												<h4 class="titleCard" style="font-weight: bold;">Título</h4>
-												<div class="row d-flex justify-content-between" style="padding-left: 15px; padding-right:15px;">
-													<h5 class="d-flex align-self-end">R$ 20.00</h5>
-													<a class="btn btn-outline-light btn-custom" href="produto.php?id_prod=1">Detalhes</a>
-												</div>
+											<hr class="hrCard">
+											<h4 class="titleCard" style="font-weight: bold;">Título</h4>
+											<div class="row d-flex justify-content-between" style="padding-left: 15px; padding-right:15px;">
+												<h5 class="d-flex align-self-end">R$ 20.00</h5>
+												<a class="btn btn-outline-light btn-custom" href="produto.php?id_prod=1">Detalhes</a>
 											</div>
+										</div>
 									</div>
 								</div>							
 							</div>								
