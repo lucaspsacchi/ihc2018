@@ -50,8 +50,10 @@ $valSelect = $_GET['sel'];
                 <div class="col-10 col-xl-10 col-lg-10 col-md-10">
                     <div class="d-flex flex-row justify-content-between">
                         <div class="d-flex justify-content-start">
-                            <input id="inputNav" class="form-control form-control-dark" placeholder="Pesquisar no UFSell" type="text" aria-label="Search">
-                            <button class="btn btn-outline-light" type="submit">Buscar</button>
+                            <form action="./busca.php" method="get" id="formBusca">
+								<input id="inputNav" class="form-control form-control-dark" name="busca" placeholder="Pesquisar no UFSell" type="text" aria-label="Search">
+							</form>
+							<button class="btn btn-outline-light" form="formBusca" type="submit">Buscar</button>
                         </div>
                         <div class="d-flex justify-content-end" style="margin-top: 15px;">
                             <div id="nav-itemP" class="nav-item">
@@ -65,9 +67,8 @@ $valSelect = $_GET['sel'];
                 </div>
             </div>
         </nav>    
-
         <!-- Estruturação da página -->
-            <div id="defCol" class="col-12 col-xl-12 col-lg-12 col-md-12">
+		<div id="defCol" class="col-12 col-xl-12 col-lg-12 col-md-12">
                 <div id="defRow" class="row">
 					<!-- Barra lateral -->
                     <div id="menu" class="col-2 col-xl-2 col-lg-2 col-md-2">
@@ -78,32 +79,32 @@ $valSelect = $_GET['sel'];
 								<!-- Elementos do collapse -->
 								<div class="">
 									<div class="collapse multi-collapse1" id="at1">
-										<button id="subitem" class="btn btn-light">Atlética ECAD</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Atlética ECAD">Atlética ECAD</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse1" id="at2">
-										<button id="subitem" class="btn btn-light">Atlética UFSCar Sorocaba</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Atlética UFSCar Sorocaba">Atlética UFSCar Sorocaba</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse1" id="at3">
-										<button id="subitem" class="btn btn-light">Atlética XXV de Maio</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Atlética XXV de Maio">Atlética XXV de Maio</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse1" id="at4">
-										<button id="subitem" class="btn btn-light">Atlética Raça Brisão</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Atlética Raça Brisão">Atlética Raça Brisão</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse1" id="at5">
-										<button id="subitem" class="btn btn-light">Atlética DFQM</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Atlética DFQM">Atlética DFQM</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse1" id="at6">
-										<button id="subitem" class="btn btn-light">Atlética Lumberjack</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Atlética Lumberjack">Atlética Lumberjack</a>
 									</div>
 								</div>							
 							</div>
@@ -113,37 +114,37 @@ $valSelect = $_GET['sel'];
 								<!-- Elementos do collapse -->
 								<div class="">
 									<div class="collapse multi-collapse2" id="ca1">
-										<button id="subitem" class="btn btn-light">CA Toca da Onça</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Toca da Onça">CA Toca da Onça</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse2" id="ca2">
-										<button id="subitem" class="btn btn-light">CACCS</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=CACCS">CACCS</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse2" id="ca3">
-										<button id="subitem" class="btn btn-light">Cageos</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Cageos">Cageos</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse2" id="ca4">
-										<button id="subitem" class="btn btn-light">Caped</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Caped">Caped</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse2" id="ca5">
-										<button id="subitem" class="btn btn-light">Caeps</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Caeps">Caeps</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse2" id="ca6">
-										<button id="subitem" class="btn btn-light">CAEF</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=CAEF">CAEF</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse2" id="ca7">
-										<button id="subitem" class="btn btn-light">CACTUS</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=CACTUS">CACTUS</a>
 									</div>
 								</div>																																			
 							</div>
@@ -153,17 +154,17 @@ $valSelect = $_GET['sel'];
 								<!-- Elementos do collapse -->
 								<div class="">
 									<div class="collapse multi-collapse3" id="en1">
-										<button id="subitem" class="btn btn-light">Share</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Share">Share</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse3" id="en2">
-										<button id="subitem" class="btn btn-light">Enactus</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Enactus">Enactus</a>
 									</div>
 								</div>							
 								<div class="">
 									<div class="collapse multi-collapse3" id="en3">
-										<button id="subitem" class="btn btn-light">ABU</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=ABU">ABU</a>
 									</div>
 								</div>										
 							</div>
@@ -173,62 +174,62 @@ $valSelect = $_GET['sel'];
 								<!-- Elementos do collapse -->
 								<div class="">
 									<div class="collapse multi-collapse4" id="c1">
-										<button id="subitem" class="btn btn-light">Administração</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Administração">Administração</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c2">
-										<button id="subitem" class="btn btn-light">Ciências Biológicas</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Ciências Biológicas">Ciências Biológicas</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c3">
-										<button id="subitem" class="btn btn-light">Ciência da Computação</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Ciência de Computação">Ciência da Computação</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c4">
-										<button id="subitem" class="btn btn-light">Ciências Econômicas</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Ciências Econômicas">Ciências Econômicas</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c5">
-										<button id="subitem" class="btn btn-light">Engenharia de Produção</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Engenharia de Produção">Engenharia de Produção</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c6">
-										<button id="subitem" class="btn btn-light">Engenharia Florestal</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Engenharia Florestal">Engenharia Florestal</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c7">
-										<button id="subitem" class="btn btn-light">Física</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Física">Física</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c8">
-										<button id="subitem" class="btn btn-light">Geografia</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Geografia">Geografia</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c9">
-										<button id="subitem" class="btn btn-light">Matemática</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Matemática">Matemática</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c10">
-										<button id="subitem" class="btn btn-light">Pedagogia</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Pedagogia">Pedagogia</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c11">
-										<button id="subitem" class="btn btn-light">Química</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Química">Química</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c12">
-										<button id="subitem" class="btn btn-light">Turismo</button>
+										<a id="subitem" class="btn btn-light" href="produto.php?org=Turismo">Turismo</a>
 									</div>
 								</div>
 							</div>

@@ -10,14 +10,6 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 }
 
 
-// Busca as informações do produto
-$script =   "SELECT *
-FROM prod
-WHERE id='".$_GET['id_prod']."';"; // Pega o id por GET
-
-$result = $conn->query($script);
-$prod = $result->fetch_object();
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -38,7 +30,8 @@ $prod = $result->fetch_object();
        <!--
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		
 
         <!-- Importando estilo css -->
         <link type="text/css"  rel="stylesheet" href="./css/comprador.css">
@@ -74,8 +67,9 @@ $prod = $result->fetch_object();
                 </div>
             </div>
         </nav>    
+
         <!-- Estruturação da página -->
-		<div id="defCol" class="col-12 col-xl-12 col-lg-12 col-md-12">
+            <div id="defCol" class="col-12 col-xl-12 col-lg-12 col-md-12">
                 <div id="defRow" class="row">
 					<!-- Barra lateral -->
                     <div id="menu" class="col-2 col-xl-2 col-lg-2 col-md-2">
@@ -256,19 +250,49 @@ $prod = $result->fetch_object();
 						</div>
                     </div>
 
-
                     <!-- Main -->
                     <div id="conteudo" class="col-10 col-xl-10 col-lg-10 col-md-10">
 						<!-- Bread Crumb -->
-						<nav aria-label="breadcrumb" style="margin-top:5px; margin-left:-15px;">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="./home.php">Home</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Detalhes do produto</li>
-							</ol>
-						</nav>
+                        <nav aria-label="breadcrumb" style="margin-top:5px; margin-left:-15px;">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="./home.php">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Resultados da busca</li>
+                            </ol>
+                        </nav>
 
-						<div class="colD d-flex justify-content-start">
 
+						<div class="colD">
+						<br>
+
+							<div class="row">
+								<div class="col-lg-4 col-md-6 col-sm-12">
+									<div class="card">
+											<div class="product-image">
+												<center>
+													<img class="imgHome" src="img/example.jpg">
+												</center>
+											</div>
+											<div class="card-body">
+												<div class="row">
+													<ul class="rating">
+														<span class="fa fa-star checked"></span>
+														<span class="fa fa-star checked"></span>
+														<span class="fa fa-star checked"></span>
+														<span class="fa fa-star checked"></span>
+														<span class="fa fa-star"></span>
+													</ul>
+													<h6 class="avalCard">&nbsp(4 Avaliações)</h6>
+												</div>
+												<hr class="hrCard">
+												<h4 class="titleCard" style="font-weight: bold;">Título</h4>
+												<div class="row d-flex justify-content-between" style="padding-left: 15px; padding-right:15px;">
+													<h5 class="d-flex align-self-end">R$ 20.00</h5>
+													<a class="btn btn-outline-light btn-custom" href="produto.php?id_prod=1">Detalhes</a>
+												</div>
+											</div>
+									</div>
+								</div>						
+							</div>								
 						</div>
                     </div>
                 </div>
