@@ -80,13 +80,12 @@ $prod = $result->fetch_object();
                     
 					<!-- Barra lateral -->
                     <div id="menu" class="col-2 col-md-2" style="padding-left:0px;">
-                        <div class="divWrap">
-                            <div class="d-flex justify-content-center">
-                                <a class="btn btn-outline-dark btn-Vend" href="./adicionar.php">Adicionar anúncio</a>
+                        <div class="divWrap">                           
+                            <div id="btn-itemP" class="d-flex justify-content-center">
+                                <a class="btn btn-light btnBorder" href="./adicionar.php">Criar anúncio</a>
                             </div>
-                            
-                            <div class="msgBV text-white">
-                                <label>Bem vindo, <?php echo $_SESSION['nome_usuario']; ?>!</label>
+                            <div class="d-flex justify-content-center">
+                                <a class="btn btn-light btnBorder" href="./painel.php">Painel de Controle</a>
                             </div>
                         </div>
                         
