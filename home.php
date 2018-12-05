@@ -234,10 +234,10 @@ $valSelect = $_GET['sel'];
 								</div>
 							</div>
 						</div>
-						<div class="hrFooter">
-							<hr>
-						</div>
 						<div class="footer">
+							<div class="hrFooter">
+								<hr>
+							</div>
 							<div class="row">
 								<a href="#">Termos de uso</a>
 								<label style="color: #6c706e;">&nbsp&middot&nbsp</label>
@@ -245,7 +245,7 @@ $valSelect = $_GET['sel'];
 							</div>
 							<div class="row" style="margin-bottom: 30px;">
 								<span id="foot" class="text-muted">©2018 UFSell</span>
-							</div>							
+							</div>
 						</div>
                     </div>
 

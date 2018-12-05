@@ -30,11 +30,11 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
                 $_SESSION['nome_usuario'] = $obj->nome;
 
                 $result->close();
-                if ($obj->id_org == 0) {
+                if ($obj->id_org == 1) {
                     header("Location: ./home.php?sel=1");
                 }
                 else {
-                    header("Location: connection/home.php");
+                    header("Location: vendedor/home.php");
                 }
             }
             else {
