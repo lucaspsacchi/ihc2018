@@ -16,6 +16,11 @@ if ($valSelect == 1)
 	$query = 'SELECT * FROM prod ORDER BY id DESC';
 	$result = mysqli_query($conn, $query);
 }
+elseif ($valSelect == 2)
+{
+	$query = 'SELECT * FROM prod ORDER BY aval DESC';
+	$result = mysqli_query($conn, $query);
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -277,60 +282,8 @@ if ($valSelect == 1)
 							<br>
 
 							<div class="row">
-								<div class="col-lg-4 col-md-6 col-sm-12">
-									<div class="card">
-											<div class="product-image">
-												<center>
-													<img class="imgHome" src="img/example.jpg">
-												</center>
-											</div>
-											<div class="card-body">
-												<div class="row">
-													<ul class="rating">
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star"></span>
-													</ul>
-													<h6 class="avalCard">&nbsp(4 Avaliações)</h6>
-												</div>
-												<hr class="hrCard">
-												<h4 class="titleCard" style="font-weight: bold;">Título</h4>
-												<div class="row d-flex justify-content-between" style="padding-left: 15px; padding-right:15px;">
-													<h5 class="d-flex align-self-end">R$ 20.00</h5>
-													<a class="btn btn-outline-light btn-custom" href="produto.php?id_prod=1">Detalhes</a>
-												</div>
-											</div>
-									</div>
-								</div>
-								<div class="col-lg-4 col-md-6 col-sm-12">
-									<div class="card">
-										<center>
-											<img class="imgHome" src="img/example.jpg">
-										</center>
-										<div class="card-body">
-											<div class="row">
-												<ul class="rating">
-													<span class="fa fa-star checked"></span>
-													<span class="fa fa-star checked"></span>
-													<span class="fa fa-star checked"></span>
-													<span class="fa fa-star checked"></span>
-													<span class="fa fa-star"></span>
-												</ul>
-												<h6 class="avalCard">&nbsp(4 Avaliações)</h6>
-											</div>
-											<hr class="hrCard">
-											<h4 class="titleCard" style="font-weight: bold;">Título</h4>
-											<div class="row d-flex justify-content-between" style="padding-left: 15px; padding-right:15px;">
-												<h5 class="d-flex align-self-end">R$ 20.00</h5>
-												<a class="btn btn-outline-light btn-custom" href="produto.php?id_prod=1">Detalhes</a>
-											</div>
-										</div>
-									</div>
-								</div>
 								<?php 
-								while ($row = result->fetch_object())
+								while ($row = $result->fetch_object())
 								{
 								?>
 									<div class="col-lg-4 col-md-6 col-sm-12">
@@ -353,7 +306,7 @@ if ($valSelect == 1)
 												<h4 class="titleCard" style="font-weight: bold;"><?php echo $row->nome;  ?></h4>
 												<div class="row d-flex justify-content-between" style="padding-left: 15px; padding-right:15px;">
 													<h5 class="d-flex align-self-end">R$ <?php echo $row->preco; ?> </h5>
-													<a class="btn btn-outline-light btn-custom" href="produto.php?id_prod=1">Detalhes</a>
+													<a class="btn btn-outline-light btn-custom" href="produto.php?id_prod=<?php echo $row->id;  ?>">Detalhes</a>
 												</div>
 											</div>
 										</div>

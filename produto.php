@@ -18,9 +18,9 @@ WHERE id='".$_GET['id_prod']."';"; // Pega o id por GET
 $result = $conn->query($script);
 $prod = $result->fetch_object();
 
-$vend = 'Jorjito';
-$tel = '12345-6547';
-$org = 'CA BCC';
+$vend;
+$tel;
+$org;
 
 ?>
 <!DOCTYPE html>
