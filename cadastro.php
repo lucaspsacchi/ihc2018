@@ -77,7 +77,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                 <div class="col-8 col-md-8 col-sm-4 mx-auto">
                     <div class="card">
                         <div class="card-body shadow">                    
-                            <form id="formCad" class="" method="post">
+                            <form id="formCad" name="formCad" method="post">
                                 <div class="row">
                                     <div id="" class="col-6 col-md-6 col-sm-12">
                                         <div class="form-group">
@@ -104,13 +104,13 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                     <div id="" class="col-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="divsenha" style="font-weight: bold;">Senha</label>
-                                            <input type="password" class="form-control shadow-sm bg-white" name="inputSenha" pattern=".{5,30}" required>
+                                            <input id="senhajs" type="password" class="form-control shadow-sm bg-white" name="inputSenha" pattern=".{5,30}" required>
                                         </div>
                                     </div>
                                     <div class="col-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="divconfsenha" style="font-weight: bold;">Confirme a senha</label>
-                                            <input type="password" class="form-control shadow-sm bg-white" name="inputConfSenha" pattern=".{5,30}" required>
+                                            <input id="confjs" type="password" class="form-control shadow-sm bg-white" name="inputConfSenha" pattern=".{5,30}" required>
                                         </div>
                                     </div>
                                 </div>
@@ -157,7 +157,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                     <div class="col-12 col-md-12 col-sm-12 align-self-center">
                                         <div id="cadSalvar" class="botaocad float-right">
                                             <!-- Botão para salvar -->
-                                            <button type="submit" class="btn btn-success">
+                                            <button type="button" class="btn btn-success" onClick="validarSenha()">
                                                 Salvar
                                             </button>
                                         </div>
@@ -200,4 +200,18 @@ $(function() {
         $('#box').toggle($('#op2').prop('checked'));
     }).trigger('init-post-format');
 });
+
+// Confirmar senha
+
+    // function validarSenha() {
+    //     senha = document.getElementById('senhajs').value;
+    //     conf = document.getElementById('confjs').value;
+    //     if(senha != conf) {
+    //         alert('Senhas não batem');
+    //     }
+    //     else {
+    //         alert('passou?');
+    //         document.getElementById('formCad').submit();
+    //     }
+    // }
 </script>
