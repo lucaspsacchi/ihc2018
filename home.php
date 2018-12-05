@@ -10,6 +10,12 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 }
 
 $valSelect = $_GET['sel'];
+
+if ($valSelect == 1)
+{
+	$query = 'SELECT * FROM prod ORDER BY id DESC';
+	$result = mysqli_query($conn, $query);
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -264,8 +270,8 @@ $valSelect = $_GET['sel'];
 							<!-- Select para ordenar -->
 							<div class="row d-flex justify-content-end">
 								<select class="form-control" id="selectHome" style="width: 200px; margin-right: 15px;">
-									<option value="1" <?php if($valSelect == 1) {echo selected;} ?>>Mais recentes</option>
-									<option value="2" <?php if($valSelect == 2) {echo selected;} ?>>Maior classificação</option>
+									<option value="1" <?php if($valSelect == 1) {echo 'selected';} ?>>Mais recentes</option>
+									<option value="2" <?php if($valSelect == 2) {echo 'selected';} ?>>Maior classificação</option>
 								</select>
 							</div>
 							<br>
@@ -323,31 +329,36 @@ $valSelect = $_GET['sel'];
 										</div>
 									</div>
 								</div>
-								<div class="col-lg-4 col-md-6 col-sm-12">
-									<div class="card">
-										<center>
-											<img class="imgHome" src="img/example.jpg">
-										</center>
-										<div class="card-body">
-											<div class="row">
-												<ul class="rating">
-													<span class="fa fa-star checked"></span>
-													<span class="fa fa-star checked"></span>
-													<span class="fa fa-star checked"></span>
-													<span class="fa fa-star checked"></span>
-													<span class="fa fa-star"></span>
-												</ul>
-												<h6 class="avalCard">&nbsp(4 Avaliações)</h6>
-											</div>
-											<hr class="hrCard">
-											<h4 class="titleCard" style="font-weight: bold;">Título</h4>
-											<div class="row d-flex justify-content-between" style="padding-left: 15px; padding-right:15px;">
-												<h5 class="d-flex align-self-end">R$ 20.00</h5>
-												<a class="btn btn-outline-light btn-custom" href="produto.php?id_prod=1">Detalhes</a>
+								<?php 
+								while ($row = result->fetch_object())
+								{
+								?>
+									<div class="col-lg-4 col-md-6 col-sm-12">
+										<div class="card">
+											<center>
+												<img class="imgHome" src="img/<?php echo $row->img; ?>">
+											</center>
+											<div class="card-body">
+												<div class="row">
+													<ul class="rating">
+														<span class="fa fa-star checked"></span>
+														<span class="fa fa-star checked"></span>
+														<span class="fa fa-star checked"></span>
+														<span class="fa fa-star checked"></span>
+														<span class="fa fa-star"></span>
+													</ul>
+													<h6 class="avalCard">&nbsp(<?php $row->aval;  ?> Avaliações)</h6>
+												</div>
+												<hr class="hrCard">
+												<h4 class="titleCard" style="font-weight: bold;"><?php echo $row->nome;  ?></h4>
+												<div class="row d-flex justify-content-between" style="padding-left: 15px; padding-right:15px;">
+													<h5 class="d-flex align-self-end">R$ <?php echo $row->preco; ?> </h5>
+													<a class="btn btn-outline-light btn-custom" href="produto.php?id_prod=1">Detalhes</a>
+												</div>
 											</div>
 										</div>
-									</div>
-								</div>							
+									</div>		
+						<?php	}   ?>			
 							</div>								
 						</div>
                     </div>
