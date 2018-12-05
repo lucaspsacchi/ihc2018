@@ -11,8 +11,14 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 
 $valBusca = $_GET['busca'];
 
-$query = "SELECT * FROM prod WHERE `nome`  LIKE \"%$valBusca%\" OR `org` LIKE \"%$valBusca%\"";
-$result = mysqli_query($conn, )
+$query = "SELECT * FROM prod WHERE `nome`  LIKE \"%$valBusca%\"";
+if ($query->num_rows == 0)
+{
+	$query = "SELECT * FROM org WHERE `nome`  LIKE \"%$valBusca%\"";
+}
+$result = mysqli_query($conn, $query);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
