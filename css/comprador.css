@@ -14,6 +14,7 @@ body {
 /* Navbar */
 
 nav {
+	width: 100%;
 	height: 60px;
 }
 
@@ -97,10 +98,12 @@ nav {
 /* Menu */
 
 #defCol {
+	width: 100%;
 	height: calc(100% - 60px);
 }
 
 #defRow {
+	width: 100%;
 	height: 100%;
 }
 
@@ -181,6 +184,12 @@ hr {
 }
 
 .colD {
+	display: block;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	hyphens: auto;
+	width: 100%;
 	border-top: 1px solid #000000;
 	border-color: #b9c0bd;
 }
@@ -224,6 +233,7 @@ hr {
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
+	width: 100%;
 	z-index: 100;
 }
 
@@ -250,3 +260,23 @@ hr {
 	height: 300px;
 }
 
+.rating {
+	padding-left: 15px;
+}
+
+.ratingCustom {
+	padding-left: 0px;
+}
+
+.imgProd {
+	width: 95%;
+	height: 400px;
+}
+
+.cardProd {
+	width: 50%;
+}
+
+.hrProd {
+	width: 100%;
+}
