@@ -110,7 +110,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                     <div class="col-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="divconfsenha" style="font-weight: bold;">Confirme a senha</label>
-                                            <input type="password" class="form-control shadow-sm bg-white" title="Senhas precisam ser iguais" id="inputConfSenha" name="inputConfSenha" pattern=".{5,30}" required>
+                                            <input type="password" class="form-control shadow-sm bg-white" data-toggle="popover" title="Senhas precisam ser iguais" id="inputConfSenha" name="inputConfSenha" pattern=".{5,30}" required>
                                         </div>
                                     </div>
                                 </div>
