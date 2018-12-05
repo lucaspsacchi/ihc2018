@@ -300,7 +300,7 @@ elseif ($valSelect == 2)
 														<span class="fa fa-star checked"></span>
 														<span class="fa fa-star"></span>
 													</ul>
-													<h6 class="avalCard">&nbsp(<?php $row->qt_votos;  ?> Avaliações)</h6>
+													<h6 class="avalCard">&nbsp(<?php echo $row->qt_votos;  ?> Avaliações)</h6>
 												</div>
 												<hr class="hrCard">
 												<h4 class="titleCard" style="font-weight: bold;"><?php echo $row->nome;  ?></h4>
