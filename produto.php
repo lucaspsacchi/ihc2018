@@ -311,13 +311,13 @@ $org = 'CA BCC';
 											<label>Entre em contato:&nbsp <?php echo $tel; ?></label>
 										</div>
 									</div>
-									</div>
 								</div>
 							</div>
 						</div>
-                    </div>
-                </div>
-            </div>
+					</div>
+				</div>
+			</div>
+		</div>
 
     </body>
 </html>

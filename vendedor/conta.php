@@ -9,6 +9,13 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
     header("Location: ../login.php?erro_login=1"); // Se não está logado, retorna para a página de login com uma mensagem de erro
 }
 
+// Busca as informações do produto
+$script =   "SELECT *
+FROM usuario
+WHERE id='".$_SESSION['id_usuario']."';";
+
+$result = $conn->query($script);
+$pessoa = $result->fetch_object();
 
 ?>
 <!DOCTYPE html>
@@ -109,14 +116,116 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 						</nav>
 
 
-						<div class="colD">
-							<div class="row">
-
-
-															
-							</div>								
+						<!-- Formulário -->
+					<form id="formCad" class="" method="post">
+						<div class="colD d-flex justify-content-start">
+							<div class="col-6 col-xl-6 col-lg-6 col-md-6">
+								<div id="cardAlterar" class="">
+										<div class="row">
+											<div class="col-12">
+												<div class="form-group">
+													<label class="divnome" style="font-weight: bold;">Nome</label>
+													<input type="text" class="form-control shadow-sm" value="<?php echo $pessoa->nome; ?>" name="inputNome" pattern=".{5,30}" required autofocus>
+												</div>                              
+											</div>                    
+										</div>
+										<div class="row">
+											<div class="col-12">
+												<div class="form-group">
+													<label class="divsobrenome" style="font-weight: bold;">Sobrenome</label>
+													<input type="text" class="form-control shadow-sm" value="<?php echo $pessoa->sobrenome; ?>" name="inputSobrenome" pattern=".{5,30}" required>
+												</div>
+											</div>
+										</div> 
+										<div class="row">
+											<div class="col-12">
+												<div class="form-group">
+													<label class="divemail" style="font-weight: bold;">Email</label>
+													<input type="email" class="form-control shadow-sm" value="<?php echo $pessoa->email; ?>" name="inputEmail" pattern=".{5,30}" required>
+												</div>
+											</div>
+										</div>                                
+										<div class="row">
+											<div class="col-12">
+												<div class="form-group">
+													<label class="divsenha" style="font-weight: bold;">Senha</label>
+													<input type="password" class="form-control shadow-sm" value="12345678" name="inputSenha" pattern=".{5,30}" required>
+												</div>
+											</div>	
+										</div>
+										<div class="row">
+											<div class="col-12">
+												<div class="form-group">
+													<label class="divsenha" style="font-weight: bold;">Confirmar senha</label>
+													<input type="password" class="form-control shadow-sm" value="12345678" name="inputConfSenha" pattern=".{5,30}" required>
+												</div>
+											</div>	
+                                        </div>
+                                        <div class="row">
+											<div class="col-12">
+                                                <div class="form-group">
+                                                    <label class="divtel" style="font-weight: bold;">Celular</label>
+                                                    <input type="text" class="form-control shadow-sm bg-white" value="<?php echo $pessoa->tel; ?>" name="inputTel" pattern="\([0-9]{2}\) ?[0-9]{4,6}-[0-9]{3,4}$" placeholder="(XX) XXXXX-XXXX">
+                                                </div>
+											</div>
+                                        </div>                                
+								</div>
+							</div>	
+							<div class="col-1 col-xl-1 col-lg-1 col-md-1" style="border-right: 1px solid; margin-top:10px; border-color:#b9c0bd;"></div>
+							<div class="col-1 col-xl-1 col-lg-1 col-md-1"></div>
+							<div class="col-4 col-xl-4 col-lg-4 col-md-4">
+								<label style="font-weight: bold; margin-top:10px;">
+									Você tem interesse em produtos de quais cursos?
+								</label>
+								<div class="form-group">
+									<div class="form-check">
+										<input type="checkbox" class="form-check-input">
+										<label class="form-check-label">Administração</label><br>
+										<input type="checkbox" class="form-check-input">
+										<label class="form-check-label">Ciências Biológicas</label><br>
+										<input type="checkbox" class="form-check-input">
+										<label class="form-check-label">Ciência da Computação</label><br>
+										<input type="checkbox" class="form-check-input">
+										<label class="form-check-label">Ciências Economicas</label><br>
+										<input type="checkbox" class="form-check-input">
+										<label class="form-check-label">Engenharia de Produção</label><br>
+										<input type="checkbox" class="form-check-input">
+										<label class="form-check-label">Engenharia Florestal</label><br>
+										<input type="checkbox" class="form-check-input">
+										<label class="form-check-label">Física</label><br>
+										<input type="checkbox" class="form-check-input">
+										<label class="form-check-label">Geografia</label><br>		
+										<input type="checkbox" class="form-check-input">
+										<label class="form-check-label">Matemática</label><br>
+										<input type="checkbox" class="form-check-input">
+										<label class="form-check-label">Pedagogia</label><br>
+										<input type="checkbox" class="form-check-input">
+										<label class="form-check-label">Química</label><br>
+										<input type="checkbox" class="form-check-input">
+										<label class="form-check-label">Turismo</label><br>																										
+									</div>								
+								</div>
+								<br>
+								<label>
+									Deseja receber emails novos anuncios?
+								</label><br>
+								<input type="radio" value="Sim"> Sim<br>
+								<input type="radio" value="Não"> Não<br>
+							</div>														
 						</div>
-                    </div>
+						<br>
+						<div class="row">
+							<div class="col-12">
+								<div id="cadSalvar" class="botaocad float-right">
+									<!-- Botão para salvar -->
+									<button type="submit" class="btn btn-success">
+										Salvar
+									</button>
+								</div>
+							</div>
+						</div>
+					</form>
+
                 </div>
             </div>
 

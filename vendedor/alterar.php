@@ -9,7 +9,13 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
     header("Location: ../login.php?erro_login=1"); // Se não está logado, retorna para a página de login com uma mensagem de erro
 }
 
+// Busca as informações do produto
+$script = "SELECT *
+FROM prod
+WHERE id='".$_GET['id_prod']."';"; // Pega o id por GET
 
+$result = $conn->query($script);
+$prod = $result->fetch_object();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -110,8 +116,45 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 
 
 						<div class="colD">
-							<div class="row">
-
+                            <div class="row">
+									<div class="col-5 col-xl-5 col-lg-5 col-md-5">
+										<img class="imgProd" src="img/<?php echo $prod->img; ?>"> <!-- COLOCAR A IMAGEM AQUI -->
+									</div>
+									<div class="col-7 col-xl-7 col-lg-7 col-md-7">
+										<div class="row">
+											<h3><?php echo $prod->nome; ?></h3>
+										</div>
+										<div class="row justify-content-between">
+												<div class="obj1">
+													Ref.:&nbsp<?php echo $prod->id; ?>
+												</div>
+												<div class="row">
+													<ul class="rating ratingCustom">
+														<span class="fa fa-star checked"></span>
+														<span class="fa fa-star checked"></span>
+														<span class="fa fa-star checked"></span>
+														<span class="fa fa-star checked"></span>
+														<span class="fa fa-star"></span>
+													</ul>
+													<h6 class="avalCard" style="margin-right:15px;">&nbsp(<?php echo $prod->qt_votos; ?> Avaliações)</h6>
+												</div>
+										</div>
+										<div class="row">
+											<h4>R$&nbsp<?php echo $prod->preco; ?></h4>
+										</div>
+										<hr class="hrProd">
+										<div class="row">
+											<h5>Produto&nbsp<?php echo $org; ?></h5> <!-- EXIBE NOME DA ORGANIZAÇÃO QUE FAZ PARTE -->
+										</div>
+										<hr class="hrProd">
+										<div class="row">
+											<label>Vendedor&nbsp<?php echo  $vend; ?></label>
+										</div>
+										<div class="row">
+											<label>Entre em contato:&nbsp <?php echo $tel; ?></label>
+										</div>
+									</div>
+								</div>								
 							</div>								
 						</div>
                     </div>

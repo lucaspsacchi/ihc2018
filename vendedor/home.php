@@ -9,7 +9,10 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
     header("Location: ../login.php?erro_login=1"); // Se não está logado, retorna para a página de login com uma mensagem de erro
 }
 
-
+// Busca todos os produtos relacionados a essa pessoa
+$script = "SELECT DISTINCT p.nome, p.id
+           FROM prod p join usu_prod up on p.id = up.id_prod join usuario u on up.id_usu ='".$_SESSION['id_usuario']."' ";
+$result = $conn->query($script);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -60,6 +63,9 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
                             <div id="nav-itemP" class="nav-item">
                                 <a href="./conta.php">Minha conta</a>
                             </div>
+                            <div id="nav-itemP" class="nav-item">
+                                <a href="./estatisticas.php">Estatísticas</a>
+                            </div>
                             <div class="nav-item">
                                 <a class="" href="./sair.php">Sair</a>
                             </div>
@@ -78,7 +84,6 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
                             <div class="d-flex justify-content-center">
                                 <a class="btn btn-outline-dark btn-Vend" href="./adicionar.php">Adicionar anúncio</a>
                             </div>
-                            
                             <div class="msgBV text-white">
                                 <label>Bem vindo, <?php echo $_SESSION['nome_usuario']; ?>!</label>
                             </div>
@@ -111,9 +116,15 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 
 						<div class="colD">
 							<div class="row">
-
-
-															
+                                <div id="lista_produto" class="list-group">
+                                <?php
+                                    while ($vetor = $result->fetch_object()) {
+                                    ?>
+                                        <a class="list-group-item" href="./alterar.php?id_prod=<?php echo $vetor->id; ?>"><?php echo $vetor->nome; ?></a>
+                                    <?php
+                                    }
+                                ?>
+                                </div>					
 							</div>								
 						</div>
                     </div>
