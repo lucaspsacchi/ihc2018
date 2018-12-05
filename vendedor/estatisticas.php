@@ -20,7 +20,7 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 
         <!-- Título e ícone da aba -->
         <title>UFSell</title>
-        <link rel="shortcut icon" type="image/png" href="img/UFSell.png">
+        <link rel="shortcut icon" type="image/png" href="../img/UFSell.png">
 
         <!-- Importando bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">

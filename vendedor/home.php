@@ -23,7 +23,7 @@ $result = $conn->query($script);
 
         <!-- Título e ícone da aba -->
         <title>UFSell</title>
-        <link rel="shortcut icon" type="image/png" href="img/UFSell.png">
+        <link rel="shortcut icon" type="image/png" href="../img/UFSell.png">
 
         <!-- Importando bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -115,17 +115,17 @@ $result = $conn->query($script);
 
 
 						<div class="colD">
-							<div class="row">
-                                <div id="lista_produto" class="list-group">
+                            <div class="col-12">
+                                <div id="lista_produto" class="list-group" style="margin-top:15px;">
                                 <?php
                                     while ($vetor = $result->fetch_object()) {
                                     ?>
-                                        <a class="list-group-item" href="./alterar.php?id_prod=<?php echo $vetor->id; ?>"><?php echo $vetor->nome; ?></a>
+                                        <a class="list-group-item list-group-item-action list-group-item-info" href="./alterar.php?id_prod=<?php echo $vetor->id; ?>"><?php echo $vetor->nome; ?></a>
                                     <?php
                                     }
                                 ?>
-                                </div>					
-							</div>								
+                                </div>
+                            </div>							
 						</div>
                     </div>
                 </div>

@@ -88,32 +88,32 @@ $pessoa = $result->fetch_object();
 								<!-- Elementos do collapse -->
 								<div class="">
 									<div class="collapse multi-collapse1" id="at1">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Atlética ECAD">Atlética ECAD</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Atlética ECAD">Atlética ECAD</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse1" id="at2">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Atlética UFSCar Sorocaba">Atlética UFSCar Sorocaba</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Atlética UFSCar Sorocaba">Atlética UFSCar Sorocaba</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse1" id="at3">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Atlética XXV de Maio">Atlética XXV de Maio</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Atlética XXV de Maio">Atlética XXV de Maio</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse1" id="at4">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Atlética Raça Brisão">Atlética Raça Brisão</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Atlética Raça Brisão">Atlética Raça Brisão</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse1" id="at5">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Atlética DFQM">Atlética DFQM</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Atlética DFQM">Atlética DFQM</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse1" id="at6">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Atlética Lumberjack">Atlética Lumberjack</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Atlética Lumberjack">Atlética Lumberjack</a>
 									</div>
 								</div>							
 							</div>
@@ -123,37 +123,37 @@ $pessoa = $result->fetch_object();
 								<!-- Elementos do collapse -->
 								<div class="">
 									<div class="collapse multi-collapse2" id="ca1">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Toca da Onça">CA Toca da Onça</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Toca da Onça">CA Toca da Onça</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse2" id="ca2">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=CACCS">CACCS</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=CACCS">CACCS</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse2" id="ca3">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Cageos">Cageos</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Cageos">Cageos</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse2" id="ca4">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Caped">Caped</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Caped">Caped</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse2" id="ca5">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Caeps">Caeps</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Caeps">Caeps</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse2" id="ca6">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=CAEF">CAEF</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=CAEF">CAEF</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse2" id="ca7">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=CACTUS">CACTUS</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=CACTUS">CACTUS</a>
 									</div>
 								</div>																																			
 							</div>
@@ -163,17 +163,17 @@ $pessoa = $result->fetch_object();
 								<!-- Elementos do collapse -->
 								<div class="">
 									<div class="collapse multi-collapse3" id="en1">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Share">Share</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Share">Share</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse3" id="en2">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Enactus">Enactus</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Enactus">Enactus</a>
 									</div>
 								</div>							
 								<div class="">
 									<div class="collapse multi-collapse3" id="en3">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=ABU">ABU</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=ABU">ABU</a>
 									</div>
 								</div>										
 							</div>
@@ -183,62 +183,62 @@ $pessoa = $result->fetch_object();
 								<!-- Elementos do collapse -->
 								<div class="">
 									<div class="collapse multi-collapse4" id="c1">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Administração">Administração</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Administração">Administração</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c2">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Ciências Biológicas">Ciências Biológicas</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Ciências Biológicas">Ciências Biológicas</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c3">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Ciência de Computação">Ciência da Computação</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Ciência de Computação">Ciência da Computação</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c4">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Ciências Econômicas">Ciências Econômicas</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Ciências Econômicas">Ciências Econômicas</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c5">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Engenharia de Produção">Engenharia de Produção</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Engenharia de Produção">Engenharia de Produção</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c6">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Engenharia Florestal">Engenharia Florestal</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Engenharia Florestal">Engenharia Florestal</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c7">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Física">Física</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Física">Física</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c8">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Geografia">Geografia</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Geografia">Geografia</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c9">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Matemática">Matemática</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Matemática">Matemática</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c10">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Pedagogia">Pedagogia</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Pedagogia">Pedagogia</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c11">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Química">Química</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Química">Química</a>
 									</div>
 								</div>
 								<div class="">
 									<div class="collapse multi-collapse4" id="c12">
-										<a id="subitem" class="btn btn-light" href="busca.php?org=Turismo">Turismo</a>
+										<a id="subitem" class="btn btn-light" href="busca.php?busca=Turismo">Turismo</a>
 									</div>
 								</div>
 							</div>
