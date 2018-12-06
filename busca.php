@@ -11,22 +11,6 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 
 $valBusca = $_GET['busca'];
 
-$valBusca = str_replace("á", "a", $valBusca);
-$valBusca = str_replace("é", "e", $valBusca);
-$valBusca = str_replace("í", "i", $valBusca);
-$valBusca = str_replace("ó", "o", $valBusca);
-$valBusca = str_replace("ú", "u", $valBusca);
-
-$valBusca = str_replace("ç", "c", $valBusca);
-
-$valBusca = str_replace("ã", "a", $valBusca);
-$valBusca = str_replace("õ", "o", $valBusca);
-
-$valBusca = str_replace("â", "a", $valBusca);
-$valBusca = str_replace("ê", "e", $valBusca);
-$valBusca = str_replace("ô", "o", $valBusca);
-
-
 $isProd = true;
 $query = "SELECT * FROM prod WHERE `nome`  LIKE \"%$valBusca%\" ORDER BY aval DESC";
 $result = mysqli_query($conn, $query);

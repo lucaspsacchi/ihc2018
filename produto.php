@@ -11,16 +11,28 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 
 
 // Busca as informações do produto
-$script = "SELECT *
-FROM prod
-WHERE id='".$_GET['id_prod']."';"; // Pega o id por GET
-
+$script = "SELECT * FROM prod WHERE id='".$_GET['id_prod']."';"; // Pega o id por GET
 $result = $conn->query($script);
 $prod = $result->fetch_object();
 
-$vend;
-$tel;
-$org;
+$query = "SELECT * FROM `usu_prod` WHERE `id_prod`='".$_GET['id_prod']."';"; //Pega a tupla de usu_prod
+$result = $conn->query($query);
+$usu_prod = $result->fetch_object();
+
+$query = "SELECT nome, tel, id_org FROM `usuario` WHERE `id`=\"$usu_prod->id_usu\"";
+echo "$query\n";
+$result = $conn->query($query);
+$usu = $result->fetch_object();
+
+$vend = $usu->nome;
+$tel = $usu->tel;
+
+$query = "SELECT nome FROM `org` WHERE `id`=\"$usu->id_org\"";
+echo $query;
+$result = $conn->query($query);
+$row = $result->fetch_object();
+
+$org = utf8_encode($row->nome);
 
 ?>
 <!DOCTYPE html>
@@ -305,7 +317,7 @@ $org;
 										</div>
 										<hr class="hrProd">
 										<div class="row">
-											<label>Vendedor&nbsp<?php echo  $vend; ?></label>
+											<label>Vendedor:&nbsp<?php echo  $vend; ?></label>
 										</div>
 										<div class="row">
 											<label>Entre em contato:&nbsp <?php echo $tel; ?></label>
