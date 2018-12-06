@@ -15,7 +15,6 @@ $script =   "SELECT nome, sobrenome, email, tel FROM usuario WHERE id='".$_SESSI
 $result = $conn->query($script);
 $pessoa = $result->fetch_object();
 
-
 if (isset($_POST['inputNome']))
 {
 	$nome = $_POST['inputNome'];
@@ -24,7 +23,58 @@ if (isset($_POST['inputNome']))
 	$row = $result->fetch_object();
 	if ($nome != $row->nome)
 	{
-		$query = "UPDATE usuario SET "
+		$query = "UPDATE usuario SET nome=\"$nome\" WHERE `id`='".$_SESSION['id_usuario']."';";
+		$conn->query($query);
+		$result = $conn->query($script);
+		$pessoa = $result->fetch_object();
+	}
+}
+
+if (isset($_POST['inputSobrenome']))
+{
+	$sobrenome = $_POST['inputSobrenome'];
+	$query = "SELECT sobrenome FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
+	$result = $conn->query($query);
+	$row = $result->fetch_object();
+	if ($sobrenome != $row->sobrenome)
+	{
+		$query = "UPDATE usuario SET sobrenome=\"$sobrenome\" WHERE `id`='".$_SESSION['id_usuario']."';";
+		$conn->query($query);
+		$result = $conn->query($script);
+		$pessoa = $result->fetch_object();
+	}
+}
+
+if (isset($_POST['inputEmail']))
+{
+	$email = $_POST['inputEmail'];
+	$query = "SELECT email FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
+	$result = $conn->query($query);
+	$row = $result->fetch_object();
+	if ($email != $row->email)
+	{
+		$query = "UPDATE usuario SET email=\"$email\" WHERE `id`='".$_SESSION['id_usuario']."';";
+		$conn->query($query);
+		$result = $conn->query($script);
+		$pessoa = $result->fetch_object();
+	}
+}
+
+if (isset($_POST['inputSenha']))
+{
+	$senha = $_POST['inputSenha'];
+	$senhaMD5 = MD5($senha);
+	$query = "SELECT senha FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
+	$result = $conn->query($query);
+	$row = $result->fetch_object();
+
+	
+	if ($senhaMD5 != $row->senha)
+	{
+		$query = "UPDATE usuario SET senha=\"$senhaMD5\" WHERE `id`='".$_SESSION['id_usuario']."';";
+		$conn->query($query);
+		$result = $conn->query($script);
+		$pessoa = $result->fetch_object();
 	}
 }
 ?>
@@ -311,7 +361,7 @@ if (isset($_POST['inputNome']))
 											<div class="col-12">
 												<div class="form-group">
 													<label class="divsenha" style="font-weight: bold;">Senha</label>
-													<input type="password" class="form-control shadow-sm" id="inputSenha" placeholder="Alterar senha" name="inputSenha" pattern=".{5,30}" required>
+													<input type="password" class="form-control shadow-sm" id="inputSenha" placeholder="Alterar senha" name="inputSenha" pattern=".{5,30}">
 												</div>
 											</div>	
 										</div>
@@ -319,7 +369,7 @@ if (isset($_POST['inputNome']))
 											<div class="col-12">
 												<div class="form-group">
 													<label class="divsenha" style="font-weight: bold;">Confirmar senha</label>
-													<input type="password" class="form-control shadow-sm" data-toggle="popover" id="inputConfSenha" title="As senhas precisam ser iguais" placeholder="Confirme a nova senha" name="inputConfSenha" pattern=".{5,30}" required>
+													<input type="password" class="form-control shadow-sm" data-toggle="popover" id="inputConfSenha" title="As senhas precisam ser iguais" placeholder="Confirme a nova senha" name="inputConfSenha" pattern=".{5,30}">
 												</div>
 											</div>	
 										</div>
