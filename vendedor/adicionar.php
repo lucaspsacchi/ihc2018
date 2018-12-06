@@ -9,6 +9,32 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
     header("Location: ../login.php?erro_login=1"); // Se não está logado, retorna para a página de login com uma mensagem de erro
 }
 
+//Imagem
+if (isset($_FILES["file"]["type"])) {
+    $validextensions = array("jpeg", "jpg", "png");
+    $temporary = explode(".", $_FILES["file"]["name"]);
+    $file_extension = end($temporary);
+
+    if (in_array($file_extension, $validextensions)) {//Verifica se está de acordo com a extensão
+        if ($_FILES["file"]["error"] > 0) {
+
+        }
+        else {
+            $novoNome = uniqid(time()) . '.' . $file_extension;
+            $destino = '../img/' . $novoNome;
+            $sourcePath = $_FILES['file']['tmp_name']; // Storing source path of the file in a variable
+
+            $flag_img = move_uploaded_file($sourcePath, $destino); // Moving Uploaded file
+            //if ($flag_img != TRUE) {
+                ?>
+                <script>
+                    alert("Ocorreu um erro inesperado com a imagem");
+                </script>
+                <?php
+            //}
+        }
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -103,14 +129,49 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 						<!-- Bread Crumb -->
 						<nav aria-label="breadcrumb" style="margin-top:5px; margin-left: -15px;">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item active" aria-current="page">Home</li>
+							    <li class="breadcrumb-item"><a href="./home.php">Home</a></li>
+							    <li class="breadcrumb-item active" aria-current="page">Novo anúncio</li>
 							</ol>
 						</nav>
 
 
 						<div class="colD">
-							<div class="row">
-
+							<div class="top" style="margin-top: 30px;">
+                                <form id="formAnuncio" class="" method="post">
+                                    <div class="col-12 col-md-12">
+                                        <div class="row">
+                                            <div class="col-5 col-md-5">
+                                                <div class="form-group">
+                                                    <img id="photo" src="../img/semImg.png" class="img-rounded" width="300px" height="300px">
+                                                    <br>
+                                                    <label for="comment">Imagem do anúncio<span class="ast"></span> </label>
+                                                    <input type="file" name="file" id="file" required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-7 col-md-7">
+                                                <div class="">
+                                                    <div class="form-group">
+                                                        <label class="divnome" style="font-weight: bold;">Título do anúncio</label>
+                                                        <input type="text" class="form-control shadow-sm" name="inputTitu" maxlength="50" required>
+                                                    </div>
+                                                    <div class="form-group" style="width: 40%;">
+                                                        <label class="divpreco" style="font-weight: bold;">Preço</label>
+                                                        <input type="text" class="form-control shadow-sm" name="inputPrec" placeholder="Digite no formato 00.00" required>
+                                                    </div>
+                                                </div>
+                                                <div class="">
+                                                    <div class="form-group">
+                                                        <label class="divdesc" style="font-weight: bold;">Descrição</label>
+                                                        <textarea type="text" name="inputDesc" class="form-control" rows="6" required maxlength="500" id="description" placeholder="Insira a descrição do anúncio"></textarea>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-end">
+                                        <button class="btn btn-success" name="salvar">Salvar</button>
+                                    </div>                                  
+                                </form>
 							</div>								
 						</div>
                     </div>
@@ -119,3 +180,35 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 
     </body>
 </html>
+
+
+<script>
+    // Ajax para a imagem
+    $(document).ready(function (e) {
+        // Function to preview image after validation
+        $(function () {
+            $("#file").change(function () {
+                var file = this.files[0];
+                var imagefile = file.type;
+                var match = ["image/jpeg", "image/png", "image/jpg"];
+                if (!((imagefile == match[0]) || (imagefile == match[1]) || (imagefile == match[2])))
+                {
+                    $('#photo').attr('src', 'noimage.png');
+                    $("#message").html("<p id='error'>Por favor, selecione um formato de imagem válido</p>" + "<h4>Nota</h4>" + "<span id='error_message'>Apenas jpeg, jpg e png são suportados pelo site</span>");
+                    return false;
+                }
+                else
+                {
+                    var reader = new FileReader();
+                    reader.onload = imageIsLoaded;
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+        });
+        function imageIsLoaded(e) {
+            $('#photo').attr('src', e.target.result);
+            $('#photo').attr('width', '300px');
+            $('#photo').attr('height', '300px');
+        }
+    });
+</script>

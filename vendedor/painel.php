@@ -103,7 +103,8 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 						<!-- Bread Crumb -->
 						<nav aria-label="breadcrumb" style="margin-top:5px; margin-left: -15px;">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item active" aria-current="page">Home</li>
+							    <li class="breadcrumb-item"><a href="./home.php">Home</a></li>
+							    <li class="breadcrumb-item active" aria-current="page">Painel de controle</li>
 							</ol>
 						</nav>
 

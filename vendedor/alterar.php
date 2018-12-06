@@ -16,6 +16,33 @@ WHERE id='".$_GET['id_prod']."';"; // Pega o id por GET
 
 $result = $conn->query($script);
 $prod = $result->fetch_object();
+
+//Imagem
+if (isset($_FILES["file"]["type"])) {
+    $validextensions = array("jpeg", "jpg", "png");
+    $temporary = explode(".", $_FILES["file"]["name"]);
+    $file_extension = end($temporary);
+
+    if (in_array($file_extension, $validextensions)) {//Verifica se está de acordo com a extensão
+        if ($_FILES["file"]["error"] > 0) {
+
+        }
+        else {
+            $novoNome = uniqid(time()) . '.' . $file_extension;
+            $destino = '../img/' . $novoNome;
+            $sourcePath = $_FILES['file']['tmp_name']; // Storing source path of the file in a variable
+
+            $flag_img = move_uploaded_file($sourcePath, $destino); // Moving Uploaded file
+            //if ($flag_img != TRUE) {
+                ?>
+                <script>
+                    alert("Ocorreu um erro inesperado com a imagem");
+                </script>
+                <?php
+            //}
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -109,51 +136,49 @@ $prod = $result->fetch_object();
 						<!-- Bread Crumb -->
 						<nav aria-label="breadcrumb" style="margin-top:5px; margin-left: -15px;">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item active" aria-current="page">Home</li>
+						    	<li class="breadcrumb-item"><a href="./home.php">Home</a></li>
+					    		<li class="breadcrumb-item active" aria-current="page">Alteração anúncio</li>
 							</ol>
 						</nav>
 
 
 						<div class="colD">
-                            <div class="row">
-									<div class="col-5 col-xl-5 col-lg-5 col-md-5">
-										<img class="imgProd" src="img/<?php echo $prod->img; ?>"> <!-- COLOCAR A IMAGEM AQUI -->
-									</div>
-									<div class="col-7 col-xl-7 col-lg-7 col-md-7">
-										<div class="row">
-											<h3><?php echo $prod->nome; ?></h3>
-										</div>
-										<div class="row justify-content-between">
-												<div class="obj1">
-													Ref.:&nbsp<?php echo $prod->id; ?>
-												</div>
-												<div class="row">
-													<ul class="rating ratingCustom">
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star"></span>
-													</ul>
-													<h6 class="avalCard" style="margin-right:15px;">&nbsp(<?php echo $prod->qt_votos; ?> Avaliações)</h6>
-												</div>
-										</div>
-										<div class="row">
-											<h4>R$&nbsp<?php echo $prod->preco; ?></h4>
-										</div>
-										<hr class="hrProd">
-										<div class="row">
-											<h5>Produto&nbsp<?php echo $org; ?></h5> <!-- EXIBE NOME DA ORGANIZAÇÃO QUE FAZ PARTE -->
-										</div>
-										<hr class="hrProd">
-										<div class="row">
-											<label>Vendedor&nbsp<?php echo  $vend; ?></label>
-										</div>
-										<div class="row">
-											<label>Entre em contato:&nbsp <?php echo $tel; ?></label>
-										</div>
-									</div>
-								</div>								
+							<div class="top" style="margin-top: 30px;">
+                                <form id="formAnuncio" class="" method="post">
+                                    <div class="col-12 col-md-12">
+                                        <div class="row">
+                                            <div class="col-5 col-md-5">
+                                                <div class="form-group">
+                                                    <img id="photo" src="../img/<?php echo $prod->img; ?>" class="img-rounded" width="300px" height="300px">
+                                                    <br>
+                                                    <label for="comment">Imagem do anúncio<span class="ast"></span> </label>
+                                                    <input type="file" name="file" id="file" required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-7 col-md-7">
+                                                <div class="">
+                                                    <div class="form-group">
+                                                        <label class="divnome" style="font-weight: bold;">Título do anúncio</label>
+                                                        <input type="text" class="form-control shadow-sm" name="inputTitu" value="<?php echo $prod->nome; ?>" maxlength="50" required>
+                                                    </div>
+                                                    <div class="form-group" style="width: 30%;">
+                                                        <label class="divpreco" style="font-weight: bold;">Preço</label>
+                                                        <input type="text" class="form-control shadow-sm" name="inputPrec" value="<?php echo $prod->preco; ?>" required>
+                                                    </div>
+                                                </div>
+                                                <div class="">
+                                                    <div class="form-group">
+                                                        <label class="divdesc" style="font-weight: bold;">Descrição</label>
+                                                        <textarea type="text" name="inputDesc" class="form-control" rows="6" required maxlength="500" id="description" placeholder="Insira a descrição do anúncio"><?php echo $prod->descr; ?></textarea>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-end">
+                                        <button class="btn btn-success" name="salvar">Salvar</button>
+                                    </div>                                  
+                                </form>
 							</div>								
 						</div>
                     </div>
@@ -162,3 +187,34 @@ $prod = $result->fetch_object();
 
     </body>
 </html>
+
+<script>
+    // Ajax para a imagem
+    $(document).ready(function (e) {
+        // Function to preview image after validation
+        $(function () {
+            $("#file").change(function () {
+                var file = this.files[0];
+                var imagefile = file.type;
+                var match = ["image/jpeg", "image/png", "image/jpg"];
+                if (!((imagefile == match[0]) || (imagefile == match[1]) || (imagefile == match[2])))
+                {
+                    $('#photo').attr('src', 'noimage.png');
+                    $("#message").html("<p id='error'>Por favor, selecione um formato de imagem válido</p>" + "<h4>Nota</h4>" + "<span id='error_message'>Apenas jpeg, jpg e png são suportados pelo site</span>");
+                    return false;
+                }
+                else
+                {
+                    var reader = new FileReader();
+                    reader.onload = imageIsLoaded;
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+        });
+        function imageIsLoaded(e) {
+            $('#photo').attr('src', e.target.result);
+            $('#photo').attr('width', '300px');
+            $('#photo').attr('height', '300px');
+        }
+    });
+</script>

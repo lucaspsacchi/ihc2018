@@ -110,7 +110,8 @@ $pessoa = $result->fetch_object();
 						<!-- Bread Crumb -->
 						<nav aria-label="breadcrumb" style="margin-top:5px; margin-left: -15px;">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item active" aria-current="page">Home</li>
+								<li class="breadcrumb-item"><a href="./home.php">Home</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Minha conta</li>
 							</ol>
 						</nav>
 
