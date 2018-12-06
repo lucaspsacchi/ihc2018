@@ -20,7 +20,6 @@ $result = $conn->query($query);
 $usu_prod = $result->fetch_object();
 
 $query = "SELECT nome, tel, id_org FROM `usuario` WHERE `id`=\"$usu_prod->id_usu\"";
-echo "$query\n";
 $result = $conn->query($query);
 $usu = $result->fetch_object();
 
@@ -28,11 +27,10 @@ $vend = $usu->nome;
 $tel = $usu->tel;
 
 $query = "SELECT nome FROM `org` WHERE `id`=\"$usu->id_org\"";
-echo $query;
 $result = $conn->query($query);
 $row = $result->fetch_object();
 
-$org = utf8_encode($row->nome);
+$org = $row->nome;
 
 ?>
 <!DOCTYPE html>
