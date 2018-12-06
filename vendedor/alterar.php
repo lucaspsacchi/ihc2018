@@ -1,18 +1,12 @@
 <?php
-include('../connection/connection.php');
-
-// ini_set('session.gc_maxlifetime', 3600);
-// session_set_cookie_params(3600);
 //Cria a sessão e verifica se o usuário está logado
 session_start();
 if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
     header("Location: ../login.php?erro_login=1"); // Se não está logado, retorna para a página de login com uma mensagem de erro
 }
-
+include('../connection/connection.php');
 // Busca as informações do produto
-$script = "SELECT *
-FROM prod
-WHERE id='".$_GET['id_prod']."';"; // Pega o id por GET
+$script = "SELECT * FROM prod WHERE id='".$_GET['id_prod']."';"; // Pega o id por GET
 
 $result = $conn->query($script);
 $prod = $result->fetch_object();
@@ -39,9 +33,49 @@ if (isset($_FILES["file"]["type"])) {
                     alert("Ocorreu um erro inesperado com a imagem");
                 </script>
                 <?php
-            //}
-        }
+	    //}
+
+	}
     }
+}
+//End Imagem
+
+//Titulo
+if (isset($_POST['inputTitu']))
+{
+	$titulo = $_POST['inputTitu'];
+	if ($titulo != $prod->nome)
+	{
+		$query = "UPDATE prod SET nome=\"$titulo\" WHERE id=\"$prod->id\"";
+		$result = $conn->query($query);
+		$result = $conn->query($script);
+		$prod = $result->fetch_object();
+	}
+}
+
+if (isset($_POST['inputPrec']))
+{
+	$preco = $_POST['inputPrec'];
+	if ($preco != $prod->preco)
+	{
+		$query = "UPDATE prod SET preco=\"$preco\" WHERE id=\"$prod->id\"";
+		$result = $conn->query($query);
+		$result = $conn->query($script);
+		$prod = $result->fetch_object();
+	}
+}
+
+
+if (isset($_POST['inputDesc']))
+{
+	$desc = $_POST['inputDesc'];
+	if ($desc != $prod->descr)
+	{
+		$query = "UPDATE prod SET descr=\"$desc\" WHERE id=\"$prod->id\"";
+		$result = $conn->query($query);
+		$result = $conn->query($script);
+		$prod = $result->fetch_object();
+	}
 }
 ?>
 <!DOCTYPE html>
@@ -152,7 +186,7 @@ if (isset($_FILES["file"]["type"])) {
                                                     <img id="photo" src="../img/<?php echo $prod->img; ?>" class="img-rounded" width="300px" height="300px">
                                                     <br>
                                                     <label for="comment">Imagem do anúncio<span class="ast"></span> </label>
-                                                    <input type="file" name="file" id="file" required/>
+                                                    <input type="file" name="file" id="file"/>
                                                 </div>
                                             </div>
                                             <div class="col-7 col-md-7">
@@ -163,7 +197,7 @@ if (isset($_FILES["file"]["type"])) {
                                                     </div>
                                                     <div class="form-group" style="width: 30%;">
                                                         <label class="divpreco" style="font-weight: bold;">Preço</label>
-                                                        <input type="text" class="form-control shadow-sm" name="inputPrec" value="<?php echo $prod->preco; ?>" required>
+                                                        <input type="text" class="form-control shadow-sm" name="inputPrec" value="<?php echo number_format($prod->preco, 2); ?>" required>
                                                     </div>
                                                 </div>
                                                 <div class="">
