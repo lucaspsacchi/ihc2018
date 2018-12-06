@@ -18,7 +18,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
     if ($radio == 'op1')
     {
         // Insere um usuário comprador com as colunas id_org e tel inicializadas como n/a (not available)
-        $ins = "INSERT INTO usuario (nome, email, senha, id_org, tel) VALUES('".$nome."', 
+        $ins = "INSERT INTO usuario (nome, email, senha, id_org, tel) VALUES('".$nome."',
         '".$email."', '".$senhaMD5."', 0, 'n/a')";
 
         mysqli_query($conn, $ins);
@@ -29,7 +29,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
         $row = $result->fetch_assoc();
         $id_org = $row['id'];
         // Insere um usuário vendedor com todos os campos preenchidos (obrigatoriamente)
-        $ins  = $ins = "INSERT INTO usuario (nome, email, senha, id_org, tel) VALUES('".$nome."', 
+        $ins  = $ins = "INSERT INTO usuario (nome, email, senha, id_org, tel) VALUES('".$nome."',
         '".$email."', '".$senhaMD5."', $id_org, '".$tel."')";
 
         mysqli_query($conn, $ins);
@@ -39,24 +39,10 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <!-- Metas básicos -->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Título e ícone da aba -->
-        <title>UFSell</title>
-        <link rel="shortcut icon" type="image/png" href="img/UFSell.png">
+      <!--Header-->
+     <?php include 'includes/header2.php' ?>
 
-        <!-- Importando bootstrap, Ajax e JQuery -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        <script src="js/confSenha.js"></script>
-        <!-- Importando estilo css -->
-        <link type="text/css" rel="stylesheet" href="css/cadastro.css">
-    </head>
     <body class="site">
 
         <!-- Main -->
@@ -72,25 +58,25 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                     <h4>Crie nova conta</h4>
                 </div>
             </center>
-            <br>                     
+            <br>
             <div class="container">
                 <div class="col-8 col-md-8 col-sm-4 mx-auto">
                     <div class="card">
-                        <div class="card-body shadow">                    
+                        <div class="card-body shadow">
                             <form id="formCad" name="formCad" method="post">
                                 <div class="row">
                                     <div id="" class="col-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="divnome" style="font-weight: bold;">Nome</label>
                                             <input type="text" class="form-control shadow-sm" name="inputNome" pattern=".{5,30}" required autofocus>
-                                        </div>                                
+                                        </div>
                                     </div>
                                     <div id="" class="col-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="divsobrenome" style="font-weight: bold;">Sobrenome</label>
                                             <input type="text" class="form-control shadow-sm bg-white" name="inputSobrenome" pattern=".{5,30}" required>
-                                        </div>                                
-                                    </div>                        
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12 col-md-12 col-sm-12">
@@ -99,7 +85,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                             <input type="email" class="form-control shadow-sm bg-white" name="inputEmail" pattern=".{5,30}" required>
                                         </div>
                                     </div>
-                                </div>                                
+                                </div>
                                 <div class="row">
                                     <div id="" class="col-6 col-md-6 col-sm-12">
                                         <div class="form-group">
@@ -122,7 +108,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div id="" class="col-12 col-md-12 col-sm-12">                                
+                                    <div id="" class="col-12 col-md-12 col-sm-12">
                                         <div class="float-left">
                                             <input type="radio" class="" name="op" id="op1" value="op1" checked><label>&nbspComprador</label>
                                         </div>
@@ -134,7 +120,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                             <input type="radio" class="" name="op" id="op2" value="op2"><label>&nbspVendedor</label>
                                         </div>
                                     </div>
-                                </div>                                    
+                                </div>
                                 <!-- Telefone e select aparecem depois que escolher comprador no radio-->
                                 <div id="box" class="row">
                                     <div id="" class="col-6 col-md-6 col-sm-12">
@@ -145,7 +131,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                     </div>
                                     <div class="col-6 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label class="divcomp" style="font-weight: bold;">Escolha um opção abaixo</label>                                     
+                                            <label class="divcomp" style="font-weight: bold;">Escolha um opção abaixo</label>
                                             <select name="organizacao" id="organizacao" class="custom-select">
                                                 <option value="CABCC">Centro Acadêmico Ciência da Computação</option>
                                                 <option value="ATBCC">Atlética Ciência da Computação</option>
@@ -162,9 +148,9 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                             </button>
                                         </div>
                                     </div>
-                                </div>                              
+                                </div>
                             </form>
-                            
+
                                 <!-- Modal -->
                                 <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -190,7 +176,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                 <a href="#">Termos de uso&nbsp&nbsp</a>
                 <a href="#">Privacidade</a>
             </div>
-        </footer>            
+        </footer>
     </body>
 </html>
 <script>

@@ -4,10 +4,8 @@ include('connection/connection.php');
 // ini_set('session.gc_maxlifetime', 3600);
 // session_set_cookie_params(3600);
 //Cria a sessão e verifica se o usuário está logado
-session_start();
-if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
-    header("Location: ./login.php?erro_login=1"); // Se não está logado, retorna para a página de login com uma mensagem de erro
-}
+include('includes/session.php');
+
 
 // Busca as informações do usuário
 $script =   "SELECT *
@@ -23,59 +21,16 @@ $pessoa = $result->fetch_object();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <!-- Metas básicos -->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Título e ícone da aba -->
-        <title>UFSell</title>
-        <link rel="shortcut icon" type="image/png" href="img/UFSell.png">
-
-        <!-- Importando bootstrap -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-       <!--
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-        <!-- Importando estilo css -->
-        <link type="text/css"  rel="stylesheet" href="./css/comprador.css">
-    </head>
+    <!-- Header -->
+    <?php include 'includes/header1.php' ?>
 
     <body>
-        <!-- Navbar -->
-        <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0">
-            <div class="flexCustom d-flex justify-content-start">
-                <div class="col-2 col-xl-2 col-lg-2 col-md-2">
-                    <div class="d-flex flex-row">
-                        <a href="./home.php?sel=1"><img id="navLogo" src="img/UFSell.png" alt="logo"></a>
-                        <span class="spanUfs align-self-center">UFSell</span>
-                    </div>
-                </div>
-                <div class="col-10 col-xl-10 col-lg-10 col-md-10">
-                    <div class="d-flex flex-row justify-content-between">
-                        <div class="d-flex justify-content-start">
-                            <form action="./busca.php" method="get" id="formBusca">
-								<input id="inputNav" class="form-control form-control-dark" name="busca" placeholder="Pesquisar no UFSell" type="text" aria-label="Search">
-							</form>
-							<button class="btn btn-outline-light" form="formBusca" type="submit">Buscar</button>
-                        </div>
-                        <div class="d-flex justify-content-end" style="margin-top: 15px;">
-                            <div id="nav-itemP" class="nav-item">
-                                <a href="./conta.php">Minha conta</a>
-                            </div>
-                            <div class="nav-item">
-                                <a class="" href="./sair.php">Sair</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>    
+
+      <!-- Navbar -->
+      <?php include 'includes/nav1.php' ?>
+
+
         <!-- Estruturação da página -->
 		<div id="defCol" class="col-12 col-xl-12 col-lg-12 col-md-12">
                 <div id="defRow" class="row">
@@ -115,7 +70,7 @@ $pessoa = $result->fetch_object();
 									<div class="collapse multi-collapse1" id="at6">
 										<a id="subitem" class="btn btn-light" href="busca.php?busca=Atlética Lumberjack">Atlética Lumberjack</a>
 									</div>
-								</div>							
+								</div>
 							</div>
 							<div class="menuT">
 								<!-- Título do collapse --><!-- Concatenar o at com id -->
@@ -155,7 +110,7 @@ $pessoa = $result->fetch_object();
 									<div class="collapse multi-collapse2" id="ca7">
 										<a id="subitem" class="btn btn-light" href="busca.php?busca=CACTUS">CACTUS</a>
 									</div>
-								</div>																																			
+								</div>
 							</div>
 							<div class="menuT">
 								<!-- Título do collapse --><!-- Concatenar o at com id -->
@@ -170,12 +125,12 @@ $pessoa = $result->fetch_object();
 									<div class="collapse multi-collapse3" id="en2">
 										<a id="subitem" class="btn btn-light" href="busca.php?busca=Enactus">Enactus</a>
 									</div>
-								</div>							
+								</div>
 								<div class="">
 									<div class="collapse multi-collapse3" id="en3">
 										<a id="subitem" class="btn btn-light" href="busca.php?busca=ABU">ABU</a>
 									</div>
-								</div>										
+								</div>
 							</div>
 							<div class="menuT">
 								<!-- Título do collapse --><!-- Concatenar o at com id -->
@@ -254,7 +209,7 @@ $pessoa = $result->fetch_object();
 							</div>
 							<div class="row" style="margin-bottom: 30px;">
 								<span id="foot" class="text-muted">©2018 UFSell</span>
-							</div>							
+							</div>
 						</div>
                     </div>
 
@@ -269,7 +224,7 @@ $pessoa = $result->fetch_object();
 							<li class="breadcrumb-item active" aria-current="page">Minha conta</li>
 						</ol>
 					</nav>
-					
+
 					<!-- Formulário -->
 					<form id="formCad" class="" method="post">
 						<div class="colD d-flex justify-content-start">
@@ -280,8 +235,8 @@ $pessoa = $result->fetch_object();
 												<div class="form-group">
 													<label class="divnome" style="font-weight: bold;">Nome</label>
 													<input type="text" class="form-control shadow-sm" value="<?php echo $pessoa->nome; ?>" name="inputNome" pattern=".{5,30}" required autofocus>
-												</div>                              
-											</div>                    
+												</div>
+											</div>
 										</div>
 										<div class="row">
 											<div class="col-12">
@@ -290,7 +245,7 @@ $pessoa = $result->fetch_object();
 													<input type="text" class="form-control shadow-sm" value="<?php echo $pessoa->sobrenome; ?>" name="inputSobrenome" pattern=".{5,30}" required>
 												</div>
 											</div>
-										</div> 
+										</div>
 										<div class="row">
 											<div class="col-12">
 												<div class="form-group">
@@ -298,14 +253,14 @@ $pessoa = $result->fetch_object();
 													<input type="email" class="form-control shadow-sm" value="<?php echo $pessoa->email; ?>" name="inputEmail" pattern=".{5,30}" required>
 												</div>
 											</div>
-										</div>                                
+										</div>
 										<div class="row">
 											<div class="col-12">
 												<div class="form-group">
 													<label class="divsenha" style="font-weight: bold;">Senha</label>
 													<input type="password" class="form-control shadow-sm" value="12345678" name="inputSenha" pattern=".{5,30}" required>
 												</div>
-											</div>	
+											</div>
 										</div>
 										<div class="row">
 											<div class="col-12">
@@ -313,10 +268,10 @@ $pessoa = $result->fetch_object();
 													<label class="divsenha" style="font-weight: bold;">Confirmar senha</label>
 													<input type="password" class="form-control shadow-sm" value="12345678" name="inputConfSenha" pattern=".{5,30}" required>
 												</div>
-											</div>	
+											</div>
 										</div>
 								</div>
-							</div>	
+							</div>
 							<div class="col-1 col-xl-1 col-lg-1 col-md-1" style="border-right: 1px solid; margin-top:10px; border-color:#b9c0bd;"></div>
 							<div class="col-1 col-xl-1 col-lg-1 col-md-1"></div>
 							<div class="col-4 col-xl-4 col-lg-4 col-md-4">
@@ -340,7 +295,7 @@ $pessoa = $result->fetch_object();
 										<input type="checkbox" class="form-check-input">
 										<label class="form-check-label">Física</label><br>
 										<input type="checkbox" class="form-check-input">
-										<label class="form-check-label">Geografia</label><br>		
+										<label class="form-check-label">Geografia</label><br>
 										<input type="checkbox" class="form-check-input">
 										<label class="form-check-label">Matemática</label><br>
 										<input type="checkbox" class="form-check-input">
@@ -348,8 +303,8 @@ $pessoa = $result->fetch_object();
 										<input type="checkbox" class="form-check-input">
 										<label class="form-check-label">Química</label><br>
 										<input type="checkbox" class="form-check-input">
-										<label class="form-check-label">Turismo</label><br>																										
-									</div>								
+										<label class="form-check-label">Turismo</label><br>
+									</div>
 								</div>
 								<br>
 								<label>
@@ -357,7 +312,7 @@ $pessoa = $result->fetch_object();
 								</label><br>
 								<input type="radio" value="Sim"> Sim<br>
 								<input type="radio" value="Não"> Não<br>
-							</div>														
+							</div>
 						</div>
 						<br>
 						<div class="row">
@@ -370,7 +325,7 @@ $pessoa = $result->fetch_object();
 								</div>
 							</div>
 						</div>
-					</form>						
+					</form>
 				</div>
 			</div>
 		</div>
