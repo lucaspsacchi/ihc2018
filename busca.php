@@ -11,19 +11,32 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 
 $valBusca = $_GET['busca'];
 
+$valBusca = str_replace("á", "a", $valBusca);
+$valBusca = str_replace("é", "e", $valBusca);
+$valBusca = str_replace("í", "i", $valBusca);
+$valBusca = str_replace("ó", "o", $valBusca);
+$valBusca = str_replace("ú", "u", $valBusca);
+
+$valBusca = str_replace("ç", "c", $valBusca);
+
+$valBusca = str_replace("ã", "a", $valBusca);
+$valBusca = str_replace("õ", "o", $valBusca);
+
+$valBusca = str_replace("â", "a", $valBusca);
+$valBusca = str_replace("ê", "e", $valBusca);
+$valBusca = str_replace("ô", "o", $valBusca);
+
+
+$isProd = true;
 $query = "SELECT * FROM prod WHERE `nome`  LIKE \"%$valBusca%\" ORDER BY aval DESC";
 $result = mysqli_query($conn, $query);
 if ($result->num_rows == 0)
 {
+	$isProd = false;
 	$query_temp = "SELECT id FROM org WHERE `alias`  LIKE \"%$valBusca%\" OR `nome`  LIKE \"%$valBusca%\"";
+	echo $query_temp;
 	$result_temp = mysqli_query($conn, $query_temp);
-	$row = mysqli_fetch_array($result_temp, MYSQLI_NUM);
-	$id = $row[0];
-	$query = "SELECT * FROM prod WHERE `id_org`=\"$id\"";
-	$result = mysqli_query($conn, $query);
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -278,6 +291,8 @@ if ($result->num_rows == 0)
 						<div class="colD">
 						<br>
 						<?php
+						if ($isProd)
+						{
 						while ($row = $result->fetch_object())
 						{
 						?>
@@ -311,10 +326,58 @@ if ($result->num_rows == 0)
 								</div>						
 							</div>								
 						</div>
-					<?php } ?>
+					<?php } 
+					} ?>
+
+					<?php
+						if($isProd == false)
+						{
+						while ($row = $result_temp->fetch_object())
+						{
+							$id = $row->id;
+							$query = "SELECT * FROM `prod` WHERE `id_org`=\"$id\"";
+							$result = mysqli_query($conn, $query);
+							while($row = $result->fetch_object())
+							{
+						?>
+							<div class="row">
+								<div class="col-lg-4 col-md-6 col-sm-12">
+									<div class="card">
+											<div class="product-image">
+												<center>
+													<img class="imgHome" src="img/<?php echo $row->img; ?>">
+												</center>
+											</div>
+											<div class="card-body">
+												<div class="row">
+													<ul class="rating">
+														<span class="fa fa-star checked"></span>
+														<span class="fa fa-star checked"></span>
+														<span class="fa fa-star checked"></span>
+														<span class="fa fa-star checked"></span>
+														<span class="fa fa-star"></span>
+													</ul>
+													<h6 class="avalCard">&nbsp( <?php echo $row->qt_votos;  ?> Avaliações)</h6>
+												</div>
+												<hr class="hrCard">
+												<h4 class="titleCard" style="font-weight: bold;"><?php echo $row->nome;  ?></h4>
+												<div class="row d-flex justify-content-between" style="padding-left: 15px; padding-right:15px;">
+													<h5 class="d-flex align-self-end">R$ <?php echo $row->preco; ?> </h5>
+													<a class="btn btn-outline-light btn-custom" href="produto.php?id_prod=<?php echo $row->id;  ?>">Detalhes</a>
+												</div>
+											</div>
+									</div>
+								</div>						
+							</div>								
+						</div>
+					<?php } } }?>
                     </div>
                 </div>
             </div>
 
     </body>
 </html>
+
+
+
+
