@@ -10,12 +10,89 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 }
 
 // Busca as informações do produto
-$script =   "SELECT *
-FROM usuario
-WHERE id='".$_SESSION['id_usuario']."';";
+$script =   "SELECT * FROM usuario WHERE id='".$_SESSION['id_usuario']."';";
 
 $result = $conn->query($script);
 $pessoa = $result->fetch_object();
+
+if (isset($_POST['inputNome']))
+{
+	$nome = $_POST['inputNome'];
+	$query = "SELECT nome FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
+	$result = $conn->query($query);
+	$row = $result->fetch_object();
+	if ($nome != $row->nome)
+	{
+		$query = "UPDATE usuario SET nome=\"$nome\" WHERE `id`='".$_SESSION['id_usuario']."';";
+		$conn->query($query);
+		$result = $conn->query($script);
+		$pessoa = $result->fetch_object();
+	}
+}
+
+if (isset($_POST['inputSobrenome']))
+{
+	$sobrenome = $_POST['inputSobrenome'];
+	$query = "SELECT sobrenome FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
+	$result = $conn->query($query);
+	$row = $result->fetch_object();
+	if ($sobrenome != $row->sobrenome)
+	{
+		$query = "UPDATE usuario SET sobrenome=\"$sobrenome\" WHERE `id`='".$_SESSION['id_usuario']."';";
+		$conn->query($query);
+		$result = $conn->query($script);
+		$pessoa = $result->fetch_object();
+	}
+}
+
+if (isset($_POST['inputEmail']))
+{
+	$email = $_POST['inputEmail'];
+	$query = "SELECT email FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
+	$result = $conn->query($query);
+	$row = $result->fetch_object();
+	if ($email != $row->email)
+	{
+		$query = "UPDATE usuario SET email=\"$email\" WHERE `id`='".$_SESSION['id_usuario']."';";
+		$conn->query($query);
+		$result = $conn->query($script);
+		$pessoa = $result->fetch_object();
+	}
+}
+
+if (isset($_POST['inputSenha']))
+{
+	$senha = $_POST['inputSenha'];
+	$senhaMD5 = MD5($senha);
+	$query = "SELECT senha FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
+	$result = $conn->query($query);
+	$row = $result->fetch_object();
+
+	
+	if ($senhaMD5 != $row->senha)
+	{
+		$query = "UPDATE usuario SET senha=\"$senhaMD5\" WHERE `id`='".$_SESSION['id_usuario']."';";
+		$conn->query($query);
+		$result = $conn->query($script);
+		$pessoa = $result->fetch_object();
+	}
+}
+
+if (isset($_POST['inputTel']))
+{
+	$tel = $_POST['inputTel'];
+	$query = "SELECT tel FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
+	$result = $conn->query($query);
+	$row = $result->fetch_object();
+	
+	if ($tel != $row->tel)
+	{
+		$query = "UPDATE usuario SET tel=\"$tel\" WHERE `id`='".$_SESSION['id_usuario']."';";
+		$conn->query($query);
+		$result = $conn->query($script);
+		$pessoa = $result->fetch_object();
+	}
+}
 
 ?>
 <!DOCTYPE html>
@@ -33,7 +110,8 @@ $pessoa = $result->fetch_object();
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script src="../js/confSenha.js"></script>
        <!--
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         -->
@@ -139,13 +217,13 @@ $pessoa = $result->fetch_object();
 										<div class="col-6">
 											<div class="form-group">
 												<label class="divsenha" style="font-weight: bold;">Senha</label>
-												<input type="password" class="form-control shadow-sm" value="12345678" name="inputSenha" pattern=".{5,30}" required>
+												<input type="password" class="form-control shadow-sm" placeholder="Alterar senha" id="inputSenha" name="inputSenha" pattern=".{5,30}">
 											</div>
 										</div>
 										<div class="col-6">
 											<div class="form-group">
 												<label class="divsenha" style="font-weight: bold;">Confirmar senha</label>
-												<input type="password" class="form-control shadow-sm" value="12345678" name="inputConfSenha" pattern=".{5,30}" required>
+												<input type="password" class="form-control shadow-sm" placeholder="Confirme a nova senha" data-toggle="popover" id="inputConfSenha" name="inputConfSenha" pattern=".{5,30}">
 											</div>
 										</div>										
 									</div>
