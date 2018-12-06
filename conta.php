@@ -10,16 +10,17 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 }
 
 // Busca as informações do usuário
-$script =   "SELECT *
-FROM usuario
-WHERE id='".$_SESSION['id_usuario']."';";
+$script =   "SELECT nome, sobrenome, email, tel FROM usuario WHERE id='".$_SESSION['id_usuario']."';"; // Retorna os dados necessários do usuário
 
 $result = $conn->query($script);
 $pessoa = $result->fetch_object();
 
-// No alterar, verifica a senha retornada do bd com a senha informada do usuário, está como padrão no html que é 12345678
 
-
+if (isset($_POST['inputNome']))
+{
+	$nome = $_POST['inputNome'];
+	$query = "SELECT nome FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -37,6 +38,7 @@ $pessoa = $result->fetch_object();
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+		<script src="js/confSenha.js"></script>
        <!--
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         -->
@@ -303,7 +305,7 @@ $pessoa = $result->fetch_object();
 											<div class="col-12">
 												<div class="form-group">
 													<label class="divsenha" style="font-weight: bold;">Senha</label>
-													<input type="password" class="form-control shadow-sm" value="12345678" name="inputSenha" pattern=".{5,30}" required>
+													<input type="password" class="form-control shadow-sm" id="inputSenha" placeholder="Alterar senha" name="inputSenha" pattern=".{5,30}" required>
 												</div>
 											</div>	
 										</div>
@@ -311,7 +313,7 @@ $pessoa = $result->fetch_object();
 											<div class="col-12">
 												<div class="form-group">
 													<label class="divsenha" style="font-weight: bold;">Confirmar senha</label>
-													<input type="password" class="form-control shadow-sm" value="12345678" name="inputConfSenha" pattern=".{5,30}" required>
+													<input type="password" class="form-control shadow-sm" data-toggle="popover" id="inputConfSenha" title="As senhas precisam ser iguais" placeholder="Confirme a nova senha" name="inputConfSenha" pattern=".{5,30}" required>
 												</div>
 											</div>	
 										</div>
