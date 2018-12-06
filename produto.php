@@ -307,7 +307,7 @@ $org = $row->nome;
 												</div>
 										</div>
 										<div class="row">
-											<h4>R$&nbsp<?php echo $prod->preco; ?></h4>
+											<h4>R$&nbsp<?php echo number_format($prod->preco,2); ?></h4>
 										</div>
 										<hr class="hrProd">
 										<div class="row">

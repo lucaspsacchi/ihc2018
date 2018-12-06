@@ -300,7 +300,7 @@ if ($result->num_rows == 0)
 											<hr class="hrCard">
 											<h4 class="titleCard" style="font-weight: bold;"><?php echo $row->nome;  ?></h4>
 											<div class="row d-flex justify-content-between" style="padding-left: 15px; padding-right:15px;">
-												<h5 class="d-flex align-self-end">R$ <?php echo $row->preco; ?> </h5>
+												<h5 class="d-flex align-self-end">R$ <?php echo number_format($row->preco, 2); ?> </h5>
 												<a class="btn btn-outline-light btn-custom" href="produto.php?id_prod=<?php echo $row->id;  ?>">Detalhes</a>
 											</div>
 										</div>
@@ -340,7 +340,7 @@ if ($result->num_rows == 0)
 												<hr class="hrCard">
 												<h4 class="titleCard" style="font-weight: bold;"><?php echo $row->nome;  ?></h4>
 												<div class="row d-flex justify-content-between" style="padding-left: 15px; padding-right:15px;">
-													<h5 class="d-flex align-self-end">R$ <?php echo $row->preco; ?> </h5>
+													<h5 class="d-flex align-self-end">R$ <?php echo number_format($row->preco, 2); ?> </h5>
 													<a class="btn btn-outline-light btn-custom" href="produto.php?id_prod=<?php echo $row->id;  ?>">Detalhes</a>
 												</div>
 											</div>
