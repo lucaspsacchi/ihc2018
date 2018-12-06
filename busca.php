@@ -34,7 +34,6 @@ if ($result->num_rows == 0)
 {
 	$isProd = false;
 	$query_temp = "SELECT id FROM org WHERE `alias`  LIKE \"%$valBusca%\" OR `nome`  LIKE \"%$valBusca%\"";
-	echo $query_temp;
 	$result_temp = mysqli_query($conn, $query_temp);
 }
 ?>
@@ -377,7 +376,3 @@ if ($result->num_rows == 0)
 
     </body>
 </html>
-
-
-
-
