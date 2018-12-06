@@ -35,7 +35,33 @@ if (isset($_FILES["file"]["type"])) {
         }
     }
 }
+$titulo = '';
+$preco = '';
+$desc = '';
 
+if (isset($_POST['inputTitu']))
+{
+	$titulo = $_POST['inputTitu'];
+}
+
+if (isset($_POST['inputPrec']))
+{
+	$preco = $_POST['inputPrec'];	
+}
+
+if (isset($_POST['inputDesc']))
+{
+	$desc = $_POST['inputDesc'];
+}
+
+$query = "SELECT id_org FROM usuario WHERE id='".$_SESSION['id_usuario']."'";
+$result = $conn->query($query);
+$row = $result->fetch_object();
+$id_org = $row->id_org;
+
+$query = "INSERT INTO prod (id_org, nome, descr, preco, qt_votos, aval) VALUES (\"$id_org\", \"$titulo\", \"$desc\", \"$preco\", 0, 0)";
+
+$conn->query($query);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -145,7 +171,7 @@ if (isset($_FILES["file"]["type"])) {
                                                     <img id="photo" src="../img/semImg.png" class="img-rounded" width="300px" height="300px">
                                                     <br>
                                                     <label for="comment">Imagem do anúncio<span class="ast"></span> </label>
-                                                    <input type="file" name="file" id="file" required/>
+                                                    <input type="file" name="file" id="file"/>
                                                 </div>
                                             </div>
                                             <div class="col-7 col-md-7">
