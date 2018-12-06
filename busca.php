@@ -289,59 +289,54 @@ if ($result->num_rows == 0)
 
 						<div class="colD">
 						<br>
-						<?php
-						if ($isProd)
-						{
-						while ($row = $result->fetch_object())
-						{
-						?>
-							<div class="row">
-								<div class="col-lg-4 col-md-6 col-sm-12">
-									<div class="card">
-											<div class="product-image">
-												<center>
-													<img class="imgHome" src="img/<?php echo $row->img; ?>">
-												</center>
-											</div>
-											<div class="card-body">
-												<div class="row">
-													<ul class="rating">
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star"></span>
-													</ul>
-													<h6 class="avalCard">&nbsp( <?php echo $row->qt_votos;  ?> Avaliações)</h6>
-												</div>
-												<hr class="hrCard">
-												<h4 class="titleCard" style="font-weight: bold;"><?php echo $row->nome;  ?></h4>
-												<div class="row d-flex justify-content-between" style="padding-left: 15px; padding-right:15px;">
-													<h5 class="d-flex align-self-end">R$ <?php echo $row->preco; ?> </h5>
-													<a class="btn btn-outline-light btn-custom" href="produto.php?id_prod=<?php echo $row->id;  ?>">Detalhes</a>
-												</div>
-											</div>
-									</div>
-								</div>						
-							</div>								
-						</div>
-					<?php } 
-					} ?>
-
-					<?php
-						if($isProd == false)
-						{
-						while ($row = $result_temp->fetch_object())
-						{
-							$id = $row->id;
-							$query = "SELECT * FROM `prod` WHERE `id_org`=\"$id\"";
-							$result = mysqli_query($conn, $query);
-							while($row = $result->fetch_object())
+							<?php
+							if ($isProd)
+							{ echo '<div class="row">';
+							while ($row = $result->fetch_object())
 							{
-						?>
-							<div class="row">
+							?>							
 								<div class="col-lg-4 col-md-6 col-sm-12">
 									<div class="card">
+										<div class="product-image">
+											<center>
+												<img class="imgHome" src="img/<?php echo $row->img; ?>">
+											</center>
+										</div>
+										<div class="card-body">
+											<div class="row">
+												<ul class="rating">
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star checked"></span>
+													<span class="fa fa-star"></span>
+												</ul>
+												<h6 class="avalCard">&nbsp( <?php echo $row->qt_votos;  ?> Avaliações)</h6>
+											</div>
+											<hr class="hrCard">
+											<h4 class="titleCard" style="font-weight: bold;"><?php echo $row->nome;  ?></h4>
+											<div class="row d-flex justify-content-between" style="padding-left: 15px; padding-right:15px;">
+												<h5 class="d-flex align-self-end">R$ <?php echo $row->preco; ?> </h5>
+												<a class="btn btn-outline-light btn-custom" href="produto.php?id_prod=<?php echo $row->id;  ?>">Detalhes</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							<?php } echo '</div>';
+							} ?>
+						<?php
+							if($isProd == false)
+							{ echo '<div class="row">';
+							while ($row = $result_temp->fetch_object())
+							{
+								$id = $row->id;
+								$query = "SELECT * FROM `prod` WHERE `id_org`=\"$id\"";
+								$result = mysqli_query($conn, $query);
+								while($row = $result->fetch_object())
+								{
+							?>
+									<div class="col-lg-4 col-md-6 col-sm-12">
+										<div class="card">
 											<div class="product-image">
 												<center>
 													<img class="imgHome" src="img/<?php echo $row->img; ?>">
@@ -365,11 +360,11 @@ if ($result->num_rows == 0)
 													<a class="btn btn-outline-light btn-custom" href="produto.php?id_prod=<?php echo $row->id;  ?>">Detalhes</a>
 												</div>
 											</div>
+										</div>
 									</div>
-								</div>						
-							</div>								
-						</div>
-					<?php } } }?>
+						<?php } } } echo '</div>';
+						?>
+
                     </div>
                 </div>
             </div>
