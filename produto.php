@@ -4,10 +4,8 @@ include('connection/connection.php');
 // ini_set('session.gc_maxlifetime', 3600);
 // session_set_cookie_params(3600);
 //Cria a sessão e verifica se o usuário está logado
-session_start();
-if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
-    header("Location: ./login.php?erro_login=1"); // Se não está logado, retorna para a página de login com uma mensagem de erro
-}
+
+include 'includes/session.php';
 
 
 // Busca as informações do produto
@@ -25,59 +23,17 @@ $org;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <!-- Metas básicos -->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Título e ícone da aba -->
-        <title>UFSell</title>
-        <link rel="shortcut icon" type="image/png" href="img/UFSell.png">
+    <!--Header-->
+    <?php include 'includes/header1.php' ?>
 
-        <!-- Importando bootstrap -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-       <!--
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-        <!-- Importando estilo css -->
-        <link type="text/css"  rel="stylesheet" href="./css/comprador.css">
-    </head>
 
     <body>
-        <!-- Navbar -->
-        <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0">
-            <div class="flexCustom d-flex justify-content-start">
-                <div class="col-2 col-xl-2 col-lg-2 col-md-2">
-                    <div class="d-flex flex-row">
-                        <a href="./home.php?sel=1"><img id="navLogo" src="img/UFSell.png" alt="logo"></a>
-                        <span class="spanUfs align-self-center">UFSell</span>
-                    </div>
-                </div>
-                <div class="col-10 col-xl-10 col-lg-10 col-md-10">
-                    <div class="d-flex flex-row justify-content-between">
-                        <div class="d-flex justify-content-start">
-                            <form action="./busca.php" method="get" id="formBusca">
-								<input id="inputNav" class="form-control form-control-dark" name="busca" placeholder="Pesquisar no UFSell" type="text" aria-label="Search">
-							</form>
-							<button class="btn btn-outline-light" form="formBusca" type="submit">Buscar</button>
-                        </div>
-                        <div class="d-flex justify-content-end" style="margin-top: 15px;">
-                            <div id="nav-itemP" class="nav-item">
-                                <a href="./conta.php">Minha conta</a>
-                            </div>
-                            <div class="nav-item">
-                                <a class="" href="./sair.php">Sair</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>    
+
+      <!-- Navbar -->
+      <?php include 'includes/nav1.php' ?>
+      <!-- Estruturação da página -->
+
         <!-- Estruturação da página -->
 		<div id="defCol" class="col-12 col-xl-12 col-lg-12 col-md-12">
                 <div id="defRow" class="row">
@@ -117,7 +73,7 @@ $org;
 									<div class="collapse multi-collapse1" id="at6">
 										<a id="subitem" class="btn btn-light" href="busca.php?busca=Atlética Lumberjack">Atlética Lumberjack</a>
 									</div>
-								</div>							
+								</div>
 							</div>
 							<div class="menuT">
 								<!-- Título do collapse --><!-- Concatenar o at com id -->
@@ -157,7 +113,7 @@ $org;
 									<div class="collapse multi-collapse2" id="ca7">
 										<a id="subitem" class="btn btn-light" href="busca.php?busca=CACTUS">CACTUS</a>
 									</div>
-								</div>																																			
+								</div>
 							</div>
 							<div class="menuT">
 								<!-- Título do collapse --><!-- Concatenar o at com id -->
@@ -172,12 +128,12 @@ $org;
 									<div class="collapse multi-collapse3" id="en2">
 										<a id="subitem" class="btn btn-light" href="busca.php?busca=Enactus">Enactus</a>
 									</div>
-								</div>							
+								</div>
 								<div class="">
 									<div class="collapse multi-collapse3" id="en3">
 										<a id="subitem" class="btn btn-light" href="busca.php?busca=ABU">ABU</a>
 									</div>
-								</div>										
+								</div>
 							</div>
 							<div class="menuT">
 								<!-- Título do collapse --><!-- Concatenar o at com id -->
@@ -256,7 +212,7 @@ $org;
 							</div>
 							<div class="row" style="margin-bottom: 30px;">
 								<span id="foot" class="text-muted">©2018 UFSell</span>
-							</div>							
+							</div>
 						</div>
                     </div>
 
