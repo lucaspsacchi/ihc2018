@@ -15,7 +15,11 @@ $query = "SELECT * FROM prod WHERE `nome`  LIKE \"%$valBusca%\" ORDER BY aval DE
 $result = mysqli_query($conn, $query);
 if ($result->num_rows == 0)
 {
-	$query = "SELECT * FROM org WHERE `nome`  LIKE \"%$valBusca%\"";
+	$query_temp = "SELECT id FROM org WHERE `alias`  LIKE \"%$valBusca%\" OR `nome`  LIKE \"%$valBusca%\"";
+	$result_temp = mysqli_query($conn, $query_temp);
+	$row = mysqli_fetch_array($result_temp, MYSQLI_NUM);
+	$id = $row[0];
+	$query = "SELECT * FROM prod WHERE `id_org`=\"$id\"";
 	$result = mysqli_query($conn, $query);
 }
 
@@ -265,7 +269,7 @@ if ($result->num_rows == 0)
 						<!-- Bread Crumb -->
                         <nav aria-label="breadcrumb" style="margin-top:5px; margin-left:-15px;">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="./home.php">Home</a></li>
+                                <li class="breadcrumb-item"><a href="./home.php?sel=1">Home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Resultados da busca</li>
                             </ol>
                         </nav>
