@@ -12,7 +12,7 @@ if (isset($_SESSION['alertaC'])) {
 }
 
 // Busca as informações do usuário
-$script =   "SELECT nome, sobrenome, email, tel FROM usuario WHERE id='".$_SESSION['id_usuario']."';"; // Retorna os dados necessários do usuário
+$script = "SELECT nome, sobrenome, email, tel FROM usuario WHERE id='".$_SESSION['id_usuario']."';"; // Retorna os dados necessários do usuário
 
 $result = $conn->query($script);
 $pessoa = $result->fetch_object();
@@ -330,7 +330,7 @@ if (isset($_POST['salvar'])){
 											<div class="col-12">
 												<div class="form-group">
 													<label class="divsenha" style="font-weight: bold;">Confirmar senha</label>
-													<input type="password" class="form-control shadow-sm" data-toggle="popover" id="inputConfSenha" title="As senhas precisam ser iguais" placeholder="Confirme a nova senha" name="inputConfSenha" pattern=".{5,30}">
+													<input type="password" class="form-control shadow-sm" data-toggle="popover" id="inputConfSenha" placeholder="Confirme a nova senha" name="inputConfSenha" pattern=".{5,30}">
 												</div>
 											</div>
 										</div>
@@ -372,7 +372,7 @@ if (isset($_POST['salvar'])){
 								</div>
 								<br>
 								<label>
-									Deseja receber emails novos anuncios?
+									<b>Deseja receber emails novos anuncios?</b>
 								</label><br>
 								<input type="radio" value="Sim"> Sim<br>
 								<input type="radio" value="Não"> Não<br>

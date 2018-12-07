@@ -1,5 +1,6 @@
 <?php
 $erro_login = 0;
+$erro_email = 0;
 session_start();
 include('connection/connection.php');
 
@@ -16,30 +17,40 @@ if (isset($_POST['salvar'])) {
     // Campos que são do comprador
     $tel = $_POST['inputTel'];
 
-    if ($radio == 'op1')
-    {
-        // Insere um usuário comprador com as colunas id_org e tel inicializadas como n/a (not available)
-        $ins = "INSERT INTO usuario (nome, sobrenome, email, senha, id_org, tel) VALUES('".$nome."', '".$sobre."',
-        '".$email."', '".$senhaMD5."', '1', '')";
-
-        mysqli_query($conn, $ins);
-
-        $_SESSION['alerta'] = "Conta cadastrada com sucesso!";
-        header("Location: ./login.php");
+    $script = "SELECT id
+                FROM usuario
+                WHERE email='".$email."';";
+    $result = $conn->query($script);
+    $obj = $result->fetch_object();
+    if($obj->num_rows > 0) {
+        $erro_email = 1;
     }
-    elseif ($radio == 'op2')
-    {
-        $result = mysqli_query($conn, "SELECT id FROM org WHERE nome='".$org."'");
-        $row = $result->fetch_assoc();
-        $id_org = $row['id'];
-        // Insere um usuário vendedor com todos os campos preenchidos (obrigatoriamente)
-        $ins  = $ins = "INSERT INTO usuario (nome, sobrenome, email, senha, id_org, tel) VALUES('".$nome."', '".$sobre."',
-        '".$email."', '".$senhaMD5."', '".$org."', '".$tel."')";
+    else {
+        if ($radio == 'op1')
+        {
+            // Insere um usuário comprador com as colunas id_org e tel inicializadas como n/a (not available)
+            $ins = "INSERT INTO usuario (nome, sobrenome, email, senha, id_org, tel) VALUES('".$nome."', '".$sobre."',
+            '".$email."', '".$senhaMD5."', '1', '')";
 
-        mysqli_query($conn, $ins);
+            mysqli_query($conn, $ins);
 
-        $_SESSION['alerta'] = "Conta cadastrada com sucesso!";
-        header("Location: ./login.php");
+            $_SESSION['alerta'] = "Conta cadastrada com sucesso!";
+            header("Location: ./login.php");
+        }
+        elseif ($radio == 'op2')
+        {
+            $result = mysqli_query($conn, "SELECT id FROM org WHERE nome='".$org."'");
+            $row = $result->fetch_assoc();
+            $id_org = $row['id'];
+            // Insere um usuário vendedor com todos os campos preenchidos (obrigatoriamente)
+            $ins  = $ins = "INSERT INTO usuario (nome, sobrenome, email, senha, id_org, tel) VALUES('".$nome."', '".$sobre."',
+            '".$email."', '".$senhaMD5."', '".$org."', '".$tel."')";
+
+            mysqli_query($conn, $ins);
+
+            $_SESSION['alerta'] = "Conta cadastrada com sucesso!";
+            header("Location: ./login.php");
+        }
     }
 
 }
@@ -66,6 +77,9 @@ if (isset($_POST['salvar'])) {
             </center>
             <br>
             <div class="container">
+                <?php if ($erro_email == 1) {
+                    echo '<div id="erroEmail" class="card bg-danger text-white"><div class="card-body"><div class="erro_login">Existe uma conta cadastrada com esse email.</div></div></div>';
+                } ?>
                 <div class="col-8 col-md-8 col-sm-4 mx-auto">
                     <div class="card">
                         <div class="card-body shadow">

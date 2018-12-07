@@ -176,7 +176,7 @@ if (isset($_POST['salvar'])) {
 						<br>
 						<div class="row">
 							<div class="col-12">
-								<div id="cadSalvar" class="botaocad float-right">
+								<div id="cadSalvar" class="botaocad float-right" style="margin-right:25px;">
 									<!-- Botão para salvar -->
 									<button type="submit" name="salvar" class="btn btn-success">
 										Salvar

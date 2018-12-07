@@ -41,6 +41,7 @@ nav {
 }
 
 #nav-itemP {
+	height: 30px;
 	padding-right: 10px;
 	border-right: 1px solid;
 	border-color: #4dc5da;

@@ -157,9 +157,12 @@ if (isset($_POST['salvar'])) {
                                                         <label class="divnome" style="font-weight: bold;">Título do anúncio</label>
                                                         <input type="text" class="form-control shadow-sm" name="inputTitu" maxlength="50" required>
                                                     </div>
-                                                    <div class="form-group" style="width: 40%;">
+                                                    <div class="form-group" style="width: 30%;">
                                                         <label class="divpreco" style="font-weight: bold;">Preço</label>
-                                                        <input type="text" class="form-control shadow-sm" name="inputPrec" placeholder="Digite no formato 00.00" required>
+                                                        <div class="d-flex flex-row align-items-end">
+                                                            <label style="font-size: 1rem;"><b>R$&nbsp</b></label>
+                                                            <input type="text" class="form-control shadow-sm" name="inputPrec" placeholder="Ex: 00.00" required>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="">
