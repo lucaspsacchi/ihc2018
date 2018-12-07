@@ -81,6 +81,9 @@ if (isset($_POST['salvar'])) {
     }
     $result = $conn->query($script);
     $prod = $result->fetch_object();
+
+    $_SESSION['alertaV'] = "Anúncio alterado com sucesso!";
+    header('Location: ./home.php');
 }
 
 ?>

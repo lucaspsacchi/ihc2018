@@ -64,7 +64,7 @@ if (isset($_POST['salvar'])) {
     $desc = $_POST['inputDesc'];
 
     $qt_votos = rand(0, 300);
-    $aval = (rand(0, 100) / 100) + 4;
+    $aval = (rand(0, 99) / 100) + 4;
 
     $query = "INSERT INTO prod (id_org, nome, descr, preco, img, qt_votos, aval) VALUES (\"$id_org\", \"$titulo\", \"$desc\", \"$preco\", \"$novoNome\", \"$qt_votos\", \"$aval\")";
 
@@ -73,6 +73,9 @@ if (isset($_POST['salvar'])) {
     // Insere no usu_prod
     $insert = "INSERT INTO usu_prod (id_usu, id_prod) VALUES ('".$_SESSION['id_usuario']."', '".$conn->insert_id."')";
     $conn->query($insert);
+
+    $_SESSION['alertaV'] = "Anúncio cadastrado com sucesso!";
+    header('Location: ./home.php');
 }
 
 // $query = "SELECT id_org FROM usuario WHERE id='".$_SESSION['id_usuario']."'";

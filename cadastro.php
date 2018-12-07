@@ -1,12 +1,13 @@
 <?php
 $erro_login = 0;
+session_start();
+include('connection/connection.php');
 
-if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['inputConfSenha'])) {
-
-    include('connection/connection.php');
+if (isset($_POST['salvar'])) {
 
     // Recebe os dados submetidos
     $nome = $_POST['inputNome'];
+    $sobre = $_POST['inputSobrenome'];
     $email = $_POST['inputEmail'];
     $senha = addslashes($_POST['inputSenha']);
     $senhaMD5 = MD5($senha);
@@ -18,10 +19,13 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
     if ($radio == 'op1')
     {
         // Insere um usuário comprador com as colunas id_org e tel inicializadas como n/a (not available)
-        $ins = "INSERT INTO usuario (nome, email, senha, id_org, tel) VALUES('".$nome."',
-        '".$email."', '".$senhaMD5."', 0, 'n/a')";
+        $ins = "INSERT INTO usuario (nome, sobrenome, email, senha, id_org, tel) VALUES('".$nome."', '".$sobre."',
+        '".$email."', '".$senhaMD5."', '1', '')";
 
         mysqli_query($conn, $ins);
+
+        $_SESSION['alerta'] = "Conta cadastrada com sucesso!";
+        header("Location: ./login.php");
     }
     elseif ($radio == 'op2')
     {
@@ -29,10 +33,13 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
         $row = $result->fetch_assoc();
         $id_org = $row['id'];
         // Insere um usuário vendedor com todos os campos preenchidos (obrigatoriamente)
-        $ins  = $ins = "INSERT INTO usuario (nome, email, senha, id_org, tel) VALUES('".$nome."',
-        '".$email."', '".$senhaMD5."', $id_org, '".$tel."')";
+        $ins  = $ins = "INSERT INTO usuario (nome, sobrenome, email, senha, id_org, tel) VALUES('".$nome."', '".$sobre."',
+        '".$email."', '".$senhaMD5."', '".$org."', '".$tel."')";
 
         mysqli_query($conn, $ins);
+
+        $_SESSION['alerta'] = "Conta cadastrada com sucesso!";
+        header("Location: ./login.php");
     }
 
 }
@@ -62,18 +69,18 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                 <div class="col-8 col-md-8 col-sm-4 mx-auto">
                     <div class="card">
                         <div class="card-body shadow">
-                            <form id="formCad" name="formCad" action="index.php" method="post">
+                            <form id="formCad" name="formCad" action="#" method="post">
                                 <div class="row">
                                     <div id="" class="col-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="divnome" style="font-weight: bold;">Nome</label>
-                                            <input type="text" class="form-control shadow-sm" name="inputNome" pattern=".{5,30}" required autofocus>
+                                            <input type="text" class="form-control shadow-sm" name="inputNome" pattern=".{1,100}" required autofocus>
                                         </div>
                                     </div>
                                     <div id="" class="col-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="divsobrenome" style="font-weight: bold;">Sobrenome</label>
-                                            <input type="text" class="form-control shadow-sm bg-white" name="inputSobrenome" pattern=".{5,30}" required>
+                                            <input type="text" class="form-control shadow-sm bg-white" name="inputSobrenome" pattern=".{1,100}" required>
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +88,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                     <div class="col-12 col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label class="divemail" style="font-weight: bold;">Email</label>
-                                            <input type="email" class="form-control shadow-sm bg-white" name="inputEmail" pattern=".{5,30}" required>
+                                            <input type="email" class="form-control shadow-sm bg-white" name="inputEmail" pattern="{5,100}" required>
                                         </div>
                                     </div>
                                 </div>
@@ -131,9 +138,17 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                     <div class="col-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="divcomp" style="font-weight: bold;">Escolha um opção abaixo</label>
-                                            <select name="organizacao" id="organizacao" class="custom-select">
-                                                <option value="CABCC">Centro Acadêmico Ciência da Computação</option>
-                                                <option value="ATBCC">Atlética Ciência da Computação</option>
+                                            <select name="organizacao" id="org" class="custom-select">
+                                                <?php 
+                                                $script = "SELECT id, nome FROM org";
+                                                $result = $conn->query($script);
+                                                while ($row = $result->fetch_object()) { 
+                                                    if ($row->id != 1) {?>
+                                                        <option value="<?php echo $row->id; ?>"><?php echo $row->nome; ?></option>
+                                                    <?php
+                                                    }
+                                                } 
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
@@ -142,26 +157,29 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                     <div class="col-12 col-md-12 col-sm-12 align-self-center">
                                         <div id="cadSalvar" class="botaocad float-right">
                                             <!-- Botão para salvar -->
-                                            <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-success" onClick="validarSenha()">
+                                            <!-- <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-success" onClick="validarSenha()"> -->
+                                            <button type="submit"class="btn btn-success" name="salvar">
                                                 Salvar
                                             </button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                    <div class="modal-dialog" role="document">
                                        <div class="modal-content">
                                            <div class="modal-body text-center">
                                                Nova senha cadastrada com sucesso!
                                            </div>
                                            <div class="modal-footer">
-                                               <button type="submit" class="btn btn-primary">OK</button>
+                                               <button type="submit" name="salvar" class="btn btn-primary">OK</button>
                                            </div>
                                        </div>
                                    </div>
-                               </div>
+                               </div> -->
                             </form>
-                          </div>
+                            <hr>
+                            <center><label>Voltar para <a href="./login.php">login</a></label></center>
+                        </div>
                     </div>
                 </div>
             </div>

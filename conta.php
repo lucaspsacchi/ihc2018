@@ -4,7 +4,12 @@ include('connection/connection.php');
 // ini_set('session.gc_maxlifetime', 3600);
 // session_set_cookie_params(3600);
 //Cria a sessão e verifica se o usuário está logado
-include 'includes/session.php';
+session_start();
+
+if (isset($_SESSION['alertaC'])) {
+    ?><script>alert('<?php echo $_SESSION['alertaC'];?>');</script><?php
+    unset($_SESSION['alertaC']);
+}
 
 // Busca as informações do usuário
 $script =   "SELECT nome, sobrenome, email, tel FROM usuario WHERE id='".$_SESSION['id_usuario']."';"; // Retorna os dados necessários do usuário
@@ -12,67 +17,71 @@ $script =   "SELECT nome, sobrenome, email, tel FROM usuario WHERE id='".$_SESSI
 $result = $conn->query($script);
 $pessoa = $result->fetch_object();
 
-if (isset($_POST['inputNome']))
-{
-	$nome = $_POST['inputNome'];
-	$query = "SELECT nome FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
-	$result = $conn->query($query);
-	$row = $result->fetch_object();
-	if ($nome != $row->nome)
+if (isset($_POST['salvar'])){
+	if (isset($_POST['inputNome']))
 	{
-		$query = "UPDATE usuario SET nome=\"$nome\" WHERE `id`='".$_SESSION['id_usuario']."';";
-		$conn->query($query);
-		$result = $conn->query($script);
-		$pessoa = $result->fetch_object();
+		$nome = $_POST['inputNome'];
+		$query = "SELECT nome FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
+		$result = $conn->query($query);
+		$row = $result->fetch_object();
+		if ($nome != $row->nome)
+		{
+			$query = "UPDATE usuario SET nome=\"$nome\" WHERE `id`='".$_SESSION['id_usuario']."';";
+			$conn->query($query);
+			$result = $conn->query($script);
+			$pessoa = $result->fetch_object();
+		}
 	}
-}
 
-if (isset($_POST['inputSobrenome']))
-{
-	$sobrenome = $_POST['inputSobrenome'];
-	$query = "SELECT sobrenome FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
-	$result = $conn->query($query);
-	$row = $result->fetch_object();
-	if ($sobrenome != $row->sobrenome)
+	if (isset($_POST['inputSobrenome']))
 	{
-		$query = "UPDATE usuario SET sobrenome=\"$sobrenome\" WHERE `id`='".$_SESSION['id_usuario']."';";
-		$conn->query($query);
-		$result = $conn->query($script);
-		$pessoa = $result->fetch_object();
+		$sobrenome = $_POST['inputSobrenome'];
+		$query = "SELECT sobrenome FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
+		$result = $conn->query($query);
+		$row = $result->fetch_object();
+		if ($sobrenome != $row->sobrenome)
+		{
+			$query = "UPDATE usuario SET sobrenome=\"$sobrenome\" WHERE `id`='".$_SESSION['id_usuario']."';";
+			$conn->query($query);
+			$result = $conn->query($script);
+			$pessoa = $result->fetch_object();
+		}
 	}
-}
 
-if (isset($_POST['inputEmail']))
-{
-	$email = $_POST['inputEmail'];
-	$query = "SELECT email FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
-	$result = $conn->query($query);
-	$row = $result->fetch_object();
-	if ($email != $row->email)
+	if (isset($_POST['inputEmail']))
 	{
-		$query = "UPDATE usuario SET email=\"$email\" WHERE `id`='".$_SESSION['id_usuario']."';";
-		$conn->query($query);
-		$result = $conn->query($script);
-		$pessoa = $result->fetch_object();
+		$email = $_POST['inputEmail'];
+		$query = "SELECT email FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
+		$result = $conn->query($query);
+		$row = $result->fetch_object();
+		if ($email != $row->email)
+		{
+			$query = "UPDATE usuario SET email=\"$email\" WHERE `id`='".$_SESSION['id_usuario']."';";
+			$conn->query($query);
+			$result = $conn->query($script);
+			$pessoa = $result->fetch_object();
+		}
 	}
-}
 
-if (isset($_POST['inputSenha']))
-{
-	$senha = $_POST['inputSenha'];
-	$senhaMD5 = MD5($senha);
-	$query = "SELECT senha FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
-	$result = $conn->query($query);
-	$row = $result->fetch_object();
-
-
-	if ($senhaMD5 != $row->senha)
+	if (isset($_POST['inputSenha']))
 	{
-		$query = "UPDATE usuario SET senha=\"$senhaMD5\" WHERE `id`='".$_SESSION['id_usuario']."';";
-		$conn->query($query);
-		$result = $conn->query($script);
-		$pessoa = $result->fetch_object();
+		$senha = $_POST['inputSenha'];
+		$senhaMD5 = MD5($senha);
+		$query = "SELECT senha FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
+		$result = $conn->query($query);
+		$row = $result->fetch_object();
+
+
+		if ($senhaMD5 != $row->senha)
+		{
+			$query = "UPDATE usuario SET senha=\"$senhaMD5\" WHERE `id`='".$_SESSION['id_usuario']."';";
+			$conn->query($query);
+			$result = $conn->query($script);
+			$pessoa = $result->fetch_object();
+		}
 	}
+	$_SESSION['alertaC'] = "Conta alterada com sucesso!";
+	header("Location: ./conta.php");
 }
 ?>
 <!DOCTYPE html>
@@ -289,7 +298,7 @@ if (isset($_POST['inputSenha']))
 											<div class="col-12">
 												<div class="form-group">
 													<label class="divnome" style="font-weight: bold;">Nome</label>
-													<input type="text" class="form-control shadow-sm" value="<?php echo $pessoa->nome; ?>" name="inputNome" pattern=".{5,30}" required autofocus>
+													<input type="text" class="form-control shadow-sm" value="<?php echo $pessoa->nome; ?>" name="inputNome" pattern=".{1,100}" required autofocus>
 												</div>
 											</div>
 										</div>
@@ -297,7 +306,7 @@ if (isset($_POST['inputSenha']))
 											<div class="col-12">
 												<div class="form-group">
 													<label class="divsobrenome" style="font-weight: bold;">Sobrenome</label>
-													<input type="text" class="form-control shadow-sm" value="<?php echo $pessoa->sobrenome; ?>" name="inputSobrenome" pattern=".{5,30}" required>
+													<input type="text" class="form-control shadow-sm" value="<?php echo $pessoa->sobrenome; ?>" name="inputSobrenome" pattern=".{1,100}" required>
 												</div>
 											</div>
 										</div>
@@ -305,7 +314,7 @@ if (isset($_POST['inputSenha']))
 											<div class="col-12">
 												<div class="form-group">
 													<label class="divemail" style="font-weight: bold;">Email</label>
-													<input type="email" class="form-control shadow-sm" value="<?php echo $pessoa->email; ?>" name="inputEmail" pattern=".{5,30}" required>
+													<input type="email" class="form-control shadow-sm" value="<?php echo $pessoa->email; ?>" name="inputEmail" pattern=".{1,100}" required>
 												</div>
 											</div>
 										</div>
@@ -374,7 +383,7 @@ if (isset($_POST['inputSenha']))
 							<div class="col-12">
 								<div id="cadSalvar" class="botaocad float-right">
 									<!-- Botão para salvar -->
-									<button type="submit" class="btn btn-success">
+									<button type="submit" name="salvar" class="btn btn-success">
 										Salvar
 									</button>
 								</div>

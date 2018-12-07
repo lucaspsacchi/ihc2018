@@ -249,6 +249,7 @@ hr {
 .footer {
 	display: flex;
 	flex-direction: column;
+	align-content: flex-end;
 	height: 143px;
 	width: 100%;
 	flex-shrink: 0;

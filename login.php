@@ -1,5 +1,11 @@
 <?php
 $erro_login = 0;
+session_start();
+
+if (isset($_SESSION['alerta'])) {
+    ?><script>alert('<?php echo $_SESSION["alerta"];?>');</script><?php
+    unset($_SESSION['alerta']);
+}
 
 if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
 
@@ -23,8 +29,6 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
                 // Configurações de session
                 // ini_set('session.gc_maxlifetime', 3600);
                 // session_set_cookie_params(3600);
-
-                session_start();
 
                 $_SESSION['id_usuario'] = $obj->id;
                 $_SESSION['nome_usuario'] = $obj->nome;
@@ -87,7 +91,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
                             <form id="formLog" action="#" method="post"> <!-- Redirecionamento depende de cada usuário, vai ter um header depois da verificação das credenciais -->
                                 <div class="form-group">
                                     <label for="email" style="font-weight: bold;">Email</label><br>
-                                    <input id="email" type="email" class="form-control shadow-sm bg-white" name="inputEmail" pattern=".{5,30}" autofocus required>
+                                    <input id="email" type="email" class="form-control shadow-sm bg-white" name="inputEmail" pattern=".{1,100}" autofocus required>
                                 </div>
                                 <div class="form-group">
                                     <div class="divrow">

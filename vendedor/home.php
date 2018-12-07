@@ -9,6 +9,10 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
     header("Location: ../login.php?erro_login=1"); // Se não está logado, retorna para a página de login com uma mensagem de erro
 }
 
+if (isset($_SESSION['alertaV'])) {
+    ?><script>alert('<?php echo $_SESSION['alertaV'];?>');</script><?php
+    unset($_SESSION['alertaV']);
+}
 // Busca todos os produtos relacionados a essa pessoa
 // $script = "SELECT DISTINCT p.nome, p.id
 //            FROM prod p join usu_prod up on p.id = up.id_prod join usuario u on up.id_usu ='".$_SESSION['id_usuario']."' ";
