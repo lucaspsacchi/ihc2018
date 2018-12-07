@@ -27,15 +27,15 @@ if (isset($_FILES["file"]["type"])) {
             $sourcePath = $_FILES['file']['tmp_name']; // Storing source path of the file in a variable
 
             $flag_img = move_uploaded_file($sourcePath, $destino); // Moving Uploaded file
-            //if ($flag_img != TRUE) {
+            if ($flag_img != TRUE) {
                 ?>
                 <script>
                     alert("Ocorreu um erro inesperado com a imagem");
                 </script>
                 <?php
-	    //}
+	        }
 
-	}
+	    }
     }
 }
 //End Imagem
@@ -77,6 +77,15 @@ if (isset($_POST['inputDesc']))
 		$prod = $result->fetch_object();
 	}
 }
+
+if ($novoNome != $prod->img)
+{
+    $query = "UPDATE prod SET img=\"$novoNome\" WHERE id=\"$prod->id\"";
+    $result = $conn->query($query);
+    $result = $conn->query($script);
+    $prod = $result->fetch_object();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -178,7 +187,7 @@ if (isset($_POST['inputDesc']))
 
 						<div class="colD">
 							<div class="top" style="margin-top: 30px;">
-                                <form id="formAnuncio" class="" method="post">
+                                <form id="formAnuncio" class="" method="POST" enctype="multipart/form-data">
                                     <div class="col-12 col-md-12">
                                         <div class="row">
                                             <div class="col-5 col-md-5">

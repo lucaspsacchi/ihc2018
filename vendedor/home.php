@@ -10,8 +10,11 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 }
 
 // Busca todos os produtos relacionados a essa pessoa
-$script = "SELECT DISTINCT p.nome, p.id
-           FROM prod p join usu_prod up on p.id = up.id_prod join usuario u on up.id_usu ='".$_SESSION['id_usuario']."' ";
+// $script = "SELECT DISTINCT p.nome, p.id
+//            FROM prod p join usu_prod up on p.id = up.id_prod join usuario u on up.id_usu ='".$_SESSION['id_usuario']."' ";
+$script = "SELECT nome, id
+            FROM prod
+            WHERE id_org='".$_SESSION['id_organizacao']."'";
 $result = $conn->query($script);
 ?>
 <!DOCTYPE html>

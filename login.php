@@ -34,6 +34,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
                     header("Location: ./home.php?sel=1");
                 }
                 else {
+                    $_SESSION['id_organizacao'] = $obj->id_org;
                     header("Location: vendedor/home.php");
                 }
             }

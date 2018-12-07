@@ -14,54 +14,75 @@ if (isset($_FILES["file"]["type"])) {
     $validextensions = array("jpeg", "jpg", "png");
     $temporary = explode(".", $_FILES["file"]["name"]);
     $file_extension = end($temporary);
-
+    echo "<script>console.log('Entrou');</script>";
     if (in_array($file_extension, $validextensions)) {//Verifica se está de acordo com a extensão
         if ($_FILES["file"]["error"] > 0) {
-
+            echo "<script>console.log('Fail');</script>";
         }
         else {
+            echo "<script>console.log('Começo');</script>";
             $novoNome = uniqid(time()) . '.' . $file_extension;
             $destino = '../img/' . $novoNome;
+            echo "<script>console.log('$destino');</script>";
             $sourcePath = $_FILES['file']['tmp_name']; // Storing source path of the file in a variable
 
             $flag_img = move_uploaded_file($sourcePath, $destino); // Moving Uploaded file
-            //if ($flag_img != TRUE) {
+            if ($flag_img != TRUE) {
                 ?>
                 <script>
                     alert("Ocorreu um erro inesperado com a imagem");
                 </script>
                 <?php
-            //}
+            }
         }
     }
 }
-$titulo = '';
-$preco = '';
-$desc = '';
+// $titulo = '';
+// $preco = '';
+// $desc = '';
 
-if (isset($_POST['inputTitu']))
-{
-	$titulo = $_POST['inputTitu'];
+// if (isset($_POST['inputTitu']))
+// {
+// 	$titulo = $_POST['inputTitu'];
+// }
+
+// if (isset($_POST['inputPrec']))
+// {
+// 	$preco = $_POST['inputPrec'];	
+// }
+
+// if (isset($_POST['inputDesc']))
+// {
+// 	$desc = $_POST['inputDesc'];
+// }
+
+if (isset($_POST['salvar'])) {
+
+    $id_org = $_SESSION['id_organizacao'];
+    $titulo = $_POST['inputTitu'];
+    $preco = $_POST['inputPrec'];
+    $desc = $_POST['inputDesc'];
+
+    $query = "INSERT INTO prod (id_org, nome, descr, preco, img, qt_votos, aval) VALUES (\"$id_org\", \"$titulo\", \"$desc\", \"$preco\", \"$novoNome\", 0, 0)";
+
+    $conn->query($query);
+
+    // Insere no usu_prod
+    $insert = "INSERT INTO usu_prod (id_usu, id_prod) VALUES ('".$_SESSION['id_usuario']."', '".$conn->insert_id."')";
+    $conn->query($insert);
 }
 
-if (isset($_POST['inputPrec']))
-{
-	$preco = $_POST['inputPrec'];	
-}
+// $query = "SELECT id_org FROM usuario WHERE id='".$_SESSION['id_usuario']."'";
+// $result = $conn->query($query);
+// $row = $result->fetch_object();
+// $id_org = $row->id_org;
+// $id_org = $_SESSION['id_organizacao'];
 
-if (isset($_POST['inputDesc']))
-{
-	$desc = $_POST['inputDesc'];
-}
+// $query = "INSERT INTO prod (id_org, nome, descr, preco, img, qt_votos, aval) VALUES (\"$id_org\", \"$titulo\", \"$desc\", \"$preco\", \"$novoNome\". 0, 0)";
 
-$query = "SELECT id_org FROM usuario WHERE id='".$_SESSION['id_usuario']."'";
-$result = $conn->query($query);
-$row = $result->fetch_object();
-$id_org = $row->id_org;
-
-$query = "INSERT INTO prod (id_org, nome, descr, preco, qt_votos, aval) VALUES (\"$id_org\", \"$titulo\", \"$desc\", \"$preco\", 0, 0)";
-
-$conn->query($query);
+// Faltou inserir na usu_prod
+// Está inserindo uma tupla a mais
+// $conn->query($query);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -163,7 +184,7 @@ $conn->query($query);
 
 						<div class="colD">
 							<div class="top" style="margin-top: 30px;">
-                                <form id="formAnuncio" class="" method="post">
+                                <form id="formAnuncio" class="" method="POST" enctype=multipart/form-data>
                                     <div class="col-12 col-md-12">
                                         <div class="row">
                                             <div class="col-5 col-md-5">
