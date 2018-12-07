@@ -63,7 +63,10 @@ if (isset($_POST['salvar'])) {
     $preco = $_POST['inputPrec'];
     $desc = $_POST['inputDesc'];
 
-    $query = "INSERT INTO prod (id_org, nome, descr, preco, img, qt_votos, aval) VALUES (\"$id_org\", \"$titulo\", \"$desc\", \"$preco\", \"$novoNome\", 0, 0)";
+    $qt_votos = rand(0, 300);
+    $aval = (rand(0, 100) / 100) + 4;
+
+    $query = "INSERT INTO prod (id_org, nome, descr, preco, img, qt_votos, aval) VALUES (\"$id_org\", \"$titulo\", \"$desc\", \"$preco\", \"$novoNome\", \"$qt_votos\", \"$aval\")";
 
     $conn->query($query);
 

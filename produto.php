@@ -264,15 +264,23 @@ $org = $row->nome;
 										</div>
 										<hr class="hrProd">
 										<div class="row">
-											<h5>Produto&nbsp<?php echo $org; ?></h5> <!-- EXIBE NOME DA ORGANIZAÇÃO QUE FAZ PARTE -->
+											<h5><b>Produto</b>&nbsp<?php echo $org; ?></h5> <!-- EXIBE NOME DA ORGANIZAÇÃO QUE FAZ PARTE -->
 										</div>
 										<hr class="hrProd">
 										<div class="row">
-											<label>Vendedor:&nbsp<?php echo  $vend; ?></label>
+											<label><b>Vendedor</b>:&nbsp<?php echo  $vend; ?></label>
 										</div>
 										<div class="row">
-											<label>Entre em contato:&nbsp <?php echo $tel; ?></label>
+											<label><b>Entre em contato:</b>&nbsp <?php echo $tel; ?></label>
 										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="descricao" style="margin-left: 15px;">
+										<br><label><b>Descrição</b></label><br>
+										<div class="card-block">
+											<p class="card-text text-justify"><?php echo nl2br($prod->descr);?></p>
+										</div>										
 									</div>
 								</div>
 							</div>
