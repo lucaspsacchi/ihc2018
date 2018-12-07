@@ -10,10 +10,10 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 }
 
 // Pega a busca passada por get e exibe todos os elementos retornados da busca
-
+$busca = $_GET['busca'];
 $script = "SELECT nome, id
             FROM prod
-            WHERE id_org='".$_SESSION['id_organizacao']."'";
+            WHERE nome LIKE \"%$busca%\" AND id_org='".$_SESSION['id_organizacao']."'";
 $result = $conn->query($script);
 ?>
 <!DOCTYPE html>
@@ -37,7 +37,6 @@ $result = $conn->query($script);
         -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		
-
         <!-- Importando estilo css -->
         <link type="text/css" rel="stylesheet" href="../css/comprador.css">
         <link type="text/css" rel="stylesheet" href="../css/vendedor.css">

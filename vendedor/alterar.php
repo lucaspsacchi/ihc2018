@@ -41,47 +41,44 @@ if (isset($_FILES["file"]["type"])) {
 //End Imagem
 
 //Titulo
-if (isset($_POST['inputTitu']))
-{
-	$titulo = $_POST['inputTitu'];
-	if ($titulo != $prod->nome)
-	{
-		$query = "UPDATE prod SET nome=\"$titulo\" WHERE id=\"$prod->id\"";
-		$result = $conn->query($query);
-		$result = $conn->query($script);
-		$prod = $result->fetch_object();
-	}
-}
+if (isset($_POST['salvar'])) {
 
-if (isset($_POST['inputPrec']))
-{
-	$preco = $_POST['inputPrec'];
-	if ($preco != $prod->preco)
-	{
-		$query = "UPDATE prod SET preco=\"$preco\" WHERE id=\"$prod->id\"";
-		$result = $conn->query($query);
-		$result = $conn->query($script);
-		$prod = $result->fetch_object();
-	}
-}
+    if (isset($_POST['inputTitu']))
+    {
+        $titulo = $_POST['inputTitu'];
+        if ($titulo != $prod->nome)
+        {
+            $query = "UPDATE prod SET nome=\"$titulo\" WHERE id=\"$prod->id\"";
+            $result = $conn->query($query);
+        }
+    }
+
+    if (isset($_POST['inputPrec']))
+    {
+        $preco = $_POST['inputPrec'];
+        if ($preco != $prod->preco)
+        {
+            $query = "UPDATE prod SET preco=\"$preco\" WHERE id=\"$prod->id\"";
+            $result = $conn->query($query);
+        }
+    }
 
 
-if (isset($_POST['inputDesc']))
-{
-	$desc = $_POST['inputDesc'];
-	if ($desc != $prod->descr)
-	{
-		$query = "UPDATE prod SET descr=\"$desc\" WHERE id=\"$prod->id\"";
-		$result = $conn->query($query);
-		$result = $conn->query($script);
-		$prod = $result->fetch_object();
-	}
-}
+    if (isset($_POST['inputDesc']))
+    {
+        $desc = $_POST['inputDesc'];
+        if ($desc != $prod->descr)
+        {
+            $query = "UPDATE prod SET descr=\"$desc\" WHERE id=\"$prod->id\"";
+            $result = $conn->query($query);
+        }
+    }
 
-if ($novoNome != $prod->img)
-{
-    $query = "UPDATE prod SET img=\"$novoNome\" WHERE id=\"$prod->id\"";
-    $result = $conn->query($query);
+    if ($novoNome != $prod->img && $novoNome != 0) // Diferente de 0 porque se não insere nova imagem, o valor retornado é 0
+    {
+        $query = "UPDATE prod SET img=\"$novoNome\" WHERE id=\"$prod->id\"";
+        $result = $conn->query($query);
+    }
     $result = $conn->query($script);
     $prod = $result->fetch_object();
 }
@@ -145,7 +142,7 @@ if ($novoNome != $prod->img)
                                                     <img id="photo" src="../img/<?php echo $prod->img; ?>" class="img-rounded" width="300px" height="300px">
                                                     <br>
                                                     <label for="comment">Imagem do anúncio<span class="ast"></span> </label>
-                                                    <input type="file" name="file" id="file"/>
+                                                    <input type="file" name="file" id="file">
                                                 </div>
                                             </div>
                                             <div class="col-7 col-md-7">
