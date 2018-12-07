@@ -40,63 +40,13 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 
     <body>
         <!-- Navbar -->
-        <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0">
-            <div class="flexCustom d-flex justify-content-start">
-                <div class="col-2 col-xl-2 col-lg-2 col-md-2">
-                    <div class="d-flex flex-row">
-                        <a href="./home.php"><img id="navLogo" src="../img/UFSell.png" alt="logo"></a>
-                        <span class="spanUfs align-self-center">UFSell</span>
-                    </div>
-                </div>
-                <div class="col-10 col-xl-10 col-lg-10 col-md-10">
-                    <div class="d-flex flex-row justify-content-between">
-                        <div class="d-flex justify-content-start">
-                            <form action="./busca.php" method="get" id="formBusca">
-								<input id="inputNav" class="form-control form-control-dark" name="busca" placeholder="Pesquisar no UFSell" type="text" aria-label="Search">
-							</form>
-							<button class="btn btn-outline-light" form="formBusca" type="submit">Buscar</button>
-                        </div>
-                        <div class="d-flex justify-content-end" style="margin-top: 15px;">
-                            <div id="nav-itemP" class="nav-item">
-                                <a href="./conta.php">Minha conta</a>
-                            </div>
-                            <div class="nav-item">
-                                <a class="" href="./sair.php">Sair</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>    
+        <?php include '../includes/nav-comp.php';  ?>
         <!-- Estruturação da página -->
 		<div id="defCol" class="col-12 col-md-12">
                 <div id="defRow" class="row">
                     
 					<!-- Barra lateral -->
-                    <div id="menu" class="col-2 col-md-2" style="padding-left:0px;">
-                        <div class="divWrap">                           
-                            <div id="btn-itemP" class="d-flex justify-content-center">
-                                <a class="btn btn-light btnBorder" href="./adicionar.php">Criar anúncio</a>
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                <a class="btn btn-light btnBorder" href="./painel.php">Painel de Controle</a>
-                            </div>
-                        </div>
-                        
-						<div class="footer">
-                            <div class="hrFooter">
-                                <hr>
-                            </div>
-							<div id="textFooter" class="row">
-								<a href="#">Termos de uso</a>
-								<label style="color: #6c706e;">&nbsp&middot&nbsp</label>
-								<a href="#">Privacidade</a>
-							</div>
-							<div class="row" style="margin-bottom: 30px;">
-								<span id="foot" class="text-muted">©2018 UFSell</span>
-							</div>							
-						</div>
-                    </div>
+                    <?php include '../includes/menu-comp.php'; ?>
 
                     <!-- Main -->
                     <div id="conteudo" class="col-10 col-md-10">

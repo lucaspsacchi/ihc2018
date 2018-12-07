@@ -9,9 +9,8 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
     header("Location: ../login.php?erro_login=1"); // Se não está logado, retorna para a página de login com uma mensagem de erro
 }
 
-// Busca todos os produtos relacionados a essa pessoa
-// $script = "SELECT DISTINCT p.nome, p.id
-//            FROM prod p join usu_prod up on p.id = up.id_prod join usuario u on up.id_usu ='".$_SESSION['id_usuario']."' ";
+// Pega a busca passada por get e exibe todos os elementos retornados da busca
+
 $script = "SELECT nome, id
             FROM prod
             WHERE id_org='".$_SESSION['id_organizacao']."'";
@@ -46,7 +45,7 @@ $result = $conn->query($script);
 
     <body>
         <!-- Navbar -->
-        <?php include '../includes/nav-comp.php';  ?>
+        <?php include '../includes/nav-comp.php';  ?> 
         <!-- Estruturação da página -->
 		<div id="defCol" class="col-12 col-md-12">
                 <div id="defRow" class="row">
@@ -59,7 +58,8 @@ $result = $conn->query($script);
 						<!-- Bread Crumb -->
 						<nav aria-label="breadcrumb" style="margin-top:5px; margin-left: -15px;">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item active" aria-current="page">Home</li>
+                                <li class="breadcrumb-item"><a href="./home.php?sel=1">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Resultados da busca</li>
 							</ol>
 						</nav>
 
