@@ -60,13 +60,15 @@ if (isset($_POST['salvar'])) {
 
     $id_org = $_SESSION['id_organizacao'];
     $titulo = $_POST['inputTitu'];
-    $preco = $_POST['inputPrec'];
+    $preco = str_replace(',','.',$_POST['inputPrec']);
     $desc = $_POST['inputDesc'];
 
     $qt_votos = rand(0, 300);
-    $aval = (rand(0, 99) / 100) + 4;
+    $aval = (rand(0, 500) / 100);
+    $mes = date('n');
+    $ano = date('Y');
 
-    $query = "INSERT INTO prod (id_org, nome, descr, preco, img, qt_votos, aval) VALUES (\"$id_org\", \"$titulo\", \"$desc\", \"$preco\", \"$novoNome\", \"$qt_votos\", \"$aval\")";
+    $query = "INSERT INTO prod (id_org, nome, descr, preco, img, qt_votos, aval, mes, ano) VALUES (\"$id_org\", \"$titulo\", \"$desc\", \"$preco\", \"$novoNome\", \"$qt_votos\", \"$aval\", \"$mes\", \"$ano\")";
 
     $conn->query($query);
 
@@ -119,13 +121,13 @@ if (isset($_POST['salvar'])) {
 
     <body>
         <!-- Navbar -->
-        <?php include '../includes/nav-comp.php'; ?>
+        <?php include '../includes/nav-vend.php'; ?>
         <!-- Estruturação da página -->
 		<div id="defCol" class="col-12 col-md-12">
                 <div id="defRow" class="row">
                     
 					<!-- Barra lateral -->
-                    <?php include '../includes/menu-comp.php'; ?>
+                    <?php include '../includes/menu-vend.php'; ?>
 
                     <!-- Main -->
                     <div id="conteudo" class="col-10 col-md-10">
@@ -161,7 +163,7 @@ if (isset($_POST['salvar'])) {
                                                         <label class="divpreco" style="font-weight: bold;">Preço</label>
                                                         <div class="d-flex flex-row align-items-end">
                                                             <label style="font-size: 1rem;"><b>R$&nbsp</b></label>
-                                                            <input type="text" class="form-control shadow-sm" name="inputPrec" placeholder="Ex: 00.00" required>
+                                                            <input type="text" class="form-control shadow-sm" name="inputPrec" placeholder="Ex: 00,00" required>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -55,7 +55,7 @@ if (isset($_POST['salvar'])) {
 
     if (isset($_POST['inputPrec']))
     {
-        $preco = $_POST['inputPrec'];
+        $preco = str_replace(',','.',$_POST['inputPrec']);
         if ($preco != $prod->preco)
         {
             $query = "UPDATE prod SET preco=\"$preco\" WHERE id=\"$prod->id\"";
@@ -83,6 +83,21 @@ if (isset($_POST['salvar'])) {
     $prod = $result->fetch_object();
 
     $_SESSION['alertaV'] = "Anúncio alterado com sucesso!";
+    header('Location: ./home.php');
+}
+
+if (isset($_POST['deletar'])) {
+
+    // Apaga todos os produtos vinculados a essa pessoa
+    $script = "DELETE FROM usu_prod WHERE id_usu ='".$_SESSION['id_usuario']."'";
+    $conn->query($script);
+
+
+    // Apaga o usuário
+    $script = "DELETE FROM prod WHERE id = '".$prod->id."'";
+    $conn->query($script);
+
+    $_SESSION['alertaV'] = "Anúncio excluído com sucesso!";
     header('Location: ./home.php');
 }
 
@@ -116,13 +131,13 @@ if (isset($_POST['salvar'])) {
 
     <body>
         <!-- Navbar -->
-        <?php include '../includes/nav-comp.php';  ?>
+        <?php include '../includes/nav-vend.php';  ?>
         <!-- Estruturação da página -->
 		<div id="defCol" class="col-12 col-md-12">
                 <div id="defRow" class="row">
                     
 					<!-- Barra lateral -->
-                    <?php include '../includes/menu-comp.php'; ?>
+                    <?php include '../includes/menu-vend.php'; ?>
 
                     <!-- Main -->
                     <div id="conteudo" class="col-10 col-md-10">
@@ -158,7 +173,7 @@ if (isset($_POST['salvar'])) {
                                                         <label class="divpreco" style="font-weight: bold;">Preço</label>
                                                         <div class="d-flex flex-row align-items-end">
                                                             <label style="font-size: 1rem;"><b>R$&nbsp</b></label>
-                                                            <input type="text" class="form-control shadow-sm" name="inputPrec" value="<?php echo number_format($prod->preco, 2); ?>" placeholder="Ex: 00.00" required>
+                                                            <input type="text" class="form-control shadow-sm" name="inputPrec" value="<?php echo str_replace('.',',',number_format($prod->preco, 2)); ?>" placeholder="Ex: 00,00" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -171,9 +186,14 @@ if (isset($_POST['salvar'])) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-end">
-                                        <button class="btn btn-success" name="salvar">Salvar</button>
-                                    </div>                                  
+                                    <div class="d-flex justify-content-end" style="">
+                                        <div style="margin-right: 20px;">
+                                            <button class="btn btn-secondary" name="deletar">Excluir</button>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-success" name="salvar">Salvar</button>
+                                        </div>
+                                    </div>
                                 </form>
 							</div>								
 						</div>

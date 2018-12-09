@@ -4,6 +4,11 @@ $erro_email = 0;
 session_start();
 include('connection/connection.php');
 
+if (isset($_SESSION['alertaEmail'])) {
+    ?><script>alert('<?php echo $_SESSION['alertaEmail'];?>');</script><?php
+    unset($_SESSION['alertaEmail']);
+}
+
 if (isset($_POST['salvar'])) {
 
     // Recebe os dados submetidos
@@ -17,13 +22,13 @@ if (isset($_POST['salvar'])) {
     // Campos que são do comprador
     $tel = $_POST['inputTel'];
 
-    $script = "SELECT id
+    $script = "SELECT *
                 FROM usuario
                 WHERE email='".$email."';";
     $result = $conn->query($script);
-    $obj = $result->fetch_object();
-    if($obj->num_rows > 0) {
-        $erro_email = 1;
+    if($result->num_rows > 0) {
+        $_SESSION['alertaEmail'] = "Já existe uma conta registrada com esse email!";
+        header("Location: ./cadastro.php");
     }
     else {
         if ($radio == 'op1')

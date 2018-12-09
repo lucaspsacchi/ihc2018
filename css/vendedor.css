@@ -8,3 +8,7 @@
 .descAdc {
     width: 100%;
 }
+
+.card-custom2 {
+    background: linear-gradient(#ff751a, #ff3333);
+}

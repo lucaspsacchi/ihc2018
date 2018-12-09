@@ -13,7 +13,8 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 $busca = $_GET['busca'];
 $script = "SELECT nome, id
             FROM prod
-            WHERE nome LIKE \"%$busca%\" AND id_org='".$_SESSION['id_organizacao']."'";
+            WHERE nome LIKE \"%$busca%\" AND id_org='".$_SESSION['id_organizacao']."'
+            ORDER BY id DESC";
 $result = $conn->query($script);
 ?>
 <!DOCTYPE html>
@@ -44,13 +45,13 @@ $result = $conn->query($script);
 
     <body>
         <!-- Navbar -->
-        <?php include '../includes/nav-comp.php';  ?> 
+        <?php include '../includes/nav-vend.php';  ?> 
         <!-- Estruturação da página -->
 		<div id="defCol" class="col-12 col-md-12">
                 <div id="defRow" class="row">
                     
 					<!-- Barra lateral -->
-                    <?php include '../includes/menu-comp.php'; ?>
+                    <?php include '../includes/menu-vend.php'; ?>
 
                     <!-- Main -->
                     <div id="conteudo" class="col-10 col-md-10">

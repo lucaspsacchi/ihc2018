@@ -6,6 +6,10 @@ if (isset($_SESSION['alerta'])) {
     ?><script>alert('<?php echo $_SESSION["alerta"];?>');</script><?php
     unset($_SESSION['alerta']);
 }
+if (isset($_SESSION['alertaD'])) {
+    ?><script>alert('<?php echo $_SESSION['alertaD'];?>');</script><?php
+    unset($_SESSION['alertaD']);
+}
 
 if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
 
@@ -13,7 +17,6 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
 
     $email = addslashes($_POST['inputEmail']);
     $senha = addslashes($_POST['inputSenha']);
-
 
     // Verifica se existe aquele email e a senha é a mesma do bd
     $script =   "SELECT *

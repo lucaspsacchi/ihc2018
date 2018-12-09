@@ -9,7 +9,26 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
     header("Location: ../login.php?erro_login=1"); // Se não está logado, retorna para a página de login com uma mensagem de erro
 }
 
+// Quantidade de pessoas por organização
+$script = "SELECT count(id) as c
+            FROM usuario
+            WHERE id_org = '".$_SESSION['id_organizacao']."'";
+$count = $conn->query($script);
+$qtP = $count->fetch_object();
 
+// Quantidade de anúncios por organização
+$script = "SELECT count(id) as c
+            FROM prod
+            WHERE id_org = '".$_SESSION['id_organizacao']."'";
+$count = $conn->query($script);
+$qtA = $count->fetch_object();
+
+// Quantidade dos mais bem avaliados (mais que 4)
+$script = "SELECT count(id) as c
+            FROM prod
+            WHERE id_org = '".$_SESSION['id_organizacao']."' and aval >= 4";
+$count = $conn->query($script);
+$qt4 = $count->fetch_object();            
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -30,7 +49,8 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
        <!--
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 		
 
         <!-- Importando estilo css -->
@@ -40,13 +60,13 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 
     <body>
         <!-- Navbar -->
-        <?php include '../includes/nav-comp.php';  ?>
+        <?php include '../includes/nav-vend.php';  ?>
         <!-- Estruturação da página -->
 		<div id="defCol" class="col-12 col-md-12">
                 <div id="defRow" class="row">
                     
 					<!-- Barra lateral -->
-                    <?php include '../includes/menu-comp.php'; ?>
+                    <?php include '../includes/menu-vend.php'; ?>
 
                     <!-- Main -->
                     <div id="conteudo" class="col-10 col-md-10">
@@ -60,8 +80,41 @@ if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
 
 
 						<div class="colD">
-							<div class="row">
-
+							<div class="row" style="margin-top: 30px;">
+                                <div class="col-12 col-md-12">
+                                    <div class="d-flex justify-content-around">
+                                        <div class="card" style="background: linear-gradient(#2395a9, #4dc5da, #80d6e5); border: none;">
+                                            <div class="card-body" style="width: 250px;">
+                                                <center>
+                                                    <i class="fas fa-users fa-4x"></i>
+                                                    <h3 style="margin-top: 10px;"><?php echo $qtP->c?> membros</h3>
+                                                    <h3>cadastrados</h3>
+                                                    <h3>no UFSell</h3>
+                                                </center>
+                                            </div>
+                                        </div>
+                                        <div class="card" style="background: linear-gradient(#2395a9, #4dc5da, #80d6e5); border: none;">
+                                            <div class="card-body" style="width: 250px;">
+                                                <center>
+                                                    <i class="fas fa-tags fa-4x"></i>
+                                                    <h3 style="margin-top: 10px;"><?php echo $qtA->c?> anúncios</h3>
+                                                    <h3>cadastrados</h3>
+                                                    <h3>no UFSell</h3>
+                                                </center>
+                                            </div>
+                                        </div>
+                                        <div class="card" style="background: linear-gradient(#2395a9, #4dc5da, #80d6e5); border: none;">
+                                            <div class="card-body" style="width: 250px;">
+                                                <center>
+                                                    <i class="fas fa-heart fa-4x"></i>
+                                                    <h3 style="margin-top: 10px;"><?php echo $qt4->c?> anúncios</h3>
+                                                    <h3>com mais de</h3>
+                                                    <h3>4 estrelas</h3>
+                                                </center>                                            
+                                            </div>
+                                        </div>  
+                                    </div>
+                                </div>
 							</div>								
 						</div>
                     </div>

@@ -17,72 +17,96 @@ $script = "SELECT nome, sobrenome, email, tel FROM usuario WHERE id='".$_SESSION
 $result = $conn->query($script);
 $pessoa = $result->fetch_object();
 
-if (isset($_POST['salvar'])){
-	if (isset($_POST['inputNome']))
-	{
+$flag = 0;
+if (isset($_POST['salvar'])) {
+	// Pega todos os valores
+	$query = "SELECT nome, sobrenome, email, tel FROM usuario WHERE id='".$_SESSION['id_usuario']."';";
+	$result = $conn->query($query);
+	$row = $result->fetch_object();
+
+	if (isset($_POST['inputNome'])) {
 		$nome = $_POST['inputNome'];
-		$query = "SELECT nome FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
-		$result = $conn->query($query);
-		$row = $result->fetch_object();
-		if ($nome != $row->nome)
-		{
-			$query = "UPDATE usuario SET nome=\"$nome\" WHERE `id`='".$_SESSION['id_usuario']."';";
+		if ($nome != $row->nome) {
+			$query = "UPDATE usuario SET nome=\"$nome\" WHERE id='".$_SESSION['id_usuario']."';";
 			$conn->query($query);
-			$result = $conn->query($script);
-			$pessoa = $result->fetch_object();
+			$flag = 1;
 		}
 	}
 
-	if (isset($_POST['inputSobrenome']))
-	{
+	if (isset($_POST['inputSobrenome'])) {
 		$sobrenome = $_POST['inputSobrenome'];
-		$query = "SELECT sobrenome FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
-		$result = $conn->query($query);
-		$row = $result->fetch_object();
-		if ($sobrenome != $row->sobrenome)
-		{
-			$query = "UPDATE usuario SET sobrenome=\"$sobrenome\" WHERE `id`='".$_SESSION['id_usuario']."';";
+		if ($sobrenome != $row->sobrenome) {
+			$query = "UPDATE usuario SET sobrenome=\"$sobrenome\" WHERE id='".$_SESSION['id_usuario']."';";
 			$conn->query($query);
-			$result = $conn->query($script);
-			$pessoa = $result->fetch_object();
+			$flag = 1;
 		}
 	}
 
-	if (isset($_POST['inputEmail']))
-	{
+	if (isset($_POST['inputEmail'])) {
 		$email = $_POST['inputEmail'];
-		$query = "SELECT email FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
-		$result = $conn->query($query);
-		$row = $result->fetch_object();
-		if ($email != $row->email)
-		{
-			$query = "UPDATE usuario SET email=\"$email\" WHERE `id`='".$_SESSION['id_usuario']."';";
+		if ($email != $row->email) {
+			$query = "UPDATE usuario SET email=\"$email\" WHERE id='".$_SESSION['id_usuario']."';";
 			$conn->query($query);
-			$result = $conn->query($script);
-			$pessoa = $result->fetch_object();
+			$flag = 1;
 		}
 	}
 
-	if (isset($_POST['inputSenha']))
-	{
+	// $result = $conn->query($script);
+	// $pessoa = $result->fetch_object();
+	if ($flag == 1) {
+		$_SESSION['alertaC'] = 'Conta alterada com sucesso!';
+		header('Location: ./conta.php');
+	}
+}
+
+if (isset($_POST['salvarSen'])) {
+
+	// Pega todos os valores
+	$query = "SELECT senha FROM usuario WHERE id='".$_SESSION['id_usuario']."';";
+	$result = $conn->query($query);
+	$row = $result->fetch_object();
+
+	if (isset($_POST['inputSenha'])) {
 		$senha = $_POST['inputSenha'];
 		$senhaMD5 = MD5($senha);
-		$query = "SELECT senha FROM `usuario` WHERE `id`='".$_SESSION['id_usuario']."';";
-		$result = $conn->query($query);
-		$row = $result->fetch_object();
-
-
-		if ($senhaMD5 != $row->senha)
-		{
-			$query = "UPDATE usuario SET senha=\"$senhaMD5\" WHERE `id`='".$_SESSION['id_usuario']."';";
+		$atualsenha = MD5($_POST['inputAtualSenha']);
+		if ($atualsenha == $row->senha) {
+			$query = "UPDATE usuario SET senha=\"$senhaMD5\" WHERE id='".$_SESSION['id_usuario']."';";
 			$conn->query($query);
-			$result = $conn->query($script);
-			$pessoa = $result->fetch_object();
+			$_SESSION['alertaC'] = 'Senha alterada com sucesso!';
+			header('Location: ./conta.php');
+		}
+		else {
+			$_SESSION['alertaC'] = 'Senha atual incorreta!';
+			header('Location: ./conta.php');
 		}
 	}
-	$_SESSION['alertaC'] = "Conta alterada com sucesso!";
-	header("Location: ./conta.php");
 }
+
+if (isset($_POST['salvarDel'])) {
+
+	// Pega todos os valores
+	$query = "SELECT senha FROM usuario WHERE id='".$_SESSION['id_usuario']."';";
+	$result = $conn->query($query);
+	$row = $result->fetch_object();
+	
+	if (isset($_POST['inputAtualSenhaDel'])) {
+		$atualsenha = MD5($_POST['inputAtualSenhaDel']);
+		if ($atualsenha == $row->senha) {
+			$query = "DELETE FROM usuario WHERE id ='".$_SESSION['id_usuario']."'";
+			$conn->query($query);
+		
+		
+			$_SESSION['alertaD'] = 'Conta excluída com sucesso!';
+			header('Location: ./sair.php');
+		}
+		else {
+			$_SESSION['alertaC'] = 'Senha incorreta!';
+			header('Location: ./conta.php');
+		}
+	}
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -99,183 +123,7 @@ if (isset($_POST['salvar'])){
 		<div id="defCol" class="col-12 col-xl-12 col-lg-12 col-md-12">
                 <div id="defRow" class="row">
 					<!-- Barra lateral -->
-                    <div id="menu" class="col-2 col-xl-2 col-lg-2 col-md-2">
-						<div class="divWrap">
-							<div id="btn-itemP" class="menuT">
-								<!-- Título do collapse --><!-- Concatenar o at com id -->
-								<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse1" aria-expanded="true" aria-controls="at1 at2 at3 at4 at5 at6">Atléticas</button>
-								<!-- Elementos do collapse -->
-								<div class="">
-									<div class="collapse multi-collapse1" id="at1">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Atlética ECAD">Atlética ECAD</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse1" id="at2">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Atlética UFSCar Sorocaba">Atlética UFSCar Sorocaba</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse1" id="at3">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Atlética XXV de Maio">Atlética XXV de Maio</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse1" id="at4">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Atlética Raça Brisão">Atlética Raça Brisão</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse1" id="at5">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Atlética DFQM">Atlética DFQM</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse1" id="at6">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Atlética Lumberjack">Atlética Lumberjack</a>
-									</div>
-								</div>
-							</div>
-							<div class="menuT">
-								<!-- Título do collapse --><!-- Concatenar o at com id -->
-								<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse2" aria-expanded="true" aria-controls="ca1 ca2 ca3 ca4 ca5 ca6 ca7">Centros Acadêmicos</button>
-								<!-- Elementos do collapse -->
-								<div class="">
-									<div class="collapse multi-collapse2" id="ca1">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Toca da Onça">CA Toca da Onça</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse2" id="ca2">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=CACCS">CACCS</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse2" id="ca3">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Cageos">Cageos</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse2" id="ca4">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Caped">Caped</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse2" id="ca5">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Caeps">Caeps</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse2" id="ca6">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=CAEF">CAEF</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse2" id="ca7">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=CACTUS">CACTUS</a>
-									</div>
-								</div>
-							</div>
-							<div class="menuT">
-								<!-- Título do collapse --><!-- Concatenar o at com id -->
-								<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse3" aria-expanded="true" aria-controls="en1 en2 en3">Entidades</button>
-								<!-- Elementos do collapse -->
-								<div class="">
-									<div class="collapse multi-collapse3" id="en1">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Share">Share</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse3" id="en2">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Enactus">Enactus</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse3" id="en3">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=ABU">ABU</a>
-									</div>
-								</div>
-							</div>
-							<div class="menuT">
-								<!-- Título do collapse --><!-- Concatenar o at com id -->
-								<button class="btn btn-light" data-toggle="collapse" data-target=".multi-collapse4" aria-expanded="true" aria-controls="c1 c2 c3 c4 c5 c6 c7 c8 c9 c10 c11 c12">Cursos</button>
-								<!-- Elementos do collapse -->
-								<div class="">
-									<div class="collapse multi-collapse4" id="c1">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Administração">Administração</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse4" id="c2">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Ciências Biológicas">Ciências Biológicas</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse4" id="c3">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Ciência de Computação">Ciência da Computação</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse4" id="c4">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Ciências Econômicas">Ciências Econômicas</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse4" id="c5">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Engenharia de Produção">Engenharia de Produção</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse4" id="c6">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Engenharia Florestal">Engenharia Florestal</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse4" id="c7">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Física">Física</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse4" id="c8">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Geografia">Geografia</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse4" id="c9">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Matemática">Matemática</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse4" id="c10">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Pedagogia">Pedagogia</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse4" id="c11">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Química">Química</a>
-									</div>
-								</div>
-								<div class="">
-									<div class="collapse multi-collapse4" id="c12">
-										<a id="subitem" class="btn btn-light" href="busca.php?busca=Turismo">Turismo</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="hrFooter">
-							<hr>
-						</div>
-						<div class="footer">
-							<div class="row">
-								<a href="#">Termos de uso</a>
-								<label style="color: #6c706e;">&nbsp&middot&nbsp</label>
-								<a href="#">Privacidade</a>
-							</div>
-							<div class="row" style="margin-bottom: 30px;">
-								<span id="foot" class="text-muted">©2018 UFSell</span>
-							</div>
-						</div>
-                    </div>
+                    <?php include 'includes/menuesq.php'; ?>
 
 
 
@@ -290,89 +138,93 @@ if (isset($_POST['salvar'])){
 					</nav>
 
 					<!-- Formulário -->
-					<form id="formCad" class="" method="post">
+					<form id="formCad" class=""  name="salvar" method="post">
 						<div class="colD d-flex justify-content-start">
-							<div class="col-6 col-xl-6 col-lg-6 col-md-6">
+							<div class="col-12 col-xl-12 col-lg-12 col-md-12">
+								<br>
+								<center><h2>Minhas informações</h2></center>
+								<hr>
 								<div id="cardAlterar" class="">
-										<div class="row">
-											<div class="col-12">
-												<div class="form-group">
-													<label class="divnome" style="font-weight: bold;">Nome</label>
-													<input type="text" class="form-control shadow-sm" value="<?php echo $pessoa->nome; ?>" name="inputNome" pattern=".{1,100}" required autofocus>
-												</div>
+									<div class="row">
+										<div class="col-6">
+											<div class="form-group">
+												<label class="divnome" style="font-weight: bold;">Nome</label>
+												<input type="text" class="form-control shadow-sm" value="<?php echo $pessoa->nome; ?>" name="inputNome" pattern=".{1,100}" required autofocus>
+											</div>                              
+										</div>
+										<div class="col-6">
+											<div class="form-group">
+												<label class="divsobrenome" style="font-weight: bold;">Sobrenome</label>
+												<input type="text" class="form-control shadow-sm" value="<?php echo $pessoa->sobrenome; ?>" name="inputSobrenome" pattern=".{1,100}" required>
 											</div>
 										</div>
-										<div class="row">
-											<div class="col-12">
-												<div class="form-group">
-													<label class="divsobrenome" style="font-weight: bold;">Sobrenome</label>
-													<input type="text" class="form-control shadow-sm" value="<?php echo $pessoa->sobrenome; ?>" name="inputSobrenome" pattern=".{1,100}" required>
-												</div>
+									</div> 
+									<div class="row">
+										<div class="col-6">
+											<div class="form-group">
+												<label class="divemail" style="font-weight: bold;">Email</label>
+												<input type="email" class="form-control shadow-sm" value="<?php echo $pessoa->email; ?>" name="inputEmail" pattern=".{1,100}" required>
 											</div>
 										</div>
-										<div class="row">
-											<div class="col-12">
-												<div class="form-group">
-													<label class="divemail" style="font-weight: bold;">Email</label>
-													<input type="email" class="form-control shadow-sm" value="<?php echo $pessoa->email; ?>" name="inputEmail" pattern=".{1,100}" required>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-12">
-												<div class="form-group">
-													<label class="divsenha" style="font-weight: bold;">Senha</label>
-													<input type="password" class="form-control shadow-sm" id="inputSenha" placeholder="Alterar senha" name="inputSenha" pattern=".{5,30}">
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-12">
-												<div class="form-group">
-													<label class="divsenha" style="font-weight: bold;">Confirmar senha</label>
-													<input type="password" class="form-control shadow-sm" data-toggle="popover" id="inputConfSenha" placeholder="Confirme a nova senha" name="inputConfSenha" pattern=".{5,30}">
-												</div>
-											</div>
-										</div>
+									</div>									
+								</div>
+							</div>											
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-12">
+								<div id="cadSalvar" class="botaocad float-right" style="margin-right:25px;">
+									<!-- Botão para salvar -->
+									<button type="submit" name="salvar" class="btn btn-success">
+										Salvar
+									</button>
 								</div>
 							</div>
-							<div class="col-1 col-xl-1 col-lg-1 col-md-1" style="border-right: 1px solid; margin-top:10px; border-color:#b9c0bd;"></div>
-							<div class="col-1 col-xl-1 col-lg-1 col-md-1"></div>
-							<div class="col-4 col-xl-4 col-lg-4 col-md-4">
-								<label style="font-weight: bold; margin-top:10px;">
-									Você tem interesse em produtos de quais cursos?
-								</label>
-								<div class="form-group">
-									<div class="form-check">
-										<input type="checkbox" class="form-check-input">
-										<label class="form-check-label">Administração</label><br>
-										<input type="checkbox" class="form-check-input">
-										<label class="form-check-label">Ciências Biológicas</label><br>
-										<input type="checkbox" class="form-check-input">
-										<label class="form-check-label">Ciência da Computação</label><br>
-										<input type="checkbox" class="form-check-input">
-										<label class="form-check-label">Ciências Economicas</label><br>
-										<input type="checkbox" class="form-check-input">
-										<label class="form-check-label">Engenharia de Produção</label><br>
-										<input type="checkbox" class="form-check-input">
-										<label class="form-check-label">Engenharia Florestal</label><br>
-										<input type="checkbox" class="form-check-input">
-										<label class="form-check-label">Física</label><br>
-										<input type="checkbox" class="form-check-input">
-										<label class="form-check-label">Geografia</label><br>
-										<input type="checkbox" class="form-check-input">
-										<label class="form-check-label">Matemática</label><br>
-										<input type="checkbox" class="form-check-input">
-										<label class="form-check-label">Pedagogia</label><br>
-										<input type="checkbox" class="form-check-input">
-										<label class="form-check-label">Química</label><br>
-										<input type="checkbox" class="form-check-input">
-										<label class="form-check-label">Turismo</label><br>
+						</div>
+					</form>					
+					<form id="formNao" class="" method="post">
+						<br>
+						<center><h2>Preferências</h2></center>
+						<hr>
+						<div class="d-flex justify-content-start">
+							<div class="col-6 col-xl-6 col-lg-6 col-md-6">
+								<div id="cardAlterar" class="">
+									<label style="font-weight: bold; margin-top:10px;">
+										Você tem interesse em produtos de quais cursos?
+									</label>
+									<div class="form-group">
+											<div class="form-check">
+												<input type="checkbox" class="form-check-input">
+												<label class="form-check-label">Administração</label><br>
+												<input type="checkbox" class="form-check-input">
+												<label class="form-check-label">Ciências Biológicas</label><br>
+												<input type="checkbox" class="form-check-input">
+												<label class="form-check-label">Ciência da Computação</label><br>
+												<input type="checkbox" class="form-check-input">
+												<label class="form-check-label">Ciências Economicas</label><br>
+												<input type="checkbox" class="form-check-input">
+												<label class="form-check-label">Engenharia de Produção</label><br>
+												<input type="checkbox" class="form-check-input">
+												<label class="form-check-label">Engenharia Florestal</label><br>
+												<input type="checkbox" class="form-check-input">
+												<label class="form-check-label">Física</label><br>
+												<input type="checkbox" class="form-check-input">
+												<label class="form-check-label">Geografia</label><br>
+												<input type="checkbox" class="form-check-input">
+												<label class="form-check-label">Matemática</label><br>
+												<input type="checkbox" class="form-check-input">
+												<label class="form-check-label">Pedagogia</label><br>
+												<input type="checkbox" class="form-check-input">
+												<label class="form-check-label">Química</label><br>
+												<input type="checkbox" class="form-check-input">
+												<label class="form-check-label">Turismo</label><br>
+											</div>
+										</div>
 									</div>
 								</div>
-								<br>
-								<label>
-									<b>Deseja receber emails novos anuncios?</b>
+							<div class="col-6 col-xl-6 col-lg-6 col-md-6">
+								<label style="font-weight: bold; margin-top:10px;">
+									Deseja receber emails novos anuncios?
 								</label><br>
 								<input type="radio" value="Sim"> Sim<br>
 								<input type="radio" value="Não"> Não<br>
@@ -381,15 +233,92 @@ if (isset($_POST['salvar'])){
 						<br>
 						<div class="row">
 							<div class="col-12">
-								<div id="cadSalvar" class="botaocad float-right">
+								<div id="cadSalvar" class="botaocad float-right" style="margin-right:25px;">
 									<!-- Botão para salvar -->
-									<button type="submit" name="salvar" class="btn btn-success">
+									<button type="submit" name="nsalvar" class="btn btn-success">
 										Salvar
 									</button>
 								</div>
 							</div>
 						</div>
 					</form>
+					<br>
+					<center><h2>Alterar senha</h2></center>
+					<hr>
+					<form id="formSen" class=""  name="salvarSen" method="post">
+						<div class="d-flex justify-content-start">
+							<div class="col-12 col-xl-12 col-lg-12 col-md-12">
+								<div id="cardAlterar" class="">
+									<div class="row">
+										<div class="col-6">
+											<div class="form-group">
+												<label class="divsenhaatual" style="font-weight: bold;">Senha atual</label>
+												<input type="password" class="form-control shadow-sm" placeholder="Digite a senha atual" data-toggle="popover" id="inputAtualSenha" name="inputAtualSenha" pattern=".{5,30}">
+											</div>
+										</div>
+										<div class="col-6"></div>										
+									</div>								
+									<div class="row">
+										<div class="col-6">
+											<div class="form-group">
+												<label class="divsenha" style="font-weight: bold;">Nova senha</label>
+												<input type="password" class="form-control shadow-sm" placeholder="Alterar senha" id="inputSenha" name="inputSenha" pattern=".{5,30}">
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="form-group">
+												<label class="divsenha" style="font-weight: bold;">Confirmar senha</label>
+												<input type="password" class="form-control shadow-sm" placeholder="Confirme a nova senha" data-toggle="popover" id="inputConfSenha" name="inputConfSenha" pattern=".{5,30}">
+											</div>
+										</div>										
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-12">
+								<div id="cadSalvar" class="botaocad float-right" style="margin-right:25px;">
+									<!-- Botão para salvar -->
+									<button type="submit" name="salvarSen" class="btn btn-success">
+										Salvar
+									</button>
+								</div>
+							</div>
+						</div>						
+					</form>
+					<center><h2>Deletar conta</h2></center>
+					<hr>
+					<form id="formDel" class=""  name="salvarDel" method="post">
+						<div class="d-flex justify-content-start">
+							<div class="col-12 col-xl-12 col-lg-12 col-md-12">
+								<div id="cardAlterar" class="">
+									<div class="row">
+										<div class="col-6">
+											<div class="form-group">
+												<label class="divsenhaatual" style="font-weight: bold;">Senha</label>
+												<input type="password" class="form-control shadow-sm" placeholder="Digite a sua senha" id="inputAtualSenhaDel" name="inputAtualSenhaDel" pattern=".{5,30}">
+												<label style="font-size:13px;">Se você deletar sua conta, não será possível recuperá-la.</label>
+											</div>
+										</div>
+										<div class="col-6">
+										</div>										
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<div id="cadSalvar" class="botaocad float-right" style="margin-right:25px;">
+									<!-- Botão para salvar -->
+									<button type="submit" name="salvarDel" class="btn btn-danger">
+										Deletar conta
+									</button>
+								</div>
+							</div>
+						</div>						
+					</form>									
+				<br>					
 				</div>
 			</div>
 		</div>
