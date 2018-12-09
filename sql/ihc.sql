@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 09-Dez-2018 às 22:01
+-- Generation Time: 09-Dez-2018 às 23:47
 -- Versão do servidor: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -84,7 +84,7 @@ INSERT INTO `prod` (`id`, `id_org`, `nome`, `descr`, `preco`, `img`, `qt_votos`,
 (36, 2, 'Boné Computação', 'Temos tamanho M, G e GG.', 29.99, '15443871595c0d7a57bca30.jpg', 185, 2.97, 12, 2018),
 (37, 2, 'Camisa Atlética para Intercursos', 'Disponível em P, M, G e GG.', 24.99, '15443873285c0d7b0037c79.jpg', 63, 4.39, 12, 2018),
 (38, 2, 'Camiseta BCC 2018', 'Disponível em P, M, G e GG.', 24.99, '15443879165c0d7d4c20f37.jpg', 173, 2.31, 12, 2018),
-(39, 2, 'Camiseta Meninas de Computação', 'Disponivel em PP, P, M, G e GG.', 24.99, '15443884585c0d7f6a2f33c.jpg', 188, 0.86, 12, 2018),
+(39, 2, 'Camiseta Meninas de Computação', 'Disponivel em PP, P, M, G e GG.', 24.99, '15443884585c0d7f6a2f33c.jpg', 188, 2.36, 12, 2018),
 (40, 2, 'Moletom Preto BCC', 'Disponível em P, M, G e GG.', 120, '15443885745c0d7fde6c25c.jpg', 130, 4.93, 12, 2018);
 
 -- --------------------------------------------------------

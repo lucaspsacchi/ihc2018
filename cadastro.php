@@ -4,11 +4,6 @@ $erro_email = 0;
 session_start();
 include('connection/connection.php');
 
-if (isset($_SESSION['alertaEmail'])) {
-    ?><script>alert('<?php echo $_SESSION['alertaEmail'];?>');</script><?php
-    unset($_SESSION['alertaEmail']);
-}
-
 if (isset($_POST['salvar'])) {
 
     // Recebe os dados submetidos
@@ -40,7 +35,7 @@ if (isset($_POST['salvar'])) {
 
             mysqli_query($conn, $ins);
 
-            $_SESSION['alerta'] = "Conta cadastrada com sucesso!";
+            $_SESSION['alertaH'] = "Conta cadastrada com sucesso!";
             header("Location: ./login.php");
         }
         elseif ($radio == 'op2')
@@ -54,7 +49,7 @@ if (isset($_POST['salvar'])) {
 
             mysqli_query($conn, $ins);
 
-            $_SESSION['alerta'] = "Conta cadastrada com sucesso!";
+            $_SESSION['alertaH'] = "Conta cadastrada com sucesso!";
             header("Location: ./login.php");
         }
     }
@@ -230,3 +225,10 @@ $(function() {
     //     }
     // }
 </script>
+
+<?php
+if (isset($_SESSION['alertaEmail'])) {
+    ?><script>alert('<?php echo $_SESSION['alertaEmail'];?>');</script><?php
+    unset($_SESSION['alertaEmail']);
+}
+?>

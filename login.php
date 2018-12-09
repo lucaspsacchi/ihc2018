@@ -149,15 +149,6 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
 </script>
 
 <?php
-if (isset($_SESSION['alerta'])) {
-    ?><script>
-	$(document).ready(function() {
-		swal({title:'<?php echo $_SESSION['alerta'];?>',
-			type: 'success'});
-	})</script><?php
-    unset($_SESSION['alerta']);
-}
-
 if (isset($_SESSION['alertaW'])) {
     ?><script>
 	$(document).ready(function() {
@@ -165,5 +156,17 @@ if (isset($_SESSION['alertaW'])) {
 			type: 'error'});
 	})</script><?php
     unset($_SESSION['alertaW']);
+}
+?>
+
+<?php
+if (isset($_SESSION['alertaH'])) {
+    ?><script>
+    $(document).ready(function() {
+        swal({type: 'success',
+                text: '<?php echo $_SESSION['alertaH'];?>'});
+    })
+    </script><?php
+    unset($_SESSION['alertaH']);
 }
 ?>
