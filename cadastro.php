@@ -21,6 +21,8 @@ if (isset($_POST['salvar'])) {
     $org = $_POST['organizacao'];
     // Campos que são do comprador
     $tel = $_POST['inputTel'];
+    $mes = date('n');
+    $ano = date('Y');
 
     $script = "SELECT *
                 FROM usuario
@@ -33,8 +35,8 @@ if (isset($_POST['salvar'])) {
         if ($radio == 'op1')
         {
             // Insere um usuário comprador com as colunas id_org e tel inicializadas como n/a (not available)
-            $ins = "INSERT INTO usuario (nome, sobrenome, email, senha, id_org, tel) VALUES('".$nome."', '".$sobre."',
-            '".$email."', '".$senhaMD5."', '1', '')";
+            $ins = "INSERT INTO usuario (nome, sobrenome, email, senha, id_org, tel, mes, ano) VALUES('".$nome."', '".$sobre."',
+            '".$email."', '".$senhaMD5."', '1', '', '".$mes."', '".$ano."')";
 
             mysqli_query($conn, $ins);
 
@@ -47,8 +49,8 @@ if (isset($_POST['salvar'])) {
             $row = $result->fetch_assoc();
             $id_org = $row['id'];
             // Insere um usuário vendedor com todos os campos preenchidos (obrigatoriamente)
-            $ins  = $ins = "INSERT INTO usuario (nome, sobrenome, email, senha, id_org, tel) VALUES('".$nome."', '".$sobre."',
-            '".$email."', '".$senhaMD5."', '".$org."', '".$tel."')";
+            $ins  = $ins = "INSERT INTO usuario (nome, sobrenome, email, senha, id_org, tel, mes, ano) VALUES('".$nome."', '".$sobre."',
+            '".$email."', '".$senhaMD5."', '".$org."', '".$tel."', '".$mes."', '".$ano."')";
 
             mysqli_query($conn, $ins);
 

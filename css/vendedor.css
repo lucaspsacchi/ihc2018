@@ -12,3 +12,25 @@
 .card-custom2 {
     background: linear-gradient(#ff751a, #ff3333);
 }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td{
+    border: 1px solid #e9ecef;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    border: 1px solid #e9ecef;
+    background-color: #a6acaa;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: white;
+}

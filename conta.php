@@ -202,7 +202,7 @@ if (isset($_POST['salvarDel'])) {
 												<label class="form-check-label">Administração</label><br>
 												<input type="checkbox" class="form-check-input">
 												<label class="form-check-label">Ciências Biológicas</label><br>
-												<input type="checkbox" class="form-check-input">
+												<input type="checkbox" class="form-check-input" checked>
 												<label class="form-check-label">Ciência da Computação</label><br>
 												<input type="checkbox" class="form-check-input">
 												<label class="form-check-label">Ciências Economicas</label><br>
@@ -230,8 +230,8 @@ if (isset($_POST['salvarDel'])) {
 								<label style="font-weight: bold; margin-top:10px;">
 									Deseja receber emails novos anuncios?
 								</label><br>
-								<input type="radio" value="Sim"> Sim<br>
-								<input type="radio" value="Não"> Não<br>
+								<input type="radio" name="radio" value="Sim" checked> Sim<br>
+								<input type="radio" name="radio" value="Não"> Não<br>
 							</div>
 						</div>
 						<br>

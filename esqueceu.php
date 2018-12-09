@@ -37,7 +37,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                 $_SESSION['alerta'] = 'Senha alterada com sucesso!';
                 header("Location: ./login.php");
             } else { // Não encontrou aquele email
-                $erro_login = 1;
+                $_SESSION['alerta'] = 'Email incorreto. Digite novamente.';
             }
         }
     }
@@ -51,6 +51,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
 <html lang="pt-br">
     <head>
       <?php include 'includes/header-externo.php' ?>
+      <script src="./js/confSenha.js"></script>
     </head>
     <body class="site">
 
@@ -72,7 +73,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                 <div class="site-column">
                     <div class="card">
                         <div class="card-body shadow">
-                            <form id="formLog" method="post"> <!-- Redirecionamento depende de cada usuário, vai ter um header depois da verificação das credenciais -->
+                            <form id="formCad" method="post"> <!-- Redirecionamento depende de cada usuário, vai ter um header depois da verificação das credenciais -->
                                 <div class="form-group">
                                     <label for="email" style="font-weight: bold;">Email</label><br>
                                     <input type="email" class="form-control shadow-sm bg-white" name="inputEmail" pattern=".{1,100}" autofocus required>
@@ -81,13 +82,13 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                     <div class="divrow">
                                         <label class="divsenha" style="font-weight: bold;">Nova senha</label>
                                     </div>
-                                    <input type="password" class="form-control shadow-sm bg-white" name="inputSenha" pattern=".{5,30}" required>
+                                    <input type="password" class="form-control shadow-sm bg-white" id="inputSenha" name="inputSenha" pattern=".{5,30}" required>
                                 </div>
                                 <div class="form-group">
                                     <div class="divrow">
                                         <label class="divconfsenha" style="font-weight: bold;">Confirme a senha</label>
                                     </div>
-                                    <input type="password" id="pass" class="form-control shadow-sm bg-white" name="inputConfSenha" pattern=".{5,30}" required>
+                                    <input type="password" id="pass" class="form-control shadow-sm bg-white" data-toggle="popover" id="inputConfSenha" name="inputConfSenha" pattern=".{5,30}" required>
                                 </div>
                                 <br>
                                 <div class="erro">
@@ -130,16 +131,16 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
 </html>
 <script>
     // Trigger para alterar o tab para Salvar
-			//Campo nome
-			var x = document.getElementById('pass');
+    //Campo nome
+    var x = document.getElementById('pass');
 
-			x.addEventListener("keydown",
-			function(e) {
-				//Verifica se o evento foi um enter
-				if (e.keyCode == 9) {
-					e.preventDefault();
-					document.getElementById('salvar').focus();
-				}
-			}
-			);
+    x.addEventListener("keydown",
+    function(e) {
+        //Verifica se o evento foi um enter
+        if (e.keyCode == 9) {
+            e.preventDefault();
+            document.getElementById('salvar').focus();
+        }
+    }
+    );
 </script>

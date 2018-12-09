@@ -1,13 +1,10 @@
 <?php
 include('connection/connection.php');
-
 // ini_set('session.gc_maxlifetime', 3600);
 // session_set_cookie_params(3600);
 //Cria a sessão e verifica se o usuário está logado
 include('includes/session.php');
-
 $valBusca = $_GET['busca'];
-
 $isProd = true;
 $query = "SELECT * FROM prod WHERE `nome`  LIKE \"%$valBusca%\" ORDER BY aval DESC";
 $result = mysqli_query($conn, $query);
@@ -23,10 +20,10 @@ if ($result->num_rows == 0)
 <html lang="pt-br">
     <head>
 
-		<!--Header-->
-		<?php include 'includes/header-interno.php';  ?>
+	<!--Header-->
+	<?php include 'includes/header-interno.php';  ?>
 
-		</head>
+	</head>
 
     <body>
 
@@ -68,11 +65,20 @@ if ($result->num_rows == 0)
 										<div class="card-body">
 											<div class="row">
 												<ul class="rating">
-													<span class="fa fa-star checked"></span>
-													<span class="fa fa-star checked"></span>
-													<span class="fa fa-star checked"></span>
-													<span class="fa fa-star checked"></span>
-													<span class="fa fa-star"></span>
+												<?php
+													$i = 0;
+													$x = intval($row->aval);
+													while ($i < 5) {
+														if ($i < $x) {
+															echo '<span class="fa fa-star checked"></span>';
+														}
+														else {
+															echo '<span class="fa fa-star"></span>';
+														}
+
+														$i = $i + 1;
+													}
+												?>
 												</ul>
 												<h6 class="avalCard">&nbsp( <?php echo $row->qt_votos;  ?> Avaliações)</h6>
 											</div>
@@ -108,11 +114,20 @@ if ($result->num_rows == 0)
 											<div class="card-body">
 												<div class="row">
 													<ul class="rating">
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star checked"></span>
-														<span class="fa fa-star"></span>
+													<?php
+														$i = 0;
+														$x = intval($row->aval);
+														while ($i < 5) {
+															if ($i < $x) {
+																echo '<span class="fa fa-star checked"></span>';
+															}
+															else {
+																echo '<span class="fa fa-star"></span>';
+															}
+
+															$i = $i + 1;
+														}
+													?>
 													</ul>
 													<h6 class="avalCard">&nbsp( <?php echo $row->qt_votos;  ?> Avaliações)</h6>
 												</div>

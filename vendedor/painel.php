@@ -28,7 +28,14 @@ $script = "SELECT count(id) as c
             FROM prod
             WHERE id_org = '".$_SESSION['id_organizacao']."' and aval >= 4";
 $count = $conn->query($script);
-$qt4 = $count->fetch_object();            
+$qt4 = $count->fetch_object();
+
+// Pessoas relacionadas a aquela organização
+$script = "SELECT *
+            FROM usuario
+            WHERE id_org = '".$_SESSION['id_organizacao']."'
+            ORDER BY nome ASC";
+$tabela = $conn->query($script);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -55,7 +62,7 @@ $qt4 = $count->fetch_object();
 
         <!-- Importando estilo css -->
         <link type="text/css" rel="stylesheet" href="../css/comprador.css">
-        <link type="text/css" rel="stylesheet" hred="../css/vendedor.css">
+        <link type="text/css" rel="stylesheet" href="../css/vendedor.css">
     </head>
 
     <body>
@@ -115,7 +122,46 @@ $qt4 = $count->fetch_object();
                                         </div>  
                                     </div>
                                 </div>
-							</div>								
+							</div>
+                            <br>
+                            <div class="row" style="margin-left: 10px; margin-right: 0px; margin-top: 30px;">
+                                <div class="col-12">
+                                    <div class="d-flex justify-content-around">
+                                        <div class="col-6">
+                                            <img src="../img/anunciospormes.png" alt="graficos" width="450" height="280"> 
+                                        </div>
+                                        <div class="col-6">
+                                            <img src="../img/totalanuncios.png" alt="graficos" width="450" height="280"> 
+                                        </div>                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row" style="margin-left: 25px; margin-right: 25px; margin-top: 30px; margin-bottom: 40px;">
+                                <div class="col-12">
+                                    <div class="d-flex justify-content-center">
+                                        <table>
+                                            <tr>
+                                                <th style="margin-right: 15px;">Nome Completo</th>
+                                                <th>Email</th>
+                                                <th>Telefone</th>
+                                                <th>Data de Cadastro</th>
+                                            </tr>
+                                            <?php
+                                            while ($row = $tabela->fetch_object()) {?>
+                                            <tr>
+                                                <td><?php echo $row->nome; ?>&nbsp<?php echo $row->sobrenome; ?></td>
+                                                <td><?php echo $row->email; ?></td>
+                                                <td><?php echo $row->tel; ?></td>
+                                                <td><?php echo $row->mes; ?>/<?php echo $row->ano; ?></td>
+                                            </tr>
+                                            <?php
+                                            }
+                                            ?>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
 						</div>
                     </div>
                 </div>

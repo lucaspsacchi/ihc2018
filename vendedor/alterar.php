@@ -126,7 +126,7 @@ if (isset($_POST['deletar'])) {
 
         <!-- Importando estilo css -->
         <link type="text/css" rel="stylesheet" href="../css/comprador.css">
-        <link type="text/css" rel="stylesheet" hred="../css/vendedor.css">
+        <link type="text/css" rel="stylesheet" href="../css/vendedor.css">
     </head>
 
     <body>
