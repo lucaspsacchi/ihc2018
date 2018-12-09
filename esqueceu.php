@@ -73,7 +73,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                 <div class="site-column">
                     <div class="card">
                         <div class="card-body shadow">
-                            <form id="formCad" method="post"> <!-- Redirecionamento depende de cada usuário, vai ter um header depois da verificação das credenciais -->
+                            <form id="formLog" method="post"> <!-- Redirecionamento depende de cada usuário, vai ter um header depois da verificação das credenciais -->
                                 <div class="form-group">
                                     <label for="email" style="font-weight: bold;">Email</label><br>
                                     <input type="email" class="form-control shadow-sm bg-white" name="inputEmail" pattern=".{1,100}" autofocus required>
@@ -88,7 +88,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                     <div class="divrow">
                                         <label class="divconfsenha" style="font-weight: bold;">Confirme a senha</label>
                                     </div>
-                                    <input type="password" id="pass" class="form-control shadow-sm bg-white" data-toggle="popover" id="inputConfSenha" name="inputConfSenha" pattern=".{5,30}" required>
+                                    <input type="password" class="form-control shadow-sm bg-white" data-toggle="popover" id="inputConfSenha" name="inputConfSenha" pattern=".{5,30}" required>
                                 </div>
                                 <br>
                                 <div class="erro">
@@ -144,3 +144,15 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
     }
     );
 </script>
+
+
+<?php
+if (isset($_SESSION['alerta'])) {
+    ?><script>
+	$(document).ready(function() {
+		swal({title:'<?php echo $_SESSION['alerta'];?>',
+			type: 'error'});
+	})</script><?php
+    unset($_SESSION['alerta']);
+}
+?>

@@ -2,9 +2,9 @@
 $erro_login = 0;
 session_start();
 
-if (isset($_GET['erro_login'])) {
-    $erro_login = $_GET['erro_login'];
-}
+// if (isset($_GET['erro_login'])) {
+//     $erro_login = $_GET['erro_login'];
+// }
 
 if (isset($_SESSION['alertaD'])) {
     ?><script>alert('<?php echo $_SESSION['alertaD'];?>');</script><?php
@@ -46,11 +46,13 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
                 }
             }
             else {
-                $erro_login = 1;
+                // $erro_login = 1;
+                $_SESSION['alertaW'] = 'Senha incorreta. Digite novamente.';
             }
         }
         else {
-            $erro_login = 2;
+            // $erro_login = 2;
+            $_SESSION['alertaW'] = 'Email incorreto. Digite novamente.';
         }
     }
     $conn->close();
@@ -80,19 +82,19 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
             <br>
             <div class="site-row">
                 <div class="site-column">
-                    <center>
+                    <!-- <center>
                     <?php
-                        if ($erro_login == 1) {
-                            echo '<div id="erroLogin" class="card bg-danger text-white"><div class="card-body"><div class="erro_login">Senha incorreta. Digite novamente.</div></div></div>';
-                        }
-                        else if ($erro_login == 2) {
-                            echo '<div id="erroLogin" class="card bg-danger text-white"><div class="card-body"><div class="erro_login">Email incorreto. Digite novamente.</div></div></div>';
-                        }
-                        else if ($erro_login == 3) {
-                            echo '<div id="erroLogin" class="card bg-danger text-white"><div class="card-body"><div class="erro_login">Insira seus dados novamente.</div></div></div>';
-                        }                        
+                        // if ($erro_login == 1) {
+                        //     echo '<div id="erroLogin" class="card bg-danger text-white"><div class="card-body"><div class="erro_login">Senha incorreta. Digite novamente.</div></div></div>';
+                        // }
+                        // else if ($erro_login == 2) {
+                        //     echo '<div id="erroLogin" class="card bg-danger text-white"><div class="card-body"><div class="erro_login">Email incorreto. Digite novamente.</div></div></div>';
+                        // }
+                        // else if ($erro_login == 3) {
+                        //     echo '<div id="erroLogin" class="card bg-danger text-white"><div class="card-body"><div class="erro_login">Insira seus dados novamente.</div></div></div>';
+                        // }                        
                     ?>
-                    </center>
+                    </center> -->
                     <div class="card">
                         <div class="card-body shadow">
                             <form id="formLog" action="#" method="post"> <!-- Redirecionamento depende de cada usuário, vai ter um header depois da verificação das credenciais -->
