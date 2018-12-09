@@ -89,7 +89,7 @@ if (isset($_POST['salvar'])) {
 if (isset($_POST['deletar'])) {
 
     // Apaga todos os produtos vinculados a essa pessoa
-    $script = "DELETE FROM usu_prod WHERE id_usu ='".$_SESSION['id_usuario']."'";
+    $script = "DELETE FROM usu_prod WHERE id_prod ='".$prod->id."'";
     $conn->query($script);
 
 
