@@ -111,7 +111,7 @@
             </div>
             <div class="">
                 <div class="collapse multi-collapse4" id="c3">
-                    <a id="subitem" class="btn btn-light" href="busca.php?busca=Ciência de Computação">Ciência da Computação</a>
+                    <a id="subitem" class="btn btn-light" href="busca.php?busca=Ciência da Computação">Ciência da Computação</a>
                 </div>
             </div>
             <div class="">
