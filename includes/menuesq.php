@@ -161,10 +161,10 @@
             </div>
         </div>
     </div>
-    <div class="hrFooter">
-        <hr>
-    </div>
     <div class="footer">
+        <div class="hrFooter">
+            <hr>
+        </div>    
         <div class="row">
             <a href="#">Termos de uso</a>
             <label style="color: #6c706e;">&nbsp&middot&nbsp</label>

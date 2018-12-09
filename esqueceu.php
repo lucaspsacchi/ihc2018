@@ -1,6 +1,7 @@
 <?php
 $erro_login = 0;
 session_start();
+
 if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['inputConfSenha'])) {
 
     include('connection/connection.php');

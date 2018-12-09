@@ -4,7 +4,7 @@ include('connection/connection.php');
 // ini_set('session.gc_maxlifetime', 3600);
 // session_set_cookie_params(3600);
 //Cria a sessão e verifica se o usuário está logado
-include 'includes/session.php';
+include('includes/session.php');
 
 $valSelect = $_GET['sel'];
 

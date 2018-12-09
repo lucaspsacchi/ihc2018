@@ -6,7 +6,7 @@ include('../connection/connection.php');
 //Cria a sessão e verifica se o usuário está logado
 session_start();
 if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
-    header("Location: ../login.php?erro_login=1"); // Se não está logado, retorna para a página de login com uma mensagem de erro
+    header("Location: ../login.php?erro_login=3"); // Se não está logado, retorna para a página de login com uma mensagem de erro
 }
 
 // Quantidade de pessoas por organização

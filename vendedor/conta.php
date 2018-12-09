@@ -6,16 +6,12 @@ include('../connection/connection.php');
 //Cria a sessão e verifica se o usuário está logado
 session_start();
 if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
-    header("Location: ../login.php?erro_login=1"); // Se não está logado, retorna para a página de login com uma mensagem de erro
+    header("Location: ../login.php?erro_login=3"); // Se não está logado, retorna para a página de login com uma mensagem de erro
 }
 
-if (isset($_SESSION['alertaC'])) {
-    ?><script>alert('<?php echo $_SESSION['alertaC'];?>');</script><?php
-    unset($_SESSION['alertaC']);
-}
 
 // Busca as informações do produto
-$script =   "SELECT * FROM usuario WHERE id='".$_SESSION['id_usuario']."';";
+$script = "SELECT * FROM usuario WHERE id='".$_SESSION['id_usuario']."';";
 
 // Dados da conta
 $result = $conn->query($script);
@@ -68,7 +64,11 @@ if (isset($_POST['salvar'])) {
 	// $pessoa = $result->fetch_object();
 	if ($flag == 1) {
 		$_SESSION['alertaC'] = 'Conta alterada com sucesso!';
-		header('Location: ./conta.php');
+
+		// Carrega os novos dados
+		$script = "SELECT * FROM usuario WHERE id='".$_SESSION['id_usuario']."';";
+		$result = $conn->query($script);
+		$pessoa = $result->fetch_object();
 	}
 }
 
@@ -87,11 +87,13 @@ if (isset($_POST['salvarSen'])) {
 			$query = "UPDATE usuario SET senha=\"$senhaMD5\" WHERE id='".$_SESSION['id_usuario']."';";
 			$conn->query($query);
 			$_SESSION['alertaC'] = 'Senha alterada com sucesso!';
-			header('Location: ./conta.php');
+			// Carrega os novos dados
+			$script = "SELECT * FROM usuario WHERE id='".$_SESSION['id_usuario']."';";
+			$result = $conn->query($script);
+			$pessoa = $result->fetch_object();
 		}
 		else {
-			$_SESSION['alertaC'] = 'Senha atual incorreta!';
-			header('Location: ./conta.php');
+			$_SESSION['alertaW'] = 'Senha atual incorreta!';
 		}
 	}
 }
@@ -113,12 +115,11 @@ if (isset($_POST['salvarDel'])) {
 			$query = "DELETE FROM usuario WHERE id ='".$_SESSION['id_usuario']."'";
 			$conn->query($query);
 		
-			$_SESSION['alertaD'] = 'Conta excluída com sucesso!';
+			$_SESSION['alertaD'] = 'Conta excluída com sucesso!'; // Não da certo porque tem session_destroy
 			header('Location: ./sair.php');			
 		}
 		else {
-			$_SESSION['alertaC'] = 'Senha atual incorreta!';
-			header('Location: ./conta.php');			
+			$_SESSION['alertaW'] = 'Senha atual incorreta!';			
 		}
 	}
 }
@@ -146,6 +147,9 @@ if (isset($_POST['salvarDel'])) {
         -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		
+        <!-- SweetAlert2 -->
+        <script src="../package/dist/sweetalert2.min.js"></script>
+        <link rel="stylesheet" href="../package/dist/sweetalert2.min.css">
 
         <!-- Importando estilo css -->
         <link type="text/css" rel="stylesheet" href="../css/comprador.css">
@@ -303,7 +307,25 @@ if (isset($_POST['salvarDel'])) {
 				<br>
                 </div>
             </div>
-
     </body>
 </html>
 
+<?php
+if (isset($_SESSION['alertaC'])) {
+    ?><script>
+	$(document).ready(function() {
+		swal({title:'<?php echo $_SESSION['alertaC'];?>',
+			type: 'success'});
+	})</script><?php
+    unset($_SESSION['alertaC']);
+}
+
+if (isset($_SESSION['alertaW'])) {
+    ?><script>
+	$(document).ready(function() {
+		swal({title:'<?php echo $_SESSION['alertaW'];?>',
+			type: 'error'});
+	})</script><?php
+    unset($_SESSION['alertaW']);
+}
+?>

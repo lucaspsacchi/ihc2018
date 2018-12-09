@@ -21,3 +21,7 @@
 <link type="text/css"  rel="stylesheet" href="./css/comprador.css">
 
 <script src="js/confSenha.js"></script>
+
+<!-- SweetAlert2 -->
+<script src="./package/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="./package/dist/sweetalert2.min.css">

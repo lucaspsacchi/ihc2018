@@ -28,7 +28,6 @@ if (isset($_POST['salvar'])) {
     $result = $conn->query($script);
     if($result->num_rows > 0) {
         $_SESSION['alertaEmail'] = "Já existe uma conta registrada com esse email!";
-        header("Location: ./cadastro.php");
     }
     else {
         if ($radio == 'op1')
@@ -159,7 +158,7 @@ if (isset($_POST['salvar'])) {
                                             <label class="divcomp" style="font-weight: bold;">Escolha um opção abaixo</label>
                                             <select name="organizacao" id="org" class="custom-select">
                                                 <?php 
-                                                $script = "SELECT id, nome FROM org";
+                                                $script = "SELECT id, nome FROM org ORDER BY nome";
                                                 $result = $conn->query($script);
                                                 while ($row = $result->fetch_object()) { 
                                                     if ($row->id != 1) {?>

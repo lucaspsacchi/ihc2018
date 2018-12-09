@@ -2,10 +2,10 @@
 $erro_login = 0;
 session_start();
 
-if (isset($_SESSION['alerta'])) {
-    ?><script>alert('<?php echo $_SESSION["alerta"];?>');</script><?php
-    unset($_SESSION['alerta']);
+if (isset($_GET['erro_login'])) {
+    $erro_login = $_GET['erro_login'];
 }
+
 if (isset($_SESSION['alertaD'])) {
     ?><script>alert('<?php echo $_SESSION['alertaD'];?>');</script><?php
     unset($_SESSION['alertaD']);
@@ -60,6 +60,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
 <html lang="pt-br">
     <head>
         <?php include 'includes/header-externo.php' ?>
+        
     </head>
     <body class="site">
 
@@ -87,6 +88,9 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
                         else if ($erro_login == 2) {
                             echo '<div id="erroLogin" class="card bg-danger text-white"><div class="card-body"><div class="erro_login">Email incorreto. Digite novamente.</div></div></div>';
                         }
+                        else if ($erro_login == 3) {
+                            echo '<div id="erroLogin" class="card bg-danger text-white"><div class="card-body"><div class="erro_login">Insira seus dados novamente.</div></div></div>';
+                        }                        
                     ?>
                     </center>
                     <div class="card">
@@ -128,16 +132,36 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
 
 <script>
     // Trigger para alterar o tab de "Esqueceu a sua senha?" para Senha
-			//Campo nome
-			var x = document.getElementById('email');
+    //Campo nome
+    var x = document.getElementById('email');
 
-			x.addEventListener("keydown",
-			function(e) {
-				//Verifica se o evento foi um enter
-				if (e.keyCode == 9) {
-					e.preventDefault();
-					document.getElementById('senha').focus();
-				}
-			}
-			);
+    x.addEventListener("keydown",
+    function(e) {
+        //Verifica se o evento foi um enter
+        if (e.keyCode == 9) {
+            e.preventDefault();
+            document.getElementById('senha').focus();
+        }
+    }
+    );
 </script>
+
+<?php
+if (isset($_SESSION['alerta'])) {
+    ?><script>
+	$(document).ready(function() {
+		swal({title:'<?php echo $_SESSION['alerta'];?>',
+			type: 'success'});
+	})</script><?php
+    unset($_SESSION['alerta']);
+}
+
+if (isset($_SESSION['alertaW'])) {
+    ?><script>
+	$(document).ready(function() {
+		swal({title:'<?php echo $_SESSION['alertaW'];?>',
+			type: 'error'});
+	})</script><?php
+    unset($_SESSION['alertaW']);
+}
+?>

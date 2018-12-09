@@ -6,13 +6,9 @@ include('../connection/connection.php');
 //Cria a sessão e verifica se o usuário está logado
 session_start();
 if (!isset($_SESSION['id_usuario']) && !isset($_SESSION['nome_usuario'])) {
-    header("Location: ../login.php?erro_login=1"); // Se não está logado, retorna para a página de login com uma mensagem de erro
+    header("Location: ../login.php?erro_login=3"); // Se não está logado, retorna para a página de login com uma mensagem de erro
 }
 
-if (isset($_SESSION['alertaV'])) {
-    ?><script>alert('<?php echo $_SESSION['alertaV'];?>');</script><?php
-    unset($_SESSION['alertaV']);
-}
 // Busca todos os produtos relacionados a essa pessoa
 // $script = "SELECT DISTINCT p.nome, p.id
 //            FROM prod p join usu_prod up on p.id = up.id_prod join usuario u on up.id_usu ='".$_SESSION['id_usuario']."' ";
@@ -42,11 +38,15 @@ $result = $conn->query($script);
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		
+
+        <!-- SweetAlert2 -->
+        <script src="../package/dist/sweetalert2.min.js"></script>
+        <link rel="stylesheet" href="../package/dist/sweetalert2.min.css">
 
         <!-- Importando estilo css -->
         <link type="text/css" rel="stylesheet" href="../css/comprador.css">
         <link type="text/css" rel="stylesheet" href="../css/vendedor.css">
+
     </head>
 
     <body>
@@ -85,6 +85,17 @@ $result = $conn->query($script);
                     </div>
                 </div>
             </div>
-
     </body>
 </html>
+<!-- SweetAlert2 -->
+<?php
+if (isset($_SESSION['alertaV'])) {
+    ?><script>
+    $(document).ready(function() {
+        swal({type: 'success',
+                text: '<?php echo $_SESSION['alertaV'];?>'});
+    })
+    </script><?php
+    unset($_SESSION['alertaV']);
+}
+?>

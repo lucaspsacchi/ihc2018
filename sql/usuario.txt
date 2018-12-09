@@ -1,0 +1,6 @@
+Compradora: Júlia Farias, ju_farias@gmail.com, 12345
+Vendedores: Felipe Souza, jorgebcc@gmail.com, 12345, (11) 81224-5460, Atletica BCC
+Vendedores: Valentina Ferreira, val16@hotmail.com, 12345, (15) 99882-5315, Atletica BCC
+Vendedores: Raquel Gomes, gomes.raquel@hotmail.com, 12345, (16)99812-7892, Atletica BCC
+Vendedores: Gustavo Silva, gugalima@outlook.com, 12345, (11) 98173-5670, Atletica BCC
+Vendedores: Pedro Carvalho, pedrocarvalho@gmail.com, 12345, (15)99874-1250, Atletica BCC

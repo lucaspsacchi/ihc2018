@@ -1,15 +1,11 @@
 <?php
 include('connection/connection.php');
 
+include('includes/session.php');
 // ini_set('session.gc_maxlifetime', 3600);
 // session_set_cookie_params(3600);
 //Cria a sessão e verifica se o usuário está logado
 session_start();
-
-if (isset($_SESSION['alertaC'])) {
-    ?><script>alert('<?php echo $_SESSION['alertaC'];?>');</script><?php
-    unset($_SESSION['alertaC']);
-}
 
 // Busca as informações do usuário
 $script = "SELECT nome, sobrenome, email, tel FROM usuario WHERE id='".$_SESSION['id_usuario']."';"; // Retorna os dados necessários do usuário
@@ -55,7 +51,12 @@ if (isset($_POST['salvar'])) {
 	// $pessoa = $result->fetch_object();
 	if ($flag == 1) {
 		$_SESSION['alertaC'] = 'Conta alterada com sucesso!';
-		header('Location: ./conta.php');
+
+		// Busca as informações do usuário
+		$script = "SELECT nome, sobrenome, email, tel FROM usuario WHERE id='".$_SESSION['id_usuario']."';"; // Retorna os dados necessários do usuário
+
+		$result = $conn->query($script);
+		$pessoa = $result->fetch_object();		
 	}
 }
 
@@ -74,11 +75,15 @@ if (isset($_POST['salvarSen'])) {
 			$query = "UPDATE usuario SET senha=\"$senhaMD5\" WHERE id='".$_SESSION['id_usuario']."';";
 			$conn->query($query);
 			$_SESSION['alertaC'] = 'Senha alterada com sucesso!';
-			header('Location: ./conta.php');
+			
+			// Busca as informações do usuário
+			$script = "SELECT nome, sobrenome, email, tel FROM usuario WHERE id='".$_SESSION['id_usuario']."';"; // Retorna os dados necessários do usuário
+
+			$result = $conn->query($script);
+			$pessoa = $result->fetch_object();				
 		}
 		else {
-			$_SESSION['alertaC'] = 'Senha atual incorreta!';
-			header('Location: ./conta.php');
+			$_SESSION['alertaW'] = 'Senha atual incorreta!';	
 		}
 	}
 }
@@ -101,8 +106,7 @@ if (isset($_POST['salvarDel'])) {
 			header('Location: ./sair.php');
 		}
 		else {
-			$_SESSION['alertaC'] = 'Senha incorreta!';
-			header('Location: ./conta.php');
+			$_SESSION['alertaW'] = 'Senha incorreta!';
 		}
 	}
 }
@@ -324,3 +328,23 @@ if (isset($_POST['salvarDel'])) {
 		</div>
     </body>
 </html>
+
+<?php
+if (isset($_SESSION['alertaC'])) {
+    ?><script>
+	$(document).ready(function() {
+		swal({title:'<?php echo $_SESSION['alertaC'];?>',
+			type: 'success'});
+	})</script><?php
+    unset($_SESSION['alertaC']);
+}
+
+if (isset($_SESSION['alertaW'])) {
+    ?><script>
+	$(document).ready(function() {
+		swal({title:'<?php echo $_SESSION['alertaW'];?>',
+			type: 'error'});
+	})</script><?php
+    unset($_SESSION['alertaW']);
+}
+?>

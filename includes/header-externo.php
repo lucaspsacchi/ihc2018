@@ -14,3 +14,7 @@
 <script src="js/confSenha.js"></script>
 <!-- Importando estilo css -->
 <link type="text/css" rel="stylesheet" href="css/cadastro.css">
+
+<!-- SweetAlert2 -->
+<script src="./package/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="./package/dist/sweetalert2.min.css">
