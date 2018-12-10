@@ -2,15 +2,6 @@
 $erro_login = 0;
 session_start();
 
-// if (isset($_GET['erro_login'])) {
-//     $erro_login = $_GET['erro_login'];
-// }
-
-if (isset($_SESSION['alertaD'])) {
-    ?><script>alert('<?php echo $_SESSION['alertaD'];?>');</script><?php
-    unset($_SESSION['alertaD']);
-}
-
 if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
 
     include('connection/connection.php');

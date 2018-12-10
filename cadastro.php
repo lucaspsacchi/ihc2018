@@ -103,7 +103,7 @@ if (isset($_POST['salvar'])) {
                                     <div class="col-12 col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label class="divemail" style="font-weight: bold;">Email</label>
-                                            <input type="email" class="form-control shadow-sm bg-white" name="inputEmail" pattern="{5,100}" required>
+                                            <input type="email" class="form-control shadow-sm bg-white" name="inputEmail" pattern="{5,100}" placeholder="" required>
                                         </div>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@ if (isset($_POST['salvar'])) {
                                     <div id="" class="col-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="divsenha" style="font-weight: bold;">Senha</label>
-                                            <input  type="password" class="form-control shadow-sm bg-white" id="inputSenha" name="inputSenha" pattern=".{5,30}" required>
+                                            <input  type="password" class="form-control shadow-sm bg-white" id="inputSenha" name="inputSenha" pattern=".{5,30}" placeholder="" required>
                                         </div>
                                     </div>
                                     <div class="col-6 col-md-6 col-sm-12">

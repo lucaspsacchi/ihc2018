@@ -8,6 +8,14 @@ $(document).ready(function(){
         }
     });
 
+	$("#formSen").submit(function(e) {
+		if($('#inputSenha').val() != $('#inputConfSenha').val()) {
+			e.preventDefault();
+			$("#inputConfSenha").css("border", "1px solid red");
+            $('[data-toggle="popover"]').popover();
+        }
+    });    
+
     // Verifica o campo confirmar senha com senha para mostrar para o usuário que está diferente de senha
     $("#inputConfSenha").on("change paste keyup",  function() {
         if ($("#inputConfSenha").val() !== $("#inputSenha").val())

@@ -150,7 +150,7 @@ if (isset($_POST['salvar'])) {
                                                     <img id="photo" src="../img/semImg.png" class="img-rounded" width="300px" height="300px">
                                                     <br>
                                                     <label for="comment">Imagem do anúncio<span class="ast"></span> </label>
-                                                    <input type="file" name="file" id="file" required/>
+                                                    <input type="file" name="file" id="file" required>
                                                 </div>
                                             </div>
                                             <div class="col-7 col-md-7">

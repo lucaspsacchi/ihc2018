@@ -72,15 +72,20 @@ if (isset($_POST['salvarSen'])) {
 		$senhaMD5 = MD5($senha);
 		$atualsenha = MD5($_POST['inputAtualSenha']);
 		if ($atualsenha == $row->senha) {
-			$query = "UPDATE usuario SET senha=\"$senhaMD5\" WHERE id='".$_SESSION['id_usuario']."';";
-			$conn->query($query);
-			$_SESSION['alertaC'] = 'Senha alterada com sucesso!';
-			
-			// Busca as informações do usuário
-			$script = "SELECT nome, sobrenome, email, tel FROM usuario WHERE id='".$_SESSION['id_usuario']."';"; // Retorna os dados necessários do usuário
+			if ($_POST['inputSenha'] == $_POST['inputConfSenha']) {
+				$query = "UPDATE usuario SET senha=\"$senhaMD5\" WHERE id='".$_SESSION['id_usuario']."';";
+				$conn->query($query);
+				$_SESSION['alertaC'] = 'Senha alterada com sucesso!';
+				
+				// Busca as informações do usuário
+				$script = "SELECT nome, sobrenome, email, tel FROM usuario WHERE id='".$_SESSION['id_usuario']."';"; // Retorna os dados necessários do usuário
 
-			$result = $conn->query($script);
-			$pessoa = $result->fetch_object();				
+				$result = $conn->query($script);
+				$pessoa = $result->fetch_object();
+			}
+			else {
+				$_SESSION['alertaW'] = 'Nova senha é diferente de confirmar senha!';
+			}	
 		}
 		else {
 			$_SESSION['alertaW'] = 'Senha atual incorreta!';	
@@ -102,7 +107,7 @@ if (isset($_POST['salvarDel'])) {
 			$conn->query($query);
 		
 		
-			$_SESSION['alertaD'] = 'Conta excluída com sucesso!';
+			$_SESSION['alertaH'] = 'Conta excluída com sucesso!';
 			header('Location: ./sair.php');
 		}
 		else {
@@ -257,7 +262,7 @@ if (isset($_POST['salvarDel'])) {
 										<div class="col-6">
 											<div class="form-group">
 												<label class="divsenhaatual" style="font-weight: bold;">Senha atual</label>
-												<input type="password" class="form-control shadow-sm" placeholder="Digite a senha atual" data-toggle="popover" id="inputAtualSenha" name="inputAtualSenha" pattern=".{5,30}">
+												<input type="password" class="form-control shadow-sm" placeholder="Digite a senha atual" data-toggle="popover" id="inputAtualSenha" name="inputAtualSenha" pattern=".{5,30}" required>
 											</div>
 										</div>
 										<div class="col-6"></div>										
@@ -266,13 +271,13 @@ if (isset($_POST['salvarDel'])) {
 										<div class="col-6">
 											<div class="form-group">
 												<label class="divsenha" style="font-weight: bold;">Nova senha</label>
-												<input type="password" class="form-control shadow-sm" placeholder="Alterar senha" id="inputSenha" name="inputSenha" pattern=".{5,30}">
+												<input type="password" class="form-control shadow-sm" placeholder="Alterar senha" id="inputSenha" name="inputSenha" pattern=".{5,30}" required>
 											</div>
 										</div>
 										<div class="col-6">
 											<div class="form-group">
 												<label class="divsenha" style="font-weight: bold;">Confirmar senha</label>
-												<input type="password" class="form-control shadow-sm" placeholder="Confirme a nova senha" data-toggle="popover" id="inputConfSenha" name="inputConfSenha" pattern=".{5,30}">
+												<input type="password" class="form-control shadow-sm" placeholder="Confirme a nova senha" data-toggle="popover" id="inputConfSenha" name="inputConfSenha" pattern=".{5,30}" required>
 											</div>
 										</div>										
 									</div>
@@ -301,7 +306,7 @@ if (isset($_POST['salvarDel'])) {
 										<div class="col-6">
 											<div class="form-group">
 												<label class="divsenhaatual" style="font-weight: bold;">Senha</label>
-												<input type="password" class="form-control shadow-sm" placeholder="Digite a sua senha" id="inputAtualSenhaDel" name="inputAtualSenhaDel" pattern=".{5,30}">
+												<input type="password" class="form-control shadow-sm" placeholder="Digite a sua senha" id="inputAtualSenhaDel" name="inputAtualSenhaDel" pattern=".{5,30}" required>
 												<label style="font-size:13px;">Se você deletar sua conta, não será possível recuperá-la.</label>
 											</div>
 										</div>
