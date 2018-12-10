@@ -92,7 +92,7 @@ if (isset($_POST['salvarSen'])) {
 				$script = "SELECT * FROM usuario WHERE id='".$_SESSION['id_usuario']."';";
 				$result = $conn->query($script);
 				$pessoa = $result->fetch_object();
-			else {
+			} else {
 				$_SESSION['alertaW'] = 'Senhas não idênticas. Digite novamente.';
 			}	
 		}
