@@ -1,5 +1,0 @@
-> Esqueceu
-mudar o tamanho do modal
-arrumar mensagens de erro
-> Cadastrar
-falta PHP
