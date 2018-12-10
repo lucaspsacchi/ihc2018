@@ -117,7 +117,7 @@ if (isset($_POST['salvar'])) {
                                     <div class="col-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="divconfsenha" style="font-weight: bold;">Confirme a senha</label>
-                                            <input type="password" data-toggle="popover" title="As senhas precisam ser iguais" class="form-control shadow-sm bg-white" id="inputConfSenha"  name="inputConfSenha" pattern=".{5,30}" required>
+                                            <input type="password" data-toggle="popover" title="As senhas precisam ser iguais" class="form-control shadow-sm bg-white" placeholder="De 5 a 30 caracteres" id="inputConfSenha"  name="inputConfSenha" pattern=".{5,30}" required>
                                         </div>
                                     </div>
                                 </div>

@@ -88,7 +88,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                     <div class="divrow">
                                         <label class="divconfsenha" style="font-weight: bold;">Confirme a senha</label>
                                     </div>
-                                    <input type="password" class="form-control shadow-sm bg-white" data-toggle="popover" id="inputConfSenha" name="inputConfSenha" pattern=".{5,30}" required>
+                                    <input type="password" class="form-control shadow-sm bg-white" data-toggle="popover" placeholder="De 5 a 30 caracteres" id="inputConfSenha" name="inputConfSenha" pattern=".{5,30}" required>
                                 </div>
                                 <br>
                                 <div class="erro">
