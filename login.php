@@ -91,7 +91,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
                             <form id="formLog" action="#" method="post"> <!-- Redirecionamento depende de cada usuário, vai ter um header depois da verificação das credenciais -->
                                 <div class="form-group">
                                     <label for="email" style="font-weight: bold;">Email</label><br>
-                                    <input id="email" type="email" class="form-control shadow-sm bg-white" name="inputEmail" pattern=".{1,100}" autofocus required>
+                                    <input id="email" type="email" class="form-control shadow-sm bg-white" name="inputEmail" placeholder="exemplo@exemplo.com" pattern=".{1,100}" autofocus required>
                                 </div>
                                 <div class="form-group">
                                     <div class="divrow">
@@ -100,7 +100,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha'])) {
                                             <a href="./esqueceu.php">Esqueceu a sua senha?</a>
                                         </div>
                                     </div>
-                                    <input id="senha" type="password" class="form-control shadow-sm bg-white" name="inputSenha" pattern=".{5,30}" required>
+                                    <input id="senha" type="password" class="form-control shadow-sm bg-white" name="inputSenha" placeholder="De 5 a 30 caracteres" pattern=".{5,30}" required>
                                 </div>
                                 <br>
                                 <div class="">
