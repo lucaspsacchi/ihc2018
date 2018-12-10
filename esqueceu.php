@@ -82,7 +82,7 @@ if (isset($_POST['inputEmail']) && isset($_POST['inputSenha']) && isset($_POST['
                                     <div class="divrow">
                                         <label class="divsenha" style="font-weight: bold;">Nova senha</label>
                                     </div>
-                                    <input type="password" class="form-control shadow-sm bg-white" id="inputSenha" name="inputSenha" pattern=".{5,30}" required>
+                                    <input type="password" class="form-control shadow-sm bg-white" id="inputSenha" name="inputSenha" placeholder="De 5 a 30 caracteres" pattern=".{5,30}" required>
                                 </div>
                                 <div class="form-group">
                                     <div class="divrow">

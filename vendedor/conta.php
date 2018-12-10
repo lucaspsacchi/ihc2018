@@ -93,7 +93,7 @@ if (isset($_POST['salvarSen'])) {
 				$result = $conn->query($script);
 				$pessoa = $result->fetch_object();
 			else {
-				$_SESSION['alertaW'] = 'Nova senha é diferente de confirmar senha!';
+				$_SESSION['alertaW'] = 'Senhas não idênticas. Digite novamente.';
 			}	
 		}
 		else {
